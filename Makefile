@@ -11,6 +11,7 @@ INC_DIRS := $(shell find $(INC_DIR) -type d)
 SRC_FILES := $(shell find $(INC_DIR) -name '*.cpp')
 
 main: $(SRC)
+
 	$(CC) src/main.cpp $(CFLAGS) $(LIBS) $(SRCS) -o $(TARGET_EXEC)
 
 run: main
@@ -20,7 +21,8 @@ install:
 
 
 clean:
-	rn -r $(BUILD_DIR)
+	rm -r $(BUILD_DIR)
+	rm $(TARGET_EXEC)
 
 
 
