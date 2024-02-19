@@ -19,7 +19,7 @@ Ray-Net es una innovadora solución de ray tracing potenciada por inteligencia a
 
 ## Compilar a partir del código fuente
 1. Clone el repositorio: `git clone https://github.com/tu-usuario/ray-net.git`
-2. Instalar dependencias (SDL)
+2. Instalar dependencias relacionadas con SDL
 ```bash
 sudo apt install libsdl2-2.0-0 libsdl2-dev
 ```
