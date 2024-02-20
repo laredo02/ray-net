@@ -10,9 +10,8 @@ INC_DIR := include
 INC_DIRS := $(shell find $(INC_DIR) -type d)
 SRC_FILES := $(shell find $(INC_DIR) -name '*.cpp')
 
-main: $(SRC)
-
-	$(CC) src/main.cpp $(CFLAGS) $(LIBS) $(SRCS) -o $(TARGET_EXEC)
+main: $(SRC_FILES)
+	$(CC) -I$(INC_DIRS) $(CFLAGS) $(LIBS) $(SRCS) $(SRC_FILES) -o $(TARGET_EXEC)
 
 run: main
 	./$(TARGET_EXEC)
