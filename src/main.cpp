@@ -7,6 +7,8 @@
 #include "../include/ray/RGB_Image.hpp"
 #include "../include/ray/Ray.hpp"
 
+#include "../include/misc/Splash.hpp"
+
 /*
  *
  *		ooooooooo.                                 ooooo      ooo               .   
@@ -66,10 +68,13 @@ int main(int argc, char* argv[])
 	using std::cout;
 	using std::endl;
 
+	// Print Splash Screen
+	splashScreen();
+
 	// Camera
 	const double focal_length = 1.0;
 	const double viewport_height = 2.0;
-	const double viewport_width = viewport_height * (static_cast<double>(image_width/image_height));
+	const double viewport_width = viewport_height * (static_cast<double>(WIDTH/HEIGHT));
 	
 	
 
