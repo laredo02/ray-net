@@ -10,12 +10,12 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 - **Multiplataforma**: Compatible con diversas plataformas y dispositivos.
 
 ## Tecnologías Utilizadas
-- Lenguajes: C++, Python
-- Librerías: PyTorch, CUDA, SDL
-- Herramientas: Git, Make
+- **Lenguajes:** C++, Python
+- **Librerías:** PyTorch, CUDA, SDL
+- **Herramientas:** Git, Make
 
 ## Requisitos Previos
-- Nvidia GPU con soporte CUDA + drivers
+- GPU Nvidia con soporte CUDA + drivers
 - SDL
 - PyTorch
 - Make

@@ -6,7 +6,6 @@
 Ray::Ray(const Point& o, const Vector& d)
 	: m_Origin(o), m_Direction(d)
 {
-	std::cout << "RAYYY" << std::endl;
 }
 
 inline Point Ray::origin() const
