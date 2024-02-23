@@ -10,14 +10,20 @@ using Vector = XYZ<double>;
 class Ray {
 
 public:
-	Ray();
-	Ray(const Point& origin, const Vector& direction);
+	Ray(const Point& origin=Point(0.0, 0.0, 0.0), const Vector& direction=Vector(0.0, 0.0, 0.0));
+
+	Point origin() const;
+	Vector direction() const;
+
+	Point at(double t) const;
 	
 private:
-	Point orig;
-	Vector dir;
+	Point m_Origin;
+	Vector m_Direction;
 
 };
+
+std::ostream& operator<<(std::ostream& os, Ray& ray);
 
 #endif // __HEADER_RAY__
 

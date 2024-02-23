@@ -3,6 +3,7 @@
 #define __HEADER_RGB_IMAGE__
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <random>
 
@@ -11,7 +12,6 @@ public:
 
 	RGB_Image(size_t w, size_t h);
 
-	//void resize(size_t w, size_t h, T r, T g, T b);
 	void resize(size_t w, size_t h, T r=static_cast<T>(0), T g=static_cast<T>(0), T b=static_cast<T>(0));
 	void fill(T r, T g, T b);
 	void randFill();
@@ -27,6 +27,8 @@ public:
 
 	size_t width() const;
 	size_t height() const;
+
+	void printToFile(const std::string& path) const;
 
 private:
 
@@ -57,13 +59,12 @@ template<typename T> void RGB_Image<T>::resize(size_t w, size_t h, T r, T g, T b
 
 template<typename T> void RGB_Image<T>::fill(T r, T g, T b)
 {
-	for (size_t i=0; i<m_Width; i++) {
+	for (size_t i=0; i<m_Width; i++)
 		for (size_t j=0; j<m_Width; j++) {
 			m_RedChannel.at(i).at(j) = r;
 			m_GreenChannel.at(i).at(j) = g;
 			m_BlueChannel.at(i).at(j) = b;
 		}
-	}
 }
 
 template<typename T> void RGB_Image<T>::randFill()
@@ -71,69 +72,79 @@ template<typename T> void RGB_Image<T>::randFill()
 	std::random_device rd;
 	std::mt19937 gen { rd() };
 	std::uniform_real_distribution<> distrib(0.0, 256.0);
-	for (size_t i=0; i<m_Width; i++) {
+	for (size_t i=0; i<m_Width; i++)
 		for (size_t j=0; j<m_Width; j++) {
 			m_RedChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 			m_GreenChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 			m_BlueChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 		}
-	}
 }
 
 template<typename T> void RGB_Image<T>::setPixel(size_t x, size_t y, T r, T g, T b) 
 {
 	m_RedChannel.at(x).at(y) = r;
-	m_RedChannel.at(x).at(y) = g;
-	m_RedChannel.at(x).at(y) = b;
+	m_GreenChannel.at(x).at(y) = g;
+	m_BlueChannel.at(x).at(y) = b;
 }
 
-template <typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getRedChannel() const
+template<typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getRedChannel() const
 {
 	return m_RedChannel;
 }
 
-template <typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getGreenChannel() const
+template<typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getGreenChannel() const
 {
 	return m_RedChannel;
 }
 
-template <typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getBlueChannel() const
+template<typename T> const std::vector<std::vector<T>>& RGB_Image<T>::getBlueChannel() const
 {
 	return m_RedChannel;
 }
 
-template <typename T> inline T RGB_Image<T>::getRedChannelPixel(size_t x, size_t y) const
+template<typename T> inline T RGB_Image<T>::getRedChannelPixel(size_t x, size_t y) const
 {
 	return m_RedChannel.at(x).at(y);
 }
 
-template <typename T> inline T RGB_Image<T>::getGreenChannelPixel(size_t x, size_t y) const
+template<typename T> inline T RGB_Image<T>::getGreenChannelPixel(size_t x, size_t y) const
 {
 	return m_GreenChannel.at(x).at(y);
 }
 
-template <typename T> inline T RGB_Image<T>::getBlueChannelPixel(size_t x, size_t y) const
+template<typename T> inline T RGB_Image<T>::getBlueChannelPixel(size_t x, size_t y) const
 {
 	return m_BlueChannel.at(x).at(y);
 }
 
-template <typename T> inline size_t RGB_Image<T>::width() const
+template<typename T> inline size_t RGB_Image<T>::width() const
 {
 	return m_Width;
 }
 
-template <typename T> inline size_t RGB_Image<T>::height() const
+template<typename T> inline size_t RGB_Image<T>::height() const
 {
 	return m_Height;
 }
 
-template <typename T> inline std::ostream& operator<<(std::ostream& os, const RGB_Image<T>& image) {
-	for (uint32_t i=0; i<image.width(); i++) {
-		for (uint32_t j=0; j<image.height(); j++) {
+template<typename T> void RGB_Image<T>::printToFile(const std::string& path) const
+{
+	std::ofstream os { path, std::ios::out | std::ios::trunc };
+	os << "P3\n" << m_Width << ' ' << m_Height << "\n255\n";
+	for (size_t i{0}; i<m_Height; i++)
+		for (size_t j{0}; j<m_Width; j++)
+			os << static_cast<int>(m_RedChannel.at(i).at(j)) << ' '
+			   << static_cast<int>(m_GreenChannel.at(i).at(j)) << ' '
+			   << static_cast<int>(m_BlueChannel.at(i).at(j)) << '\n';
+	os.close();
+}
+
+template<typename T> inline std::ostream& operator<<(std::ostream& os, const RGB_Image<T>& image) {
+	for (size_t i{0}; i<image.width(); i++) {
+		for (size_t j{0}; j<image.height(); j++)
 			os << "[" << image.getRedChannelPixel(i, j) <<
 				  ", " << image.getGreenChannelPixel(i, j) <<
 				  ", " << image.getBlueChannelPixel(i, j) << "]"; 
-		}
 		os << '\n';
 	}
 	return os;
