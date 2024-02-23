@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdint>
+#include <cmath>
 
 template<typename T> struct XYZ {
 

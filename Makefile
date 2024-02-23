@@ -12,7 +12,7 @@ clean:
 	rm -rf build
 
 ray-net: $(OBJS)
-	$(CC) $(OPT) build/SDL_Window.o build/RGB_Image.o build/main.o -o ray-net
+	$(CC) $(OPT) build/SDL_Window.o build/main.o -o ray-net
 
 build_dir:
 	mkdir -p build
