@@ -10,7 +10,6 @@
 #include "../include/misc/Splash.hpp"
 
 /*
- *
  *		ooooooooo.                                 ooooo      ooo               .   
  *		`888   `Y88.                               `888b.     `8'             .o8   
  *		 888   .d88'  .oooo.   oooo    ooo          8 `88b.    8   .ooooo.  .o888oo 
@@ -26,16 +25,16 @@
  *	date: 23/02/2024
  *
  *
- *                                                                                @@
- *                                                                            (@  @    @@(
- *                                                                         @@     @    *%&# ,@@
- *                                                                      @#        @ @        @,   %@#
- *                                                                  .@            @@          ,(        @@.
- *                                                               #@               @@           #             /@@
- *                                                            @@                  @ @        @/         ,@@#   &
- *                                                         @/                     @    #@@@.     (@@*          @
- *                                                     *@                         @       %@@,    @@.          @@.
- *                                                  %@                            @@@&         @#              @   @
+ *          ^                                                                     @@			  ^
+ *        y |                                                                 (@  @    @@(		  U
+ *          |                                                              @@     @    *%&# ,@@
+ *          |                                                           @#        @ @        @,   %@#
+ *          |                                                       .@            @          ,(        @@.
+ *          |__________>                                        #@                @           #             /@@
+ *         /          X                                       @@                  @ @        @/         ,@@#   &
+ *      Z /                                                @/                     @    #@@@.     (@@*          @
+ *       /                                             *@                         @       %@@,    @@.          @@.
+ *      %                                           %@                            @@@&         @#              @   @
  *                                               @&                        .@@%   @          (&                @     @
  *                                            @.                    (@@*          @         &.                 @      @
  *                                        (@                 &@@.                 @         @                  @       @
@@ -75,8 +74,9 @@ int main(int argc, char* argv[])
 	const double focal_length = 1.0;
 	const double viewport_height = 2.0;
 	const double viewport_width = viewport_height * (static_cast<double>(WIDTH/HEIGHT));
-	
-	
+	const Vector viewport_u = Vector(0.0, 0.0, 0.0);
+	const Vector viewport_v = Vector(0.0, 0.0, 0.0);
+
 
 
 	return 0;
