@@ -1,29 +1,25 @@
 
-CC := g++
-CFLAGS := -g -O2 -Wall -pedantic -std=c++23
-LIBS := -Iinclude/*
+CC:=g++
+OPT:=-Wall -Wextra -pedantic -O2 -g
 
-TARGET_EXEC := ./ray-net
-BUILD_DIR := ./build
+OBJS:=main.o RGB_Image.o SDL_Window.o
+HEADRS:=include/math/XYZ.hpp include/ray/RGB_Image.hpp include/sdl/SDL_Window.hpp
 
-INC_DIR := include
-INC_DIRS := $(shell find $(INC_DIR) -type d)
-SRC_FILES := $(shell find $(INC_DIR) -name '*.cpp')
-
-main: $(SRC_FILES)
-	$(CC) -I$(INC_DIRS) $(CFLAGS) $(LIBS) $(SRCS) $(SRC_FILES) -o $(TARGET_EXEC)
-
-run: main
-	./$(TARGET_EXEC)
-
-install:
+ray-net: $(OBJS)
+	$(CC) $(OPT) build/SDL_Window.o build/RGB_Image.o build/main.o -o ray-net
 
 
-clean:
-	rm -r $(BUILD_DIR)
-	rm $(TARGET_EXEC)
+build_dir:
+	mkdir -p build
 
+main.o: src/main.cpp build_dir
+	$(CC) -c src/main.cpp -o build/main.o
 
+RGB_Image.o: include/ray/RGB_Image.cpp include/ray/RGB_Image.hpp build_dir
+	$(CC) -c include/ray/RGB_Image.cpp -o build/RGB_Image.o
+
+SDL_Window.o: include/sdl/SDL_Window.cpp include/sdl/SDL_Window.hpp build_dir
+	$(CC) -c include/sdl/SDL_Window.cpp -o build/SDL_Window.o
 
 
 
