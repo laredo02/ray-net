@@ -2,6 +2,9 @@
 #ifndef __HEADER_XYZ__
 #define __HEADER_XYZ__
 
+#include <iostream>
+#include <cstdint>
+
 template<typename T> struct XYZ {
 
 public:

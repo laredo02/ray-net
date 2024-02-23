@@ -1,4 +1,7 @@
 
+#include <iostream>
+#include <cstdint>
+
 #include "RGB_Image.hpp"
 
 RGBAImage::RGBAImage(uint32_t w, uint32_t h) : m_Width(w), m_Height(h)
@@ -6,22 +9,6 @@ RGBAImage::RGBAImage(uint32_t w, uint32_t h) : m_Width(w), m_Height(h)
 	m_RedChannel.resize(h, std::vector<uint8_t>(w, 0));
 	m_GreenChannel.resize(h, std::vector<uint8_t>(w, 0));
 	m_BlueChannel.resize(h, std::vector<uint8_t>(w, 0));
-}
-
-RGBAImage::RGBAImage(RGBAImage& img)
-	: m_Width(img.m_Width), m_Height(img.m_Width)
-{
-	m_RedChannel = img.m_RedChannel;
-	m_GreenChannel = img.m_GreenChannel;
-	m_BlueChannel = img.m_BlueChannel;
-}
-
-RGBAImage::RGBAImage(RGBAImage&& img)
-	: m_RedChannel(std::move(img.m_RedChannel)),
-	  m_GreenChannel(std::move(img.m_GreenChannel)),
-	  m_BlueChannel(std::move(img.m_BlueChannel)),
-	  m_Width(img.m_Width), m_Height(img.m_Height)
-{
 }
 
 void RGBAImage::resize(uint32_t w, uint32_t h)

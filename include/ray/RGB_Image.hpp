@@ -7,7 +7,6 @@
 class RGBAImage {
 public:
 	RGBAImage(uint32_t w, uint32_t h);
-	RGBAImage(RGBAImage&& img);
 	void resize(uint32_t w, uint32_t h);
 	void fill(uint8_t r, uint8_t g, uint8_t b);
 	void setPixel(uint32_t x, uint32_t y, uint8_t r, uint8_t g, uint8_t b);
@@ -27,7 +26,7 @@ private:
 	uint32_t m_Height;
 };
 
-#ifndef __HEADER_RGB_IMAGE__
+#endif // __HEADER_RGB_IMAGE__
 
 
 
