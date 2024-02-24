@@ -2,6 +2,8 @@
 #ifndef __HEADER_BENCHMARK__
 #define __HEADER_BENCHMARK__
 
+#include <chrono>
+
 class Benchmark {
 
 public:
@@ -15,7 +17,7 @@ public:
 	{
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-        std::cout << name << " took " << duration << " microseconds." << std::endl;
+        std::cout << name << " took " << duration << " ms.\n";
     }
 
 private:

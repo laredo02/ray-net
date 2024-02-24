@@ -35,6 +35,9 @@ public:
 
 };
 
+using Point = XYZ<double>;
+using Vector = XYZ<double>;
+
 template<typename T> XYZ<T>::XYZ()
 	: m_xyz{ (T) 0, (T) 0, (T) 0 }
 {

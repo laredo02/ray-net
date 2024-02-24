@@ -4,9 +4,6 @@
 
 #include "../math/XYZ.hpp"
 
-using Point = XYZ<double>;
-using Vector = XYZ<double>;
-
 class Ray {
 
 public:
