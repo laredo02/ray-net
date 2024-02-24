@@ -3,6 +3,7 @@
 #define __HEADER_RAY__
 
 #include "../math/XYZ.hpp"
+#include "RGB_Color.hpp"
 
 class Ray {
 
@@ -13,7 +14,8 @@ public:
 	Vector direction() const;
 
 	Point at(double t) const;
-	
+	Color color();
+
 private:
 	Point m_Origin;
 	Vector m_Direction;

@@ -1,6 +1,6 @@
 
 CC:=g++
-OPT:=-Wall -Wextra -pedantic -O2 -g
+OPT:=-Wall -Wextra -pedantic -ggdb
 
 # OBJS:=main.o SDL_Window.o Ray.o
 # HEADRS:=include/math/XYZ.hpp include/ray/RGB_Image.hpp include/sdl/SDL_Window.hpp
@@ -13,6 +13,7 @@ clean:
 
 ray-net: main.o Ray.o SDL_Window.o Splash.o
 	$(CC) $(OPT) build/Splash.o build/Ray.o build/SDL_Window.o build/main.o -o ray-net
+
 
 build_dir:
 	mkdir -p build

@@ -24,6 +24,11 @@ Point Ray::at(double t) const
 	return p;
 }
 
+Color Ray::color()
+{
+	return Color(0.0, 0.0, 0.0);
+}
+
 std::ostream& operator<<(std::ostream& os, Ray& ray)
 {
 	return os << "(O:" << ray.origin() << ", D:" << ray.direction() << ")";

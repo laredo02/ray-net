@@ -28,7 +28,7 @@ public:
 	size_t width() const;
 	size_t height() const;
 
-	void printToFile(const std::string& path) const;
+	void saveToFile(const std::string& path) const;
 
 private:
 
@@ -40,6 +40,8 @@ private:
 	size_t m_Height;
 
 };
+
+using Image = RGB_Image<double>;
 
 template<typename T> RGB_Image<T>::RGB_Image(size_t w, size_t h) : m_Width(w), m_Height(h)
 {
@@ -127,7 +129,7 @@ template<typename T> inline size_t RGB_Image<T>::height() const
 	return m_Height;
 }
 
-template<typename T> void RGB_Image<T>::printToFile(const std::string& path) const
+template<typename T> void RGB_Image<T>::saveToFile(const std::string& path) const
 {
 	std::ofstream os { path, std::ios::out | std::ios::trunc };
 	os << "P3\n" << m_Width << ' ' << m_Height << "\n255\n";
