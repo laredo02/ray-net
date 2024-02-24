@@ -28,8 +28,8 @@ git clone https://github.com/tu-usuario/ray-net.git`
 ```
 2. Instalar dependencias
 ```bash
-sudo apt install libsdl2-2.0-0 libsdl2-dev # libreria SDL
-sudo apt install gcc make # Compiler dependencies
+sudo apt install libsdl2-2.0-0 libsdl2-dev	# libreria SDL
+sudo apt install gcc make					# Compiler dependencies
 ```
 3. Una vez instaladas las dependencias toca compilar el código mediante el comando
 ```bash
