@@ -187,7 +187,7 @@ template<typename T> inline XYZ<T> operator/(const XYZ<T> a, T b)
 
 template<typename T> inline T XYZ<T>::norm() const
 {
-	return std::sqrt(m_xyz[0]*m_xyz[0] + m_xyz[1]*m_xyz[1] + m_xyz[2]*m_xyz[2]);
+	return static_cast<T>(std::sqrt(m_xyz[0]*m_xyz[0] + m_xyz[1]*m_xyz[1] + m_xyz[2]*m_xyz[2]));
 }
 template<typename T> inline T XYZ<T>::normSquared() const
 {
