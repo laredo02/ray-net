@@ -1,6 +1,7 @@
 
 #include <iostream>
 
+#include "../math/XYZ.hpp"
 #include "Ray.hpp"
 
 Ray::Ray(const Point& o, const Vector& d)
@@ -26,7 +27,7 @@ Point Ray::at(double t) const
 
 Color Ray::color()
 {
-	return Color(0.0, 0.0, 0.0);
+	return Color(255.0, 0.0, 0.0);
 }
 
 std::ostream& operator<<(std::ostream& os, Ray& ray)

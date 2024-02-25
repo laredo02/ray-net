@@ -199,9 +199,12 @@ template<typename T> inline T dot(const XYZ<T>& u, const XYZ<T>& v)
 }
 template<typename T> inline T cross(const XYZ<T>& u, const XYZ<T>& v)
 {
+	
 }
-template<typename T> inline T unit_vector(const XYZ<T>& u, const XYZ<T>& v)
+template<typename T> inline XYZ<T> unit_vector(const XYZ<T>& xyz)
 {
+	T norm = xyz.norm();
+	return XYZ<T>(xyz.x()/norm, xyz.y()/norm, xyz.z()/norm);
 }
 
 template<typename T> inline std::ostream& operator<<(std::ostream& out, const XYZ<T>& xyz)

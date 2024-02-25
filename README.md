@@ -19,7 +19,8 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 - SDL
 - PyTorch
 - Make
-- g++
+- g++ (GNU C++ Compiler)
+- eog (Eye of GNOME)
 
 ## Compilar a partir del código fuente
 1. Clone el repositorio:

@@ -6,7 +6,7 @@ OPT:=-Wall -Wextra -pedantic -ggdb
 # HEADRS:=include/math/XYZ.hpp include/ray/RGB_Image.hpp include/sdl/SDL_Window.hpp
 
 run: ray-net
-	./ray-net
+	./ray-net i.ppm
 
 clean:
 	rm -rf build
