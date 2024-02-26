@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	using std::cout;
 	using std::endl;
 
-	std::string image_path = "img.ppm";
+	std::string image_path = "image.ppm";
 	if (argc == 2)
 		image_path = std::string(argv[1]);
 
@@ -80,9 +80,6 @@ int main(int argc, char* argv[])
 	const size_t IMAGE_WIDTH = 400;
 	const size_t IMAGE_HEIGHT = (static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO) < 1)? 1 : static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO);
 	Image final_render { IMAGE_WIDTH, IMAGE_HEIGHT };
-
-	cout << "Camera/Viewport Parameters:\n";
-	cout << "Resolution: " << IMAGE_WIDTH << "x" << IMAGE_HEIGHT << '\n';
 
 	// Camera
 	const double FOCAL_LENGTH = 1.0;											// Distancia entre la Cámara y el Viewport
@@ -96,11 +93,12 @@ int main(int argc, char* argv[])
 	const Point VIEWPORT_ORIGIN = CAMERA_CENTER - Vector(0.0, 0.0, FOCAL_LENGTH) - VIEWPORT_U/2.0 - VIEWPORT_V/2.0;		// Q
 	const Point PIXEL00 = VIEWPORT_ORIGIN + 0.5*(DELTA_U + DELTA_V);			// Pixel 00
 
-	cout << "Focal length: " << FOCAL_LENGTH << '\n';
-	cout << "Viewport size: " << VIEWPORT_WIDTH << 'x' << VIEWPORT_HEIGHT << '\n';
-	cout << "Viewport Origin: " << VIEWPORT_ORIGIN << '\n';
-	cout << "U, V: " << VIEWPORT_U << ", " << VIEWPORT_V << '\n';
-	cout << "dU, dV: " << DELTA_U << ", " << DELTA_V << '\n';
+	cout << "\n=============================\n" <<
+			"Resolution: " << IMAGE_WIDTH << "x" << IMAGE_HEIGHT <<
+			"\nFocal length: " << FOCAL_LENGTH <<
+			"\nViewport size: " << VIEWPORT_WIDTH << 'x' << VIEWPORT_HEIGHT <<
+			"\nViewport Origin: " << VIEWPORT_ORIGIN <<
+			"\nU, V: " << VIEWPORT_U << ", " << VIEWPORT_V << "\ndU, dV: " << DELTA_U << ", " << DELTA_V << "\n=============================\n\n";
 
 	// Render Image
 	for (size_t i{0}; i<IMAGE_HEIGHT; i++)
@@ -114,13 +112,24 @@ int main(int argc, char* argv[])
 			final_render.setPixel(i, j, p_color.red, p_color.green, p_color.blue);
 		}
 	}
-
 	final_render.saveToFile(image_path);
 
+
+
+
+
 	XYZ<double> vec { 1.0, 2.0, 3.0};
+
 	std::cout << vec << std::endl;
 	Vector unit = vec.unit();
 	std::cout << unit << std::endl;
+
+	std::cout << std::endl;
+
+
+
+
+
 
 #ifdef __COMPILE_EOG__
 	pid_t pid = fork();

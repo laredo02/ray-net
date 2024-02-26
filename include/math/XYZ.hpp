@@ -197,7 +197,9 @@ template<typename T> inline T XYZ<T>::normSquared() const
 template<typename T> inline XYZ<T> XYZ<T>::unit()
 {
 	T norm = this->norm();
-	return XYZ<T>(this->x()/norm, this->y()/norm, this->z()/norm);
+	if (norm != 0.0)
+		return XYZ<T>(this->x()/norm, this->y()/norm, this->z()/norm);
+	else return XYZ<T>(0.0, 0.0, 0.0);
 }
 
 template<typename T> inline T dot(const XYZ<T>& u, const XYZ<T>& v)

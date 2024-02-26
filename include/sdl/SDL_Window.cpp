@@ -3,6 +3,7 @@
 
 #include "SDL_Window.hpp"
 
+/*
 Window::Window(const std::string n, const uint32_t w, const uint32_t h, const bool r = true)
     : name{n}, width(w), height(h), resizable(r), window(nullptr)
 {
@@ -27,4 +28,5 @@ uint32_t Window::init()
 	}
 	return 0;
 }
+*/
 
