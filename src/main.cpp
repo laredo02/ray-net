@@ -6,14 +6,14 @@
 #include <sys/wait.h>
 
 #include "../include/sdl/SDL_Window.hpp"
-
 #include "../include/ray/RGB_Image.hpp"
 #include "../include/ray/Ray.hpp"
-
 #include "../include/misc/Benchmark.hpp"
 #include "../include/misc/Splash.hpp"
 
-#define __COMPILE_EOG__
+#include "../include/math/XYZ.hpp"
+
+// #define __COMPILE_EOG__
 
 /*
  *      ooooooooo.                                 ooooo      ooo               .
@@ -117,6 +117,10 @@ int main(int argc, char* argv[])
 
 	final_render.saveToFile(image_path);
 
+	XYZ<double> vec { 1.0, 2.0, 3.0};
+	std::cout << vec << std::endl;
+	Vector unit = vec.unit();
+	std::cout << unit << std::endl;
 
 #ifdef __COMPILE_EOG__
 	pid_t pid = fork();
@@ -141,20 +145,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -28,6 +28,7 @@ public:
 	XYZ<T>& operator/=(const T& value);
 	T norm() const;
 	T normSquared() const;
+	XYZ<T> unit();
 
 public:
 
@@ -193,6 +194,12 @@ template<typename T> inline T XYZ<T>::normSquared() const
 {
 	return m_xyz[0]*m_xyz[0] + m_xyz[1]*m_xyz[1] + m_xyz[2]*m_xyz[2];
 }
+template<typename T> inline XYZ<T> XYZ<T>::unit()
+{
+	T norm = this->norm();
+	return XYZ<T>(this->x()/norm, this->y()/norm, this->z()/norm);
+}
+
 template<typename T> inline T dot(const XYZ<T>& u, const XYZ<T>& v)
 {
 	return u.x()*v.x() + u.y()*v.y() + u.z()*v.z();
@@ -200,11 +207,6 @@ template<typename T> inline T dot(const XYZ<T>& u, const XYZ<T>& v)
 template<typename T> inline T cross(const XYZ<T>& u, const XYZ<T>& v)
 {
 	
-}
-template<typename T> inline XYZ<T> unit_vector(const XYZ<T>& xyz)
-{
-	T norm = xyz.norm();
-	return XYZ<T>(xyz.x()/norm, xyz.y()/norm, xyz.z()/norm);
 }
 
 template<typename T> inline std::ostream& operator<<(std::ostream& out, const XYZ<T>& xyz)
