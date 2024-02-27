@@ -8,7 +8,7 @@
 class Ray {
 
 public:
-	Ray(const Point& origin=Point(0.0, 0.0, 0.0), const Vector& direction=Vector(0.0, 0.0, 0.0));
+	Ray(const Point& origin, const Vector& direction);
 
 	Point origin() const;
 	Vector direction() const;

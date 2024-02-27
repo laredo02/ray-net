@@ -6,13 +6,13 @@ OPT:=-Wall -Wextra -pedantic -ggdb
 # HEADRS:=include/math/XYZ.hpp include/ray/RGB_Image.hpp include/sdl/SDL_Window.hpp
 
 run: ray-net
-	./ray-net i.ppm
+	./ray-net
 
 clean:
 	rm -rf build
 
-ray-net: main.o Ray.o SDL_Window.o Splash.o
-	$(CC) $(OPT) build/Splash.o build/Ray.o build/SDL_Window.o build/main.o -o ray-net
+ray-net: main.o Ray.o SDL_Window.o Splash.o RGB_Color.o
+	$(CC) $(OPT) build/RGB_Color.o build/Splash.o build/Ray.o build/SDL_Window.o build/main.o -o ray-net
 
 
 build_dir:
@@ -29,4 +29,9 @@ SDL_Window.o: include/sdl/SDL_Window.cpp include/sdl/SDL_Window.hpp build_dir
 
 Splash.o: include/misc/Splash.cpp include/misc/Splash.hpp build_dir
 	$(CC) -c include/misc/Splash.cpp -o build/Splash.o
+
+RGB_Color.o: include/ray/RGB_Color.cpp include/ray/RGB_Color.hpp build_dir
+	$(CC) -c include/ray/RGB_Color.cpp -o build/RGB_Color.o
+
+
 

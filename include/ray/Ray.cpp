@@ -27,13 +27,9 @@ Point Ray::at(double t) const
 
 Color Ray::color()
 {
-	Vector u = m_Direction.unit();	// values from 0 to 1
-	Color c { static_cast<uint8_t>(.0*u.y()),
-		static_cast<uint8_t>(255.0*u.y()),
-		static_cast<uint8_t>(255.0*u.z()) };
-	Color purple { 0xdd, 0x2f, 0xff  };
-	
-	return purple;
+	Color color = vectorToColor(m_Direction);
+
+	return color;
 }
 
 std::ostream& operator<<(std::ostream& os, Ray& ray)

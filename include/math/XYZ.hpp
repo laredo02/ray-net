@@ -28,7 +28,7 @@ public:
 	XYZ<T>& operator/=(const T& value);
 	T norm() const;
 	T normSquared() const;
-	XYZ<T> unit();
+	XYZ<T> unit() const;
 
 public:
 
@@ -194,7 +194,7 @@ template<typename T> inline T XYZ<T>::normSquared() const
 {
 	return m_xyz[0]*m_xyz[0] + m_xyz[1]*m_xyz[1] + m_xyz[2]*m_xyz[2];
 }
-template<typename T> inline XYZ<T> XYZ<T>::unit()
+template<typename T> inline XYZ<T> XYZ<T>::unit() const
 {
 	T norm = this->norm();
 	if (norm != 0.0)
@@ -213,7 +213,7 @@ template<typename T> inline T cross(const XYZ<T>& u, const XYZ<T>& v)
 
 template<typename T> inline std::ostream& operator<<(std::ostream& out, const XYZ<T>& xyz)
 {
-	out << "[" << xyz.x() << ", " << xyz.y() << ", " << xyz.z() << "]"; return out;
+	return out << "[" << xyz.x() << ", " << xyz.y() << ", " << xyz.z() << "]";
 }
 
 #endif //__HEADER_XYZ__

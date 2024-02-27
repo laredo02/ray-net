@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 
 	// Image
 	const double ASPECT_RATIO = 1.0; // 16.0/9.0;
-	const size_t IMAGE_WIDTH = 400;
+	const size_t IMAGE_WIDTH = 1000;
 	const size_t IMAGE_HEIGHT = (static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO) < 1)? 1 : static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO);
 	Image final_render { IMAGE_WIDTH, IMAGE_HEIGHT };
 
@@ -107,25 +107,17 @@ int main(int argc, char* argv[])
 		{
 			auto ray_center = PIXEL00 + (static_cast<double>(i)*DELTA_U) + (static_cast<double>(j)*DELTA_V);
 			auto ray_direction = ray_center - CAMERA_CENTER;
-			Ray ray = (CAMERA_CENTER, ray_direction);
+
+			Ray ray { CAMERA_CENTER, ray_direction };
 			Color p_color = ray.color();
-			final_render.setPixel(i, j, p_color.red, p_color.green, p_color.blue);
+
+			final_render.setPixel(i, j,
+				static_cast<uint8_t>(p_color.red),
+				static_cast<uint8_t>(p_color.green),
+				static_cast<uint8_t>(p_color.blue));
 		}
 	}
 	final_render.saveToFile(image_path);
-
-
-
-
-
-	XYZ<double> vec { 1.0, 2.0, 3.0};
-
-	std::cout << vec << std::endl;
-	Vector unit = vec.unit();
-	std::cout << unit << std::endl;
-
-	std::cout << std::endl;
-
 
 
 
