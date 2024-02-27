@@ -38,7 +38,6 @@ private:
 
 	size_t m_Width;
 	size_t m_Height;
-
 };
 
 using Image = RGB_Image<double>;
@@ -62,11 +61,13 @@ template<typename T> void RGB_Image<T>::resize(size_t w, size_t h, T r, T g, T b
 template<typename T> void RGB_Image<T>::fill(T r, T g, T b)
 {
 	for (size_t i=0; i<m_Width; i++)
-		for (size_t j=0; j<m_Width; j++) {
+	{
+		for (size_t j=0; j<m_Height; j++) {
 			m_RedChannel.at(i).at(j) = r;
 			m_GreenChannel.at(i).at(j) = g;
 			m_BlueChannel.at(i).at(j) = b;
 		}
+	}
 }
 
 template<typename T> void RGB_Image<T>::randFill()
@@ -75,11 +76,14 @@ template<typename T> void RGB_Image<T>::randFill()
 	std::mt19937 gen { rd() };
 	std::uniform_real_distribution<> distrib(0.0, 256.0);
 	for (size_t i=0; i<m_Width; i++)
-		for (size_t j=0; j<m_Width; j++) {
+	{
+		for (size_t j=0; j<m_Height; j++)
+		{
 			m_RedChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 			m_GreenChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 			m_BlueChannel.at(i).at(j) = static_cast<T>(distrib(gen));
 		}
+	}
 }
 
 template<typename T> void RGB_Image<T>::setPixel(size_t x, size_t y, T r, T g, T b) 
@@ -133,20 +137,27 @@ template<typename T> void RGB_Image<T>::saveToFile(const std::string& path) cons
 {
 	std::ofstream os { path, std::ios::out | std::ios::trunc };
 	os << "P3\n" << m_Width << ' ' << m_Height << "\n255\n";
-	for (size_t i{0}; i<m_Height; i++)
-		for (size_t j{0}; j<m_Width; j++)
+	for (size_t i{0}; i<m_Width; i++)
+	{
+		for (size_t j{0}; j<m_Height; j++)
+		{
 			os << static_cast<int>(m_RedChannel.at(i).at(j)) << ' '
 			   << static_cast<int>(m_GreenChannel.at(i).at(j)) << ' '
 			   << static_cast<int>(m_BlueChannel.at(i).at(j)) << '\n';
+		}
+	}
 	os.close();
 }
 
 template<typename T> inline std::ostream& operator<<(std::ostream& os, const RGB_Image<T>& image) {
-	for (size_t i{0}; i<image.width(); i++) {
+	for (size_t i{0}; i<image.width(); i++)
+	{
 		for (size_t j{0}; j<image.height(); j++)
+		{
 			os << "[" << image.getRedChannelPixel(i, j) <<
 				  ", " << image.getGreenChannelPixel(i, j) <<
 				  ", " << image.getBlueChannelPixel(i, j) << "]"; 
+		}
 		os << '\n';
 	}
 	return os;

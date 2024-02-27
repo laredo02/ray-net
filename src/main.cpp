@@ -76,8 +76,8 @@ int main(int argc, char* argv[])
 	splashScreen();
 
 	// Image
-	const double ASPECT_RATIO = 1.0; // 16.0/9.0;
-	const size_t IMAGE_WIDTH = 1000;
+	const double ASPECT_RATIO = 16.0/9.0;
+	const size_t IMAGE_WIDTH = 3840;
 	const size_t IMAGE_HEIGHT = (static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO) < 1)? 1 : static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO);
 	Image final_render { IMAGE_WIDTH, IMAGE_HEIGHT };
 
@@ -101,9 +101,9 @@ int main(int argc, char* argv[])
 			"\nU, V: " << VIEWPORT_U << ", " << VIEWPORT_V << "\ndU, dV: " << DELTA_U << ", " << DELTA_V << "\n=============================\n\n";
 
 	// Render Image
-	for (size_t i{0}; i<IMAGE_HEIGHT; i++)
+	for (size_t i{0}; i<IMAGE_WIDTH; i++)
 	{
-		for (size_t j{0}; j<IMAGE_WIDTH; j++)
+		for (size_t j{0}; j<IMAGE_HEIGHT; j++)
 		{
 			auto ray_center = PIXEL00 + (static_cast<double>(i)*DELTA_U) + (static_cast<double>(j)*DELTA_V);
 			auto ray_direction = ray_center - CAMERA_CENTER;

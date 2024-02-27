@@ -42,7 +42,7 @@ private:
     Point m_ViewportOrigin; // Q
     Point m_Pixel0;
 
-}
+};
 
 #endif // __HEADER_VIEWPORT__
 
