@@ -8,11 +8,16 @@ OPT:=-Wall -Wextra -pedantic -ggdb
 run: ray-net
 	./ray-net
 
+leaktest: ray-net
+	valgrind ./ray-net
+
+
+
 clean:
 	rm -rf build
-
 ray-net: main.o Ray.o SDL_Window.o Splash.o RGB_Color.o
 	$(CC) $(OPT) build/RGB_Color.o build/Splash.o build/Ray.o build/SDL_Window.o build/main.o -o ray-net
+
 
 
 build_dir:

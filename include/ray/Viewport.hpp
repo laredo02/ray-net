@@ -11,6 +11,7 @@ class Viewport
     Viewport(size_t width, size_t height, double focal_length, double viewport_width);
     Viewport(size_t width, double aspect_ratio, double focal_length, double viewport_width);
 
+
     /*
         TO-DO
 
