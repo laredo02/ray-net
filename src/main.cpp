@@ -8,9 +8,9 @@
 #include "../include/sdl/SDL_Window.hpp"
 #include "../include/ray/RGB_Image.hpp"
 #include "../include/ray/Ray.hpp"
+#include "../include/ray/Viewport.hpp"
 #include "../include/misc/Benchmark.hpp"
 #include "../include/misc/Splash.hpp"
-
 #include "../include/math/XYZ.hpp"
 
 // #define __COMPILE_EOG__
@@ -75,53 +75,17 @@ int main(int argc, char* argv[])
 
 	splashScreen();
 
-	// Image
-	const double ASPECT_RATIO = 16.0/9.0;
-	const size_t IMAGE_WIDTH = 3840;
-	const size_t IMAGE_HEIGHT = (static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO) < 1)? 1 : static_cast<size_t>(IMAGE_WIDTH/ASPECT_RATIO);
-	Image final_render { IMAGE_WIDTH, IMAGE_HEIGHT };
-
-	// Camera
-	const double FOCAL_LENGTH = 1.0;											// Distancia entre la Cámara y el Viewport
-	const double VIEWPORT_HEIGHT = 2.0;											// Altura del Viewport
-	const double VIEWPORT_WIDTH = VIEWPORT_HEIGHT * (static_cast<double>(IMAGE_WIDTH)/IMAGE_HEIGHT);	// Ancho del Viewport de acuerdo a la relación de aspecto
-	const Point CAMERA_CENTER { 0.0, 0.0, 0.0 };
-	const Vector VIEWPORT_U = Vector(VIEWPORT_WIDTH, 0.0, 0.0);					// Vector que indica el ancho del Viewport
-	const Vector VIEWPORT_V = Vector(0.0, -VIEWPORT_HEIGHT, 0.0);				// Vector que indica el alto del Viewport
-	const Vector DELTA_U = VIEWPORT_U/static_cast<double>(IMAGE_WIDTH);			// Diferencial Para cubrir con el tamaño del viewport y la restricción de resolución
-	const Vector DELTA_V = VIEWPORT_V/static_cast<double>(IMAGE_HEIGHT);		// Diferencial Para cubrir con el tamaño del viewport y la restricción de resolución
-	const Point VIEWPORT_ORIGIN = CAMERA_CENTER - Vector(0.0, 0.0, FOCAL_LENGTH) - VIEWPORT_U/2.0 - VIEWPORT_V/2.0;		// Q
-	const Point PIXEL00 = VIEWPORT_ORIGIN + 0.5*(DELTA_U + DELTA_V);			// Pixel 00
-
-	cout << "\n=============================\n" <<
-			"Resolution: " << IMAGE_WIDTH << "x" << IMAGE_HEIGHT <<
-			"\nFocal length: " << FOCAL_LENGTH <<
-			"\nViewport size: " << VIEWPORT_WIDTH << 'x' << VIEWPORT_HEIGHT <<
-			"\nViewport Origin: " << VIEWPORT_ORIGIN <<
-			"\nU, V: " << VIEWPORT_U << ", " << VIEWPORT_V << "\ndU, dV: " << DELTA_U << ", " << DELTA_V << "\n=============================\n\n";
-
-	// Render Image
-	for (size_t i{0}; i<IMAGE_WIDTH; i++)
 	{
-		for (size_t j{0}; j<IMAGE_HEIGHT; j++)
-		{
-			auto ray_center = PIXEL00 + (static_cast<double>(i)*DELTA_U) + (static_cast<double>(j)*DELTA_V);
-			auto ray_direction = ray_center - CAMERA_CENTER;
+		Benchmark bench{"asd"};
 
-			Ray ray { CAMERA_CENTER, ray_direction };
-			Color p_color = ray.color();
+		Viewport viewport { 1000,  16.0/9.0, 1.0, 3.0 };
+		std::cout << "=================================\n" << viewport << "\n=================================\n" << std::endl;
 
-			final_render.setPixel(i, j,
-				static_cast<uint8_t>(p_color.red),
-				static_cast<uint8_t>(p_color.green),
-				static_cast<uint8_t>(p_color.blue));
-		}
+		Image final_render { viewport.getImageWidth(), viewport.getImageHeight() };
+		viewport.render(final_render);
+		final_render.saveToFile(image_path);
+
 	}
-	final_render.saveToFile(image_path);
-
-
-
-
 
 #ifdef __COMPILE_EOG__
 	pid_t pid = fork();

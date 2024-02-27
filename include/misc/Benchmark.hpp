@@ -17,7 +17,7 @@ public:
 	{
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-        std::cout << name << " took " << duration << " ms.\n";
+        std::cout << name << " took " << duration << " µs.\n";
     }
 
 private:

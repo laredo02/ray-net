@@ -37,4 +37,3 @@ std::ostream& operator<<(std::ostream& os, Ray& ray)
 	return os << "(O:" << ray.origin() << ", D:" << ray.direction() << ")";
 }
 
-

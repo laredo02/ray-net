@@ -9,14 +9,14 @@ run: ray-net
 	./ray-net
 
 leaktest: ray-net
-	valgrind ./ray-net
+	valgrind --leak-check=full ./ray-net
 
 
 
 clean:
 	rm -rf build
-ray-net: main.o Ray.o SDL_Window.o Splash.o RGB_Color.o
-	$(CC) $(OPT) build/RGB_Color.o build/Splash.o build/Ray.o build/SDL_Window.o build/main.o -o ray-net
+ray-net: main.o Ray.o SDL_Window.o Splash.o RGB_Color.o Viewport.o
+	$(CC) $(OPT) build/RGB_Color.o build/Splash.o build/Ray.o build/Viewport.o build/SDL_Window.o build/main.o -o ray-net
 
 
 
@@ -38,5 +38,7 @@ Splash.o: include/misc/Splash.cpp include/misc/Splash.hpp build_dir
 RGB_Color.o: include/ray/RGB_Color.cpp include/ray/RGB_Color.hpp build_dir
 	$(CC) -c include/ray/RGB_Color.cpp -o build/RGB_Color.o
 
+Viewport.o: include/ray/Viewport.cpp include/ray/Viewport.hpp build_dir
+	$(CC) -c include/ray/Viewport.cpp -o build/Viewport.o
 
 
