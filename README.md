@@ -37,7 +37,7 @@ git clone https://github.com/tu-usuario/ray-net.git` # Reemplazar tu-usuario por
 1. Instalar dependencias
 
 ```bash
-sudo apt install libsdl2-2.0-0 libsdl2-dev gcc g++ make eog python3
+sudo apt install git gcc g++ make python3 libsdl2-2.0-0 libsdl2-dev eog 
 ```
 
 1. Una vez instaladas las dependencias toca compilar el código mediante el comando
@@ -61,4 +61,3 @@ Para iniciar el renderizado, ejecute:
 ```bash
 ./ray-net
 ```
-
