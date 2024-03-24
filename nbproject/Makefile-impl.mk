@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Ray-Net
+PROJECTNAME=ray-net
 
 # Active Configuration
 DEFAULTCONF=Debug
