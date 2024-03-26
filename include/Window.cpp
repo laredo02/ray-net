@@ -44,6 +44,8 @@ void Window::update(Image& image)
                 switch (event.window.event) {
                     case SDL_WINDOWEVENT_RESIZED:
                         
+                        
+                        
                         break;
                 }
             }
