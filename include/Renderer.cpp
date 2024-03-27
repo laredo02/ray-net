@@ -23,13 +23,13 @@ void Renderer::render(Image& image)
             if (t >= 0.0) {                                                 // Draw hit
                 
                 Vector3 normal = (ray.at(t) - p_Sphere->getCenter()).unit();
-                Vector3 globalLight { -1.0, 0.0, 0.0}; 
+                Vector3 globalLight { -1.0, 0.0, 0.0};
                 globalLight.toUnit();
                 
                 double proj = dot(normal, globalLight);
                 
                 //proj = (proj + 1.0)/2.0;
-                //cout << proj << endl;   
+                //cout << proj << endl;
                 
                 Vector3 color = (1-proj)*p_Sphere->getMaterial().albedo;
                 

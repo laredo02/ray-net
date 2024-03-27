@@ -16,7 +16,7 @@ Window::Window(const size_t width, const size_t height, string name)
     p_Texture = SDL_CreateTexture(p_Renderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, width, height);
     if (p_Texture == nullptr) {
         SDL_DestroyRenderer(p_Renderer);
-        SDL_DestroyWindow(p_Window);        
+        SDL_DestroyWindow(p_Window);
         SDL_Quit();
     }
 }
