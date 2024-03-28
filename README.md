@@ -31,7 +31,7 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 1. Clone el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/ray-net.git` # Reemplazar tu-usuario por tu usuario de Git
+git clone https://github.com/laredo02/ray-net.git # Reemplazar tu-usuario por tu usuario de Git
 ```
 
 1. Instalar dependencias
