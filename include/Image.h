@@ -10,7 +10,7 @@ public:
 
 	RGBImage(size_t h, size_t w);
 
-	void resize(size_t h, size_t w, T r=static_cast<T>(0), T g=static_cast<T>(0), T b=static_cast<T>(0));
+	void resize(size_t h, size_t w);
 	void fill(T r, T g, T b);
 	void randFill();
 	void setPixel(size_t y, size_t x, XYZ<T> color);
@@ -46,11 +46,11 @@ template<typename T> RGBImage<T>::RGBImage(size_t h, size_t w) : m_Width(w), m_H
 	m_BlueChannel.resize(h, std::vector<T>(w, 0));
 }
 
-template<typename T> void RGBImage<T>::resize(size_t h, size_t w, T r, T g, T b)
+template<typename T> void RGBImage<T>::resize(size_t h, size_t w)
 {
-	m_RedChannel.resize(h, std::vector<T>(w, r));
-	m_GreenChannel.resize(h, std::vector<T>(w, g));
-	m_BlueChannel.resize(h, std::vector<T>(w, b));
+	m_RedChannel.resize(h, std::vector<T>(w, 0));
+	m_GreenChannel.resize(h, std::vector<T>(w, 0));
+	m_BlueChannel.resize(h, std::vector<T>(w, 0));
 	m_Height = h;
 	m_Width = w;
 }

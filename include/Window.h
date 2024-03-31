@@ -18,17 +18,20 @@ public:
 	void update();
 	
 private:
+	void handleInput();
+	
+private:
 	size_t m_Width;
 	size_t m_Height;
 	double m_AspectRatio;
 	
+	Image* p_Image;
+	
 	SDL_Window* p_Window;
 	SDL_Renderer* p_Renderer;
 	SDL_Texture* p_Texture;
-    
-
 	
-	bool running;
+	bool m_Running;
 	
 };
 

@@ -38,7 +38,7 @@ const vector<Ray>& Camera::computeRays(const size_t width) const
     
 }
 
-void Camera::translate(Vector3 delta)
+void Camera::translate(Vector3& delta)
 {
     m_Center += delta;
 }
