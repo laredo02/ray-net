@@ -12,7 +12,7 @@
 
 class Window {
 public:
-	Window(const size_t width, const size_t heigh, string name);
+	Window(const size_t width, const size_t heigh, string name, const Renderer& renderer);
 	~Window();
 	
 	void update();
@@ -25,11 +25,11 @@ private:
 	size_t m_Height;
 	double m_AspectRatio;
 	
-	Image* p_Image;
+	const Renderer* p_Renderer;
 	
-	SDL_Window* p_Window;
-	SDL_Renderer* p_Renderer;
-	SDL_Texture* p_Texture;
+	SDL_Window* p_SDLWindow;
+	SDL_Renderer* p_SDLRenderer;
+	SDL_Texture* p_SDLTexture;
 	
 	bool m_Running;
 	

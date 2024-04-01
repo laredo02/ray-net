@@ -2,6 +2,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <SDL2/SDL.h>
+
 #include "RayNet.h"
 
 #include "Camera.h"
@@ -11,15 +13,19 @@
 class Renderer {
 	
 public:
-	Renderer(const Camera* camera, const Sphere* sphere);
- 	
-	void setGlobalLight();
+	Renderer(Camera* camera, const Sphere* sphere, Image* image);
+	void handleInput() const;
+ 
+	void render() const;
+	const Image& getImage() const;
+	void saveRenderToFile(const string& name) const;
 	
-	void render(Image& image);
+	Camera& getCamera() const;
 	
 private:
-	const Camera* p_Camera;
+	Camera* p_Camera;
 	const Sphere* p_Sphere;
+	Image* p_Image;
 };
 
 #endif /* RENDERER_H */

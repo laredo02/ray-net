@@ -31,11 +31,19 @@ int main(int argc, char* argv[]) {
 //        renderer.render(img);
 //        img.saveToFile("image.ppm");
         
-        double aspectRatio = 1.0; // 16.0/9.0;
-        size_t width = 1000;
+        double aspectRatio = 16.0/9.0;
+        size_t width = 2000;
         size_t height = static_cast<size_t>(width/aspectRatio);
         
-        Window win{ width, height, "Ray-Net" };
+        Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 90.0, 2.0, static_cast<double>(width)/height };
+        Material material{ Vector3{ 1.0, 0.0, 0.0} };
+        Sphere sphere{ Vector3{ 0.0, 0.0, -3.0}, 1.0, material };
+        Image image{ height, width };
+        
+        Renderer renderer{ &camera, &sphere, &image };
+
+        
+        Window win{ width, height, "Ray-Net", renderer };
         win.update();
         
     }

@@ -1,53 +1,48 @@
 
 #include "Window.h"
 
-Window::Window(const size_t width, const size_t height, string name)
-: m_Width(width), m_Height(height), m_AspectRatio(static_cast<double> (width) / height) {
-    p_Window = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Width, m_Height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
-    if (p_Window == nullptr) {
+Window::Window(const size_t width, const size_t height, string name, const Renderer& renderer)
+: m_Width(width), m_Height(height), m_AspectRatio(static_cast<double> (width) / height), p_Renderer(&renderer) {
+    p_SDLWindow = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Width, m_Height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    if (p_SDLWindow == nullptr) {
         SDL_Quit();
     }
-    p_Renderer = SDL_CreateRenderer(p_Window, -1, SDL_RENDERER_ACCELERATED);
-    if (p_Renderer == nullptr) {
-        SDL_DestroyWindow(p_Window);
+    p_SDLRenderer = SDL_CreateRenderer(p_SDLWindow, -1, SDL_RENDERER_ACCELERATED);
+    if (p_SDLRenderer == nullptr) {
+        SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
-    p_Texture = SDL_CreateTexture(p_Renderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, width, height);
-    if (p_Texture == nullptr) {
-        SDL_DestroyRenderer(p_Renderer);
-        SDL_DestroyWindow(p_Window);
+    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, width, height);
+    if (p_SDLTexture == nullptr) {
+        SDL_DestroyRenderer(p_SDLRenderer);
+        SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
-    p_Image = new Image(m_Width, m_Height);
     m_Running = true;
 }
 
 Window::~Window() {
-    delete p_Image;
-    p_Image = nullptr;
-    SDL_DestroyTexture(p_Texture);
-    SDL_DestroyRenderer(p_Renderer);
-    SDL_DestroyWindow(p_Window);
+    SDL_DestroyTexture(p_SDLTexture);
+    SDL_DestroyRenderer(p_SDLRenderer);
+    SDL_DestroyWindow(p_SDLWindow);
     SDL_Quit();
 }
 
 void Window::update() {
 
-    Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 90.0, 2.0, m_AspectRatio};
-    Sphere sphere{ Vector3{ 0.0, 0.0, -3.0}, 1.0, Material{ Vector3{ 1.0, 0.0, 0.0}}};
-    Renderer renderer{ &camera, &sphere};
-
+    
     while (m_Running) {
 
         if (m_Running)
-            renderer.render(*p_Image);
-
-        SDL_SetRenderDrawColor(p_Renderer, 255, 0, 255, 255);
-        SDL_RenderClear(p_Renderer);
-        SDL_RenderPresent(p_Renderer);
-
-        handleInput();
+            p_Renderer->render();
         
+        const Image& image = p_Renderer->getImage();
+
+        SDL_SetRenderDrawColor(p_SDLRenderer, 255, 0, 255, 255);
+        SDL_RenderClear(p_SDLRenderer);
+        SDL_RenderPresent(p_SDLRenderer);
+
+        this->handleInput();
     }
 
 }
@@ -67,7 +62,8 @@ void Window::handleInput() {
                     cout << "SDL_WINDOWEVENT_RESIZED (" << m_Width << 'x' << m_Height << ")\n";
                     break;
             }
-        } else if (event.type == SDL_KEYDOWN) {
+        }
+        if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
@@ -97,26 +93,23 @@ void Window::handleInput() {
                     cout << "SDL_SCANCODE_A\n";
                     break;
 
+                    
                 case SDL_SCANCODE_G:
-                    p_Image->saveToFile("image.ppm");
+                    cout << "Saving image... ";
+                    p_Renderer->saveRenderToFile("image.ppm");
+                    cout << "OK\n";
                     break;
 
 
-                case SDL_SCANCODE_Q:
-                    m_Running = false;
-                    cout << "SDL_SCANDODE_Q\n";
-                    break;
                 case SDL_SCANCODE_ESCAPE:
                     m_Running = false;
-                    cout << "SDL_SCANDODE_ESCAPE\n";
+                    //cout << "SDL_SCANCODE_ESCAPE\n";
                     break;
-
+                case SDL_SCANCODE_Q:
+                    m_Running = false;
+                    //cout << "SDL_SCANCODE_Q\n";
+                    break;
             }
         }
     }
-    
 }
-
-
-
-
