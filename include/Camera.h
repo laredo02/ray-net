@@ -12,7 +12,7 @@ public:
 	Camera(const Vector3& center, const Vector3& direction, const Vector3& up, double vfov, double flen, double aspect_ratio);
 	const vector<Ray>& computeRays(const size_t width) const;
 	
-	void translate(Vector3& delta);
+	void translate(const Vector3& delta);
 	void rotate(double xrot, double yrot, double zrot);
 	
 	void setCenter(const Vector3& center);

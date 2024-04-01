@@ -14,7 +14,6 @@ const Image& Renderer::getImage() const {
 
 void Renderer::render() const
 {
-    
     const vector<Ray> rays = p_Camera->computeRays(p_Image->width());
     
     for (size_t i{0}; i<p_Image->height(); i++)
@@ -39,6 +38,6 @@ void Renderer::saveRenderToFile(const string& name) const {
     p_Image->saveToFile(name);
 }
 
-Camera& Renderer::getCamera() const {
+Camera& Renderer::camera() const {
     return *p_Camera;
 }

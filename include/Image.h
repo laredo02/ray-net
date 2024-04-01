@@ -9,7 +9,10 @@ template<typename T> class RGBImage {
 public:
 
 	RGBImage(size_t h, size_t w);
-
+	//RGBImage(const RGBImage<T>& image);
+	//RGBImage(RGBImage<T>&& image);
+	
+	
 	void resize(size_t h, size_t w);
 	void fill(T r, T g, T b);
 	void randFill();

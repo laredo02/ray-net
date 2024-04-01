@@ -12,7 +12,7 @@ Window::Window(const size_t width, const size_t height, string name, const Rende
         SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
-    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, width, height);
+    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_STREAMING, width, height);
     if (p_SDLTexture == nullptr) {
         SDL_DestroyRenderer(p_SDLRenderer);
         SDL_DestroyWindow(p_SDLWindow);
@@ -29,7 +29,6 @@ Window::~Window() {
 }
 
 void Window::update() {
-
     
     while (m_Running) {
 
@@ -37,6 +36,13 @@ void Window::update() {
             p_Renderer->render();
         
         const Image& image = p_Renderer->getImage();
+        
+        
+        
+        
+        
+        
+        
 
         SDL_SetRenderDrawColor(p_SDLRenderer, 255, 0, 255, 255);
         SDL_RenderClear(p_SDLRenderer);
@@ -67,21 +73,31 @@ void Window::handleInput() {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
+                    p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );
                     cout << "SDL_SCANCODE_UP\n";
                     break;
                 case SDL_SCANCODE_DOWN:
+                    p_Renderer->camera().translate( Vector3(0.0, 0.0, 0.1) );
                     cout << "SDL_SCANCODE_DOWN\n";
                     break;
                 case SDL_SCANCODE_RIGHT:
+                    p_Renderer->camera().translate( Vector3(0.1, 0.0, 0.0) );
                     cout << "SDL_SCANCODE_RIGHT\n";
                     break;
                 case SDL_SCANCODE_LEFT:
+                    p_Renderer->camera().translate( Vector3(-0.1, 0.0, 0.0) );
                     cout << "SDL_SCANCODE_LEFT\n";
                     break;
 
-
+                case SDL_SCANCODE_PAGEUP:
+                    p_Renderer->camera().translate( Vector3(0.0, 0.1, 0.0) );
+                    break;
+                case SDL_SCANCODE_PAGEDOWN:
+                    p_Renderer->camera().translate( Vector3(0.0, -0.1, 0.0) );
+                    break;
+                    
                 case SDL_SCANCODE_W:
-                    cout << "SDL_SCANCODE_W\n";
+                    cout << "SDL_SCANCODE_W\n";                    
                     break;
                 case SDL_SCANCODE_S:
                     cout << "SDL_SCANCODE_S\n";

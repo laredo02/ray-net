@@ -16,13 +16,13 @@ Camera::Camera(const Vector3& center, const Vector3& direction, const Vector3& u
 
 const vector<Ray>& Camera::computeRays(const size_t width) const
 {
-    
+    m_Rays.clear();
     size_t height = static_cast<size_t>((double)width/m_AspectRatio);
     
     Vector3 delta_u = cross(m_Direction, m_Up)*(m_UNorm/width);
     Vector3 delta_v = -m_Up*(m_VNorm/(width/m_AspectRatio));
     
-    Vector3 m_P00 = m_Direction*m_FLen + (m_Up*(m_VNorm/2.0))+delta_v*0.5 + ((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+delta_u*0.5;
+    Vector3 m_P00 = m_Center + m_Direction*m_FLen + (m_Up*(m_VNorm/2.0))+delta_v*0.5 + ((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+delta_u*0.5;
     
     for (size_t i{0}; i<height; i++)
     {
@@ -38,9 +38,10 @@ const vector<Ray>& Camera::computeRays(const size_t width) const
     
 }
 
-void Camera::translate(Vector3& delta)
-{
+void Camera::translate(const Vector3& delta)
+{ 
     m_Center += delta;
+    cout << "m_Center" << m_Center << endl;
 }
 
 void Camera::rotate(double xrot, double yrot, double zrot)
@@ -48,7 +49,7 @@ void Camera::rotate(double xrot, double yrot, double zrot)
     
 }
 
-void Camera::setCenter(const Vector3& center)
+void Camera::setCenter(const Vector3& center)   
 {
     m_Center = center;
 }

@@ -20,7 +20,7 @@ public:
 	const Image& getImage() const;
 	void saveRenderToFile(const string& name) const;
 	
-	Camera& getCamera() const;
+	Camera& camera() const;
 	
 private:
 	Camera* p_Camera;
