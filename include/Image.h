@@ -28,6 +28,7 @@ public:
 	size_t height() const;
 	size_t width() const;
 	
+	void imageToTexture(SDL_Texture& texture);
 	void saveToFile(const std::string& path) const;
 
 private:
@@ -135,7 +136,21 @@ template<typename T> inline size_t RGBImage<T>::height() const
 	return m_Height;
 }
 
-
+template<typename T> void RGBImage<T>::imageToTexture(SDL_Texture* texture) {
+	Uint32 format;
+	if (SDL_QueryTexture(texture, &format, nullptr, nullptr, nullptr)) {
+		if (format == SDL_PIXELFORMAT_BGR888) {
+			auto size = m_Width*m_Height;
+			auto pixels = new int[size];
+			for (auto i = 0; i<size; i++) {
+				pixels[i] = 0xffffffff;
+			}
+			
+			
+			delete[] pixels();
+		}
+	}
+}
 
 template<typename T> void RGBImage<T>::saveToFile(const std::string& path) const
 {
