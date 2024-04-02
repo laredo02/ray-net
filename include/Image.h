@@ -28,7 +28,11 @@ public:
 	size_t height() const;
 	size_t width() const;
 	
+<<<<<<< HEAD
 	void imageToTexture(SDL_Texture& texture);
+=======
+        void toTexture(SDL_Texture* texture) const;
+>>>>>>> f96287a4f3044499e91ee54de919295923a298d3
 	void saveToFile(const std::string& path) const;
 
 private:
@@ -136,20 +140,20 @@ template<typename T> inline size_t RGBImage<T>::height() const
 	return m_Height;
 }
 
-template<typename T> void RGBImage<T>::imageToTexture(SDL_Texture* texture) {
-	Uint32 format;
-	if (SDL_QueryTexture(texture, &format, nullptr, nullptr, nullptr)) {
-		if (format == SDL_PIXELFORMAT_BGR888) {
-			auto size = m_Width*m_Height;
-			auto pixels = new int[size];
-			for (auto i = 0; i<size; i++) {
-				pixels[i] = 0xffffffff;
-			}
-			
-			
-			delete[] pixels();
-		}
-	}
+template<typename T> void RGBImage<T>::toTexture(SDL_Texture* texture) const {
+    uint32_t* raw_data = nullptr;
+    int width = static_cast<int>(m_Width);
+    //if (SDL_QueryTexture(texture, nullptr, )) {
+        if (SDL_LockTexture(texture, nullptr, (void **)&raw_data, &width)) {
+
+            for (auto i=0; i<m_Width*m_Height; i++) {
+                raw_data[i] = 0x00ffff00;
+            }
+
+            SDL_UpdateTexture(texture, nullptr, raw_data, width);
+            SDL_UnlockTexture(texture);
+        }
+    //}
 }
 
 template<typename T> void RGBImage<T>::saveToFile(const std::string& path) const
