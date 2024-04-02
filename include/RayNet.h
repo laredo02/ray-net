@@ -17,6 +17,8 @@
 #include <limits>
 #include <numbers>
 
+#include <SDL2/SDL.h>
+
 using std::cout;
 using std::endl;
 

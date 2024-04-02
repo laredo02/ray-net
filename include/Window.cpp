@@ -12,7 +12,7 @@ Window::Window(const size_t width, const size_t height, string name, const Rende
         SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
-    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_STREAMING, width, height);
+    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_BGRA8888, SDL_TEXTUREACCESS_STREAMING, width, height);
     if (p_SDLTexture == nullptr) {
         SDL_DestroyRenderer(p_SDLRenderer);
         SDL_DestroyWindow(p_SDLWindow);
@@ -36,16 +36,9 @@ void Window::update() {
             p_Renderer->render();
         
         const Image& image = p_Renderer->getImage();
-        
-        
-        
-        
-        
-        
-        
-
-        SDL_SetRenderDrawColor(p_SDLRenderer, 255, 0, 255, 255);
+        image.toTexture(p_SDLTexture);
         SDL_RenderClear(p_SDLRenderer);
+        SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
         SDL_RenderPresent(p_SDLRenderer);
 
         this->handleInput();
