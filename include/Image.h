@@ -28,11 +28,8 @@ public:
 	size_t height() const;
 	size_t width() const;
 	
-<<<<<<< HEAD
-	void imageToTexture(SDL_Texture& texture);
-=======
-        void toTexture(SDL_Texture* texture) const;
->>>>>>> f96287a4f3044499e91ee54de919295923a298d3
+
+    void toTexture(SDL_Texture* texture) const;
 	void saveToFile(const std::string& path) const;
 
 private:

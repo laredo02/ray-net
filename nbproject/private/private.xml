@@ -19,13 +19,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/miguel/coding/ray-net/include/Camera.cpp</file>
+            <file>file:/home/miguel/coding/ray-net/include/Renderer.cpp</file>
             <file>file:/home/miguel/coding/ray-net/include/Image.h</file>
-            <file>file:/home/miguel/coding/ray-net/include/RayNet.h</file>
             <file>file:/home/miguel/coding/ray-net/include/Window.cpp</file>
             <file>file:/home/miguel/coding/ray-net/include/Camera.h</file>
             <file>file:/home/miguel/coding/ray-net/main.cpp</file>
             <file>file:/home/miguel/coding/ray-net/include/Window.h</file>
             <file>file:/home/miguel/coding/ray-net/include/XYZ.h</file>
+            <file>file:/home/miguel/coding/ray-net/include/Renderer.h</file>
         </group>
     </open-files>
 </project-private>

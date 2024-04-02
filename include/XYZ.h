@@ -44,7 +44,7 @@ public:
 	template<typename U> friend XYZ<U> operator*(const U a, const XYZ<U>& b);
 
 	template<typename U> friend XYZ<U> operator/(const XYZ<U>& a, const XYZ<U>& b);
-	template<typename U> friend XYZ<U> operator/(const XYZ<U>& a, T b);
+	template<typename U> friend XYZ<U> operator/(const XYZ<U>& a, U b);
 
 	T norm() const;
 	T normSquared() const;
@@ -167,57 +167,61 @@ template<typename T> inline XYZ<T>& XYZ<T>::operator/=(const T& value) {
 	return *this;
 }
 
+
+
 template<typename U> inline XYZ<U> operator+(const XYZ<U>& a, const XYZ<U>& b) {
 	return XYZ<U>(a.m_xyz[0] + b.m_xyz[0], a.m_xyz[1] + b.m_xyz[1], a.m_xyz[2] + b.m_xyz[2]);
 }
-
 template<typename U> inline XYZ<U> operator+(const XYZ<U>& a, const U b) {
 	return XYZ<U>(a.m_xyz[0] + b, a.m_xyz[1] + b, a.m_xyz[2] + b);
 }
-
 template<typename U> inline XYZ<U> operator+(const U a, const XYZ<U>& b) {
 	return XYZ<U>(a + b.m_xyz[0], a + b.m_xyz[1], a + b.m_xyz[2]);
 }
 
+
+
 template<typename U> inline XYZ<U> operator-(const XYZ<U>& a, const XYZ<U>& b) {
 	return XYZ<U>(a.m_xyz[0] - b.m_xyz[0], a.m_xyz[1] - b.m_xyz[1], a.m_xyz[2] - b.m_xyz[2]);
 }
-
 template<typename U> inline XYZ<U> operator-(const XYZ<U>& a, const U b) {
 	return XYZ<U>(a.m_xyz[0] + b, a.m_xyz[1] + b, a.m_xyz[2] + b);
 }
-
 template<typename U> inline XYZ<U> operator-(const U a, const XYZ<U>& b) {
 	return XYZ<U>(a + b.m_xyz[0], a + b.m_xyz[1], a + b.m_xyz[2]);
 }
 
+
+
 template<typename U> inline XYZ<U> operator*(const XYZ<U>& a, const XYZ<U>& b) {
 	return XYZ<U>(a.m_xyz[0] * b.m_xyz[0], a.m_xyz[1] * b.m_xyz[1], a.m_xyz[2] * b.m_xyz[2]);
 }
-
 template<typename U> inline XYZ<U> operator*(const XYZ<U>& a, U b) {
 	return XYZ<U>(a.m_xyz[0] * b, a.m_xyz[1] * b, a.m_xyz[2] * b);
 }
-
 template<typename U> inline XYZ<U> operator*(const U a, const XYZ<U>& b) {
 	return XYZ<U>(a * b.m_xyz[0], a * b.m_xyz[1], a * b.m_xyz[2]);
 }
 
+
+
 template<typename U> inline XYZ<U> operator/(const XYZ<U>& a, const XYZ<U>& b) {
 	return XYZ<U>(a.m_xyz[0] / b.m_xyz[0], a.m_xyz[1] / b.m_xyz[1], a.m_xyz[2] / b.m_xyz[2]);
 }
-
 template<typename U> inline XYZ<U> operator/(const XYZ<U>& a, U b) {
 	return XYZ<U>(a.m_xyz[0] / b, a.m_xyz[1] / b, a.m_xyz[2] / b);
 }
 
+
+
 template<typename T> T XYZ<T>::norm() const {
 	return static_cast<T> (std::sqrt(m_xyz[0] * m_xyz[0] + m_xyz[1] * m_xyz[1] + m_xyz[2] * m_xyz[2]));
 }
-
 template<typename T> inline T XYZ<T>::normSquared() const {
 	return m_xyz[0] * m_xyz[0] + m_xyz[1] * m_xyz[1] + m_xyz[2] * m_xyz[2];
 }
+
+
 
 template<typename T> void XYZ<T>::toUnit() {
 	T norm = this->norm();
