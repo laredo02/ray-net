@@ -21,7 +21,7 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 
 - SDL
 - Make
-- g++ (GNU C++ Compiler)
+- g++
 
 ## Compilar a partir del código fuente
 
@@ -42,8 +42,6 @@ git clone https://github.com/laredo02/ray-net.git
 ```bash
 // TODO
 ```
-
-4. Si todo ha salido según lo esperado debería haber aparecido un fichero con el nombre 'ray-net'.
 
 ## Uso
 
