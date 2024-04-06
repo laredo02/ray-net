@@ -25,25 +25,25 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 
 ## Compilar a partir del código fuente
 
-1. Clone el repositorio:
-
-```bash
-git clone https://github.com/laredo02/ray-net.git
-```
-
 1. Instalar dependencias
 
 ```bash
 sudo apt install git gcc g++ make libsdl2-2.0-0 libsdl2-dev
 ```
 
-1. Una vez instaladas las dependencias toca compilar el código mediante el comando
+2. Clone el repositorio:
+
+```bash
+git clone https://github.com/laredo02/ray-net.git
+```
+
+3. Una vez instaladas las dependencias toca compilar el código mediante el comando
 
 ```bash
 // TODO
 ```
 
-1. Si todo ha salido según lo esperado debería haber aparecido un fichero con el nombre 'ray-net'.
+4. Si todo ha salido según lo esperado debería haber aparecido un fichero con el nombre 'ray-net'.
 
 ## Uso
 
