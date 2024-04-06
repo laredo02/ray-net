@@ -56,7 +56,7 @@ public:
 	template<typename U> friend U dot(const XYZ<U>& u, const XYZ<U>& v);
 	template<typename U> friend XYZ<U> cross(const XYZ<U>& u, const XYZ<U>& v);
 	
-	//XYZ<T>& xRotation(const XYZ<T>& center, const double alpha);
+	XYZ<T>& xRotation(const XYZ<T>& center, const double alpha);
 	//XYZ<T>& yRotation(const XYZ<T>& center, const double beta);
 	//XYZ<T>& zRotation(const XYZ<T>& center, const double gamma);
 	
@@ -257,8 +257,11 @@ template<typename U> inline XYZ<U> cross(const XYZ<U>& u, const XYZ<U>& v) {
 }
 
 
-/*
+
 template<typename T> XYZ<T>& XYZ<T>::xRotation(const XYZ<T>& center, const double theta) {
+	// center - point
+	// rotate
+	// center + rotated_point
 	T new_x = dot(*this, XYZ<T>{ 1.0,    0.0    ,     0.0     });
 	T new_y = dot(*this, XYZ<T>{ 0.0, cos(theta), -sin(theta) });
 	T new_z = dot(*this, XYZ<T>{ 0.0, sin(theta),  cos(theta) });
@@ -267,6 +270,8 @@ template<typename T> XYZ<T>& XYZ<T>::xRotation(const XYZ<T>& center, const doubl
 	m_xyz[2] = new_z;
 	return *this;
 }
+
+/*
 template<typename T> XYZ<T>& XYZ<T>::yRotation(const XYZ<T>& center, const double theta) {
 	T new_x = dot(*this, XYZ<T>{  cos(theta), 0.0, sin(theta) });
 	T new_y = dot(*this, XYZ<T>{     0.0    , 1.0,    0.0     });

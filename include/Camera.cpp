@@ -27,8 +27,8 @@ const Vector3& Camera::deltaV() const { return m_DeltaV; }
 const Vector3& Camera::P00() const { return m_P00; }
 
 void Camera::translate(const Vector3& delta) {
-    m_Center += delta;
-    
+    Vector3 translation = -delta.z()*m_Direction + delta.y()*m_Up + delta.x()*cross(m_Direction, m_Up);
+    m_Center += translation;
     computeRayParameters();
 }
 

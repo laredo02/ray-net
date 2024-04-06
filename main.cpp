@@ -31,5 +31,5 @@ int main(int argc, char* argv[]) {
         win.update();
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
