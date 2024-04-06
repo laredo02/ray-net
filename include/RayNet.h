@@ -21,7 +21,9 @@
 
 
 #include "Configs.h"
-// #include "Benchmark.h"
+#include "Benchmark.h"
+
+#define DEG_TO_RAD(deg) ((deg)*(M_PI/180.0))
 
 using std::cout;
 using std::endl;

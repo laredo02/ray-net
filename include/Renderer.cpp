@@ -48,7 +48,6 @@ void Renderer::render() const {
 
 }
 
-
 void Renderer::saveRenderToFile(const string& name) const {
     p_Image->saveToFile(name);
 }

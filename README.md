@@ -13,18 +13,15 @@ Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, 
 
 ## Tecnologías Utilizadas
 
-- **Lenguajes:** C++, Python
-- **Librerías:** PyTorch, CUDA, SDL
+- **Lenguajes:** C++
+- **Librerías:** SDL
 - **Herramientas:** Git, Make
 
 ## Requisitos Previos
 
-- GPU Nvidia con soporte CUDA + drivers
 - SDL
-- PyTorch
 - Make
 - g++ (GNU C++ Compiler)
-- eog (Eye of GNOME)
 
 ## Compilar a partir del código fuente
 
@@ -37,22 +34,16 @@ git clone https://github.com/laredo02/ray-net.git
 1. Instalar dependencias
 
 ```bash
-sudo apt install git gcc g++ make python3 libsdl2-2.0-0 libsdl2-dev eog 
+sudo apt install git gcc g++ make libsdl2-2.0-0 libsdl2-dev
 ```
 
 1. Una vez instaladas las dependencias toca compilar el código mediante el comando
 
 ```bash
-make all
+// TODO
 ```
 
 1. Si todo ha salido según lo esperado debería haber aparecido un fichero con el nombre 'ray-net'.
-
-Para ejecutarlo:
-
-```bash
-./ray-net
-```
 
 ## Uso
 

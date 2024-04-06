@@ -5,8 +5,6 @@
 
 #include "Camera.h"
 
-#define DEG_TO_RAD(deg) ((deg)*(M_PI/180.0))
-
 Camera::Camera(const Vector3& center, const Vector3& direction, const Vector3& up,
         double vfov, double flen, uint32_t height, uint32_t width)
 : m_Center(center), m_Direction(direction), m_Up(up),
@@ -27,7 +25,7 @@ const Vector3& Camera::deltaV() const { return m_DeltaV; }
 const Vector3& Camera::P00() const { return m_P00; }
 
 void Camera::translate(const Vector3& delta) {
-    Vector3 translation = -delta.z()*m_Direction + delta.y()*m_Up + delta.x()*cross(m_Direction, m_Up);
+    Vector3 translation = delta.x()*cross(m_Direction, m_Up) + delta.y()*m_Up - delta.z()*m_Direction;
     m_Center += translation;
     computeRayParameters();
 }
