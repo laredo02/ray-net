@@ -37,7 +37,7 @@ sudo apt install git gcc g++ make libsdl2-2.0-0 libsdl2-dev
 git clone https://github.com/laredo02/ray-net.git
 ```
 
-3. Una vez instaladas las dependencias toca compilar el código mediante el comando
+3. Una vez instaladas las dependencias toca compilar el código mediante el comando:
 
 ```bash
 // TODO
@@ -45,7 +45,7 @@ git clone https://github.com/laredo02/ray-net.git
 
 ## Uso
 
-Para iniciar el renderizado, ejecute:
+Para iniciar el programa de renderizado, ejecute:
 
 ```bash
 ./ray-net
