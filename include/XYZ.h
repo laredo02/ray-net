@@ -52,15 +52,15 @@ public:
 	void toUnit();
 	XYZ<T> unit() const;
 	
-	//template<typename U> friend XYZ<U> abs(const XYZ<U>& v);
+//	template<typename U> friend XYZ<U> abs(const XYZ<U>& v);
 	template<typename U> friend U dot(const XYZ<U>& u, const XYZ<U>& v);
 	template<typename U> friend XYZ<U> cross(const XYZ<U>& u, const XYZ<U>& v);
 	
-	XYZ<T>& xRotation(const XYZ<T>& center, const double alpha);
-	//XYZ<T>& yRotation(const XYZ<T>& center, const double beta);
-	//XYZ<T>& zRotation(const XYZ<T>& center, const double gamma);
+	XYZ<T>& rotateX(const XYZ<T>& center, const double alpha);
+	XYZ<T>& rotateY(const XYZ<T>& center, const double beta);
+	XYZ<T>& rotateZ(const XYZ<T>& center, const double gamma);
 	
-	//XYZ<T>& xyzRotation(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
+	XYZ<T>& xyzRotation(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
 
 	template<typename U> friend std::ostream& operator<<(std::ostream& out, const XYZ<U>& xyz);
 
@@ -258,38 +258,34 @@ template<typename U> inline XYZ<U> cross(const XYZ<U>& u, const XYZ<U>& v) {
 
 
 
-template<typename T> XYZ<T>& XYZ<T>::xRotation(const XYZ<T>& center, const double theta) {
+template<typename T> XYZ<T>& XYZ<T>::rotateX(const XYZ<T>& center, const double theta) {
 	double thetaRad = DEG_TO_RAD(theta);
 	Vector3 centerToPoint { *this - center };
-	m_xyz[0] = center.x()+dot(centerToPoint, XYZ<T>{ 1.0,    0.0    ,     0.0     });
-	m_xyz[1] = center.y()+dot(centerToPoint, XYZ<T>{ 0.0, cos(thetaRad), -sin(thetaRad) });
-	m_xyz[2] = center.z()+dot(centerToPoint, XYZ<T>{ 0.0, sin(thetaRad),  cos(thetaRad) });
+	m_xyz[0] = center.x() + dot(centerToPoint, XYZ<T>{ 1.0,		 0.0     ,       0.0      });
+	m_xyz[1] = center.y() + dot(centerToPoint, XYZ<T>{ 0.0, cos(thetaRad), -sin(thetaRad) });
+	m_xyz[2] = center.z() + dot(centerToPoint, XYZ<T>{ 0.0, sin(thetaRad),  cos(thetaRad) });
+	return *this;
+}
+template<typename T> XYZ<T>& XYZ<T>::rotateY(const XYZ<T>& center, const double theta) {
+	double thetaRad = DEG_TO_RAD(theta);
+	Vector3 centerToPoint { *this - center };
+	m_xyz[0] = center.x() + dot(centerToPoint, XYZ<T>{  cos(thetaRad), 0.0, sin(thetaRad) });
+	m_xyz[1] = center.y() + dot(centerToPoint, XYZ<T>{       0.0	 , 1.0,      0.0      });
+	m_xyz[2] = center.z() + dot(centerToPoint, XYZ<T>{ -sin(thetaRad), 0.0, cos(thetaRad) });
+	return *this;
+}
+template<typename T> XYZ<T>& XYZ<T>::rotateZ(const XYZ<T>& center, const double theta) {	
+	double thetaRad = DEG_TO_RAD(theta);
+	Vector3 centerToPoint { *this - center };
+	m_xyz[0] = center.x() + dot(centerToPoint, XYZ<T>{ cos(theta), -sin(theta), 0.0 });
+	m_xyz[1] = center.y() + dot(centerToPoint, XYZ<T>{ sin(theta),  cos(theta), 0.0 });
+	m_xyz[2] = center.z() + dot(centerToPoint, XYZ<T>{    0.0    ,     0.0    , 1.0 });
 	return *this;
 }
 
-/*
-template<typename T> XYZ<T>& XYZ<T>::yRotation(const XYZ<T>& center, const double theta) {
-	T new_x = dot(*this, XYZ<T>{  cos(theta), 0.0, sin(theta) });
-	T new_y = dot(*this, XYZ<T>{     0.0    , 1.0,    0.0     });
-	T new_z = dot(*this, XYZ<T>{ -sin(theta), 0.0, cos(theta) });
-	m_xyz[0] = new_x;
-	m_xyz[1] = new_y;
-	m_xyz[2] = new_z;
-	return *this;
-}
-template<typename T> XYZ<T>& XYZ<T>::zRotation(const XYZ<T>& center, const double theta) {
-	T new_x = dot(*this, XYZ<T>{ cos(theta), -sin(theta), 0.0 });
-	T new_y = dot(*this, XYZ<T>{ sin(theta),  cos(theta), 0.0 });
-	T new_z = dot(*this, XYZ<T>{    0.0    ,     0.0    , 1.0 });
-	m_xyz[0] = new_x;
-	m_xyz[1] = new_y;
-	m_xyz[2] = new_z;
-	return *this;
-}
 template<typename T> inline XYZ<T>& XYZ<T>::xyzRotation(const XYZ<T>& center, const double alpha, const double beta, const double gamma) {
-	return this->xRotation(center, alpha).yRotation(center, alpha).zRotation(center, alpha);
+	return this->rotateX(center, alpha).rotateY(center, beta).rotateZ(center, gamma);
 }
-*/
 
 
 

@@ -9,8 +9,9 @@
 class Camera {
 
 public:
-	Camera(const Vector3& center, const Vector3& direction, const Vector3& up, double vfov, double flen, uint32_t height, uint32_t width);
-
+	Camera(const Vector3& center, const Vector3& direction, const Vector3& up,
+		double vfov, double flen, uint32_t height, uint32_t width);
+	
 private:
 	void computeRayParameters();	
 public:
