@@ -9,7 +9,8 @@ public:
 
 	XYZ();
 	XYZ(T x, T y, T z);
-	XYZ(const XYZ<T>& xyz);
+	
+//	XYZ(const XYZ<T>& xyz);
 
 	const T& x() const;
 	const T& y() const;
@@ -79,12 +80,12 @@ template<typename T> XYZ<T>::XYZ() : m_xyz{(T) 0, (T) 0, (T) 0}
 template<typename T> XYZ<T>::XYZ(T x, T y, T z) : m_xyz{x, y, z}
 {
 }
-template<typename T> XYZ<T>::XYZ(const XYZ<T>& xyz)
-{
-	m_xyz[0] = xyz.m_xyz[0];
-	m_xyz[1] = xyz.m_xyz[1];
-	m_xyz[2] = xyz.m_xyz[2];
-}
+//template<typename T> XYZ<T>::XYZ(const XYZ<T>& xyz)
+//{
+//	m_xyz[0] = xyz.m_xyz[0];
+//	m_xyz[1] = xyz.m_xyz[1];
+//	m_xyz[2] = xyz.m_xyz[2];
+//}
 
 
 template<typename T> const T& XYZ<T>::x() const {

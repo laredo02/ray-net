@@ -9,40 +9,44 @@
 class Camera {
 
 public:
-	Camera(const Vector3& center, const Vector3& direction, const Vector3& up, double vfov, double flen, double aspect_ratio);
-	const vector<Ray>& computeRays(const size_t width) const;
+	Camera(const Vector3& center, const Vector3& direction, const Vector3& up, double vfov, double flen, uint32_t height, uint32_t width);
+
+private:
+	void computeRayParameters();	
+public:
+	const Vector3& deltaU() const;
+	const Vector3& deltaV() const;
+	const Vector3& P00() const;
 	
 	void translate(const Vector3& delta);
 	void rotate(double xrot, double yrot, double zrot);
 	
-	void setCenter(const Vector3& center);
-	void setDirection(const Vector3& center);
-	void setUp(const Vector3& center);
-	void setVFov(double vFov);
-	void setFLen(double fLen);
-	void setAspectRatio(double aspectRatio);
-	
-	const Vector3& getCenter() const;
-	const Vector3& getDirection() const;
-	const Vector3& getUp() const;
-	double getVFov() const;
-	double getFLen() const;
-	double getAspectRatio() const;
+	const Vector3& center() const;
+	const Vector3& direction() const;
+	const Vector3& up() const;
+
+	double vFov() const;
+	double fLen() const;
+	uint32_t width() const;
+	uint32_t height() const;
+	double aspectRatio() const;
 	
 private:
 	Vector3 m_Center;
 	Vector3 m_Direction;
 	Vector3 m_Up;
 	
-	double m_VFov;
-	double m_FLen;
-	double m_AspectRatio;
-	
 	double m_UNorm;
 	double m_VNorm;
-		
-	mutable vector<Ray> m_Rays;
+	Vector3 m_DeltaU;
+	Vector3 m_DeltaV;
+	Vector3 m_P00;
 	
+	double m_VFov;
+	double m_FLen;
+	uint32_t m_Width;
+	uint32_t m_Height;	
+	double m_AspectRatio;	
 };
 
 #endif /* CAMERA_H */

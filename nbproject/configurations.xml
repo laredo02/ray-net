@@ -4,8 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Benchmark.h</itemPath>
+      <itemPath>include/Benchmark.h</itemPath>
       <itemPath>include/Camera.h</itemPath>
+      <itemPath>include/Configs.h</itemPath>
       <itemPath>include/Image.h</itemPath>
       <itemPath>include/Material.h</itemPath>
       <itemPath>include/Ray.h</itemPath>
@@ -69,8 +70,6 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="Benchmark.h" ex="false" tool="3" flavor2="0">
-      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -86,9 +85,13 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="include/Benchmark.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Camera.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Camera.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -145,8 +148,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Benchmark.h" ex="false" tool="3" flavor2="0">
-      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -162,9 +163,13 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="include/Benchmark.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Camera.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Camera.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
       </item>

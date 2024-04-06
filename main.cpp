@@ -18,10 +18,10 @@ int main(int argc, char* argv[]) {
 
     {
         double aspectRatio = 16.0/9.0;
-        size_t width = 1000;
-        size_t height = static_cast<size_t>(width/aspectRatio);
+        uint32_t width = 1000;
+        uint32_t height = static_cast<size_t>(width/aspectRatio);
         
-        Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 120.0, 0.5, static_cast<double>(width)/height };
+        Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 120.0, 0.5, height, width };
         Material material{ Vector3{ 1.0, 0.0, 0.0} };
         Sphere sphere{ Vector3{ 0.0, 0.0, -4.0}, 1.0, material };
         Image image{ height, width };

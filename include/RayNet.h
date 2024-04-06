@@ -19,6 +19,10 @@
 
 #include <SDL2/SDL.h>
 
+
+#include "Configs.h"
+// #include "Benchmark.h"
+
 using std::cout;
 using std::endl;
 

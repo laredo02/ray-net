@@ -12,18 +12,25 @@ const Image& Renderer::getImage() const {
 }
 
 void Renderer::render() const {
-    auto rays = p_Camera->computeRays(p_Image->width());
+            
+    auto deltaU { p_Camera->deltaU() };
+    auto deltaV { p_Camera->deltaV() };
+    auto P00 { p_Camera->P00() };
 
-    auto width { p_Image->width() };
-    auto height { p_Image->height() };
+    auto width { p_Camera->width() };
+    auto height { p_Camera->height() };
     
-    for (auto i{0}; i < height; i++) {
-        
-        for (auto j{0}; j < width; j++) {
+    for (int i=0; i < height; i++) {
+        for (int j=0; j < width; j++) {
+            Vector3 direction { (P00 + ((double) i * deltaV) + ((double) j * deltaU)) };
+#if REAL_DISTANCE == 1
+            direction.toUnit();
+#endif
+            Ray ray { p_Camera->center(), direction };
+
+
             
-            Ray ray = rays.at(i * width + j);
             auto t = p_Sphere->hit(ray);
-            
             if (t >= 0.0) { // Draw hit
                 Vector3 normal = (ray.at(t) - p_Sphere->getCenter()).unit();
                 Vector3 color = (normal/2.0)+1.0;
@@ -40,6 +47,7 @@ void Renderer::render() const {
     }
 
 }
+
 
 void Renderer::saveRenderToFile(const string& name) const {
     p_Image->saveToFile(name);
