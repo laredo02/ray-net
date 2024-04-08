@@ -1,18 +1,11 @@
 
-#ifndef BENCHMARK_H
-#define BENCHMARK_H
+#pragma once
 
 #include <iostream>
 #include <chrono>
 
 class Benchmark {
 public:
-
-	Benchmark(bool l) {
-		name = "Benchmark";
-		begin = std::chrono::steady_clock::now();
-		laponly = l;
-	}
 
 	Benchmark(const std::string& n, bool l) : name(n) {
 		begin = std::chrono::steady_clock::now();
@@ -37,6 +30,4 @@ private:
 	std::chrono::steady_clock::time_point begin;
 	bool laponly;
 };
-
-#endif /* BENCHMARK_H */
 

@@ -1,16 +1,17 @@
 
-#ifndef RAYNET_H
-#define RAYNET_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
+
+#include <memory>
 
 #include <vector>
 #include <array>
 #include <string>
 
-#include <memory>
 #include <cstdlib>
+#include <cassert>
 
 #include <cmath>
 #include <random>
@@ -19,11 +20,12 @@
 
 #include <SDL2/SDL.h>
 
-
 #include "Configs.h"
 #include "Benchmark.h"
 
+
 #define DEG_TO_RAD(deg) ((deg)*(M_PI/180.0))
+#define LOG(str, val) std::cout << "--\t" str << " " << val << "\t--" << std::endl;
 
 using std::cout;
 using std::endl;
@@ -40,4 +42,3 @@ using std::string;
 using std::unique_ptr;
 using std::shared_ptr;
 
-#endif /* RAYNET_H */

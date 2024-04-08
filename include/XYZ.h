@@ -1,8 +1,8 @@
 
-#ifndef XYZ_H
-#define XYZ_H
+#pragma once
 
 #include "RayNet.h"
+//#include "Ray.h"
 
 template<typename T> struct XYZ {
 public:
@@ -10,8 +10,6 @@ public:
 	XYZ();
 	XYZ(T x, T y, T z);
 	
-//	XYZ(const XYZ<T>& xyz);
-
 	const T& x() const;
 	const T& y() const;
 	const T& z() const;
@@ -59,9 +57,9 @@ public:
 	XYZ<T>& rotateX(const XYZ<T>& center, const double alpha);
 	XYZ<T>& rotateY(const XYZ<T>& center, const double beta);
 	XYZ<T>& rotateZ(const XYZ<T>& center, const double gamma);
+	XYZ<T>& rotateXYZ(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
+	XYZ<T>& rotateAAxis(XYZ<T>& axisDir, const XYZ<T>& axisOrig, const double theta);
 	
-	XYZ<T>& xyzRotation(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
-
 	template<typename U> friend std::ostream& operator<<(std::ostream& out, const XYZ<U>& xyz);
 
 private:
@@ -80,13 +78,6 @@ template<typename T> XYZ<T>::XYZ() : m_xyz{(T) 0, (T) 0, (T) 0}
 template<typename T> XYZ<T>::XYZ(T x, T y, T z) : m_xyz{x, y, z}
 {
 }
-//template<typename T> XYZ<T>::XYZ(const XYZ<T>& xyz)
-//{
-//	m_xyz[0] = xyz.m_xyz[0];
-//	m_xyz[1] = xyz.m_xyz[1];
-//	m_xyz[2] = xyz.m_xyz[2];
-//}
-
 
 template<typename T> const T& XYZ<T>::x() const {
 	return m_xyz[0];
@@ -277,20 +268,26 @@ template<typename T> XYZ<T>& XYZ<T>::rotateY(const XYZ<T>& center, const double 
 template<typename T> XYZ<T>& XYZ<T>::rotateZ(const XYZ<T>& center, const double theta) {	
 	double thetaRad = DEG_TO_RAD(theta);
 	Vector3 centerToPoint { *this - center };
-	m_xyz[0] = center.x() + dot(centerToPoint, XYZ<T>{ cos(theta), -sin(theta), 0.0 });
-	m_xyz[1] = center.y() + dot(centerToPoint, XYZ<T>{ sin(theta),  cos(theta), 0.0 });
+	m_xyz[0] = center.x() + dot(centerToPoint, XYZ<T>{ cos(thetaRad), -sin(thetaRad), 0.0 });
+	m_xyz[1] = center.y() + dot(centerToPoint, XYZ<T>{ sin(thetaRad),  cos(thetaRad), 0.0 });
 	m_xyz[2] = center.z() + dot(centerToPoint, XYZ<T>{    0.0    ,     0.0    , 1.0 });
 	return *this;
 }
 
-template<typename T> inline XYZ<T>& XYZ<T>::xyzRotation(const XYZ<T>& center, const double alpha, const double beta, const double gamma) {
-	return this->rotateX(center, alpha).rotateY(center, beta).rotateZ(center, gamma);
+template<typename T> XYZ<T>& XYZ<T>::rotateXYZ(const XYZ<T>& center, const double alpha, const double beta, const double gamma) {
+	return this->rotateZ(center, gamma).rotateY(center, beta).rotateX(center, alpha);
 }
 
-
+template<typename T> XYZ<T>& XYZ<T>::rotateAAxis(XYZ<T>& axisDir, const XYZ<T>& axisOrig, const double theta) {
+	double thetaRad = DEG_TO_RAD(theta);
+	Vector3 centerToPoint { *this - axisOrig };
+	axisDir.toUnit();
+	Vector3 rotatedPoint = centerToPoint*cos(thetaRad) + (cross(axisDir, centerToPoint)*sin(thetaRad)) + (axisDir*dot(axisDir, centerToPoint)*(1-cos(thetaRad)));
+	*this += axisOrig + rotatedPoint;
+	return *this;
+}
 
 template<typename U> inline std::ostream& operator<<(std::ostream& out, const XYZ<U>& xyz) {
 	return out << "[" << xyz.m_xyz[0] << ", " << xyz.m_xyz[1] << ", " << xyz.m_xyz[2] << "]";
 }
 
-#endif /* XYZ_H */

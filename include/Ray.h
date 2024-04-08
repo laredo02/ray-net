@@ -1,6 +1,5 @@
 
-#ifndef RAY_H
-#define RAY_H
+#pragma once
 
 #include "XYZ.h"
 
@@ -22,6 +21,4 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Ray& ray);
 
-
-#endif /* RAY_H */
 

@@ -32,14 +32,24 @@ void Window::update() {
     
     while (m_Running) {
 
-        if (m_Running)
+        if (m_Running) {
+            Benchmark bench("Render\t", true);
+            
             p_Renderer->render();
-        
+            
+        }
+            
         const Image& image = p_Renderer->getImage();
-        image.toTexture(p_SDLTexture);
-        SDL_RenderClear(p_SDLRenderer);
-        SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
-        SDL_RenderPresent(p_SDLRenderer);
+        
+        {
+            Benchmark bench("Save Image\t", true);
+            p_Renderer->saveRenderToFile("image.ppm");
+        
+        }
+//        image.toTexture(p_SDLTexture);
+//        SDL_RenderClear(p_SDLRenderer);
+//        SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
+//        SDL_RenderPresent(p_SDLRenderer);
 
         this->handleInput();
     }
@@ -66,22 +76,19 @@ void Window::handleInput() {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
-                    p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );
-                    cout << "SDL_SCANCODE_UP\n";
+                    p_Renderer->camera().pitch(2);
                     break;
                 case SDL_SCANCODE_DOWN:
-                    p_Renderer->camera().translate( Vector3(0.0, 0.0, 0.1) );
-                    cout << "SDL_SCANCODE_DOWN\n";
+                    p_Renderer->camera().pitch(-2);
                     break;
                 case SDL_SCANCODE_RIGHT:
-                    p_Renderer->camera().translate( Vector3(0.1, 0.0, 0.0) );
-                    cout << "SDL_SCANCODE_RIGHT\n";
+                    // p_Renderer->camera().rotate(  );
                     break;
                 case SDL_SCANCODE_LEFT:
-                    p_Renderer->camera().translate( Vector3(-0.1, 0.0, 0.0) );
-                    cout << "SDL_SCANCODE_LEFT\n";
+                    // p_Renderer->camera().rotate(  );
                     break;
 
+                    
                 case SDL_SCANCODE_PAGEUP:
                     p_Renderer->camera().translate( Vector3(0.0, 0.1, 0.0) );
                     break;
@@ -89,17 +96,18 @@ void Window::handleInput() {
                     p_Renderer->camera().translate( Vector3(0.0, -0.1, 0.0) );
                     break;
                     
+                    
                 case SDL_SCANCODE_W:
-                    cout << "SDL_SCANCODE_W\n";                    
+                    p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );        
                     break;
                 case SDL_SCANCODE_S:
-                    cout << "SDL_SCANCODE_S\n";
+                    p_Renderer->camera().translate( Vector3(0.0, 0.0, 0.1) );
                     break;
                 case SDL_SCANCODE_D:
-                    cout << "SDL_SCANCODE_D\n";
+                    p_Renderer->camera().translate( Vector3(0.1, 0.0, 0.0) );
                     break;
                 case SDL_SCANCODE_A:
-                    cout << "SDL_SCANCODE_A\n";
+                    p_Renderer->camera().translate( Vector3(-0.1, 0.0, 0.0) );
                     break;
 
                     

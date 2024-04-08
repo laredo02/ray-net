@@ -9,6 +9,7 @@
       <itemPath>include/Configs.h</itemPath>
       <itemPath>include/Image.h</itemPath>
       <itemPath>include/Material.h</itemPath>
+      <itemPath>include/Random.h</itemPath>
       <itemPath>include/Ray.h</itemPath>
       <itemPath>include/RayNet.h</itemPath>
       <itemPath>include/Renderer.h</itemPath>
@@ -102,6 +103,8 @@
       </item>
       <item path="include/Material.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Random.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Ray.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Ray.h" ex="false" tool="3" flavor2="0">
@@ -179,6 +182,8 @@
       <item path="include/Material.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Material.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Random.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Ray.cpp" ex="false" tool="1" flavor2="0">
       </item>

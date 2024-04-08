@@ -1,6 +1,5 @@
 
-#ifndef CAMERA_H
-#define CAMERA_H
+#pragma once
 
 #include "XYZ.h"
 #include "Ray.h"
@@ -20,7 +19,10 @@ public:
 	const Vector3& P00() const;
 	
 	void translate(const Vector3& delta);
-	void rotate(double xrot, double yrot, double zrot);
+	//void rotate(double xrot, double yrot, double zrot);
+	void pitch(const double theta);
+	void yaw(const double theta);
+	void roll(const double theta);
 	
 	const Vector3& center() const;
 	const Vector3& direction() const;
@@ -50,5 +52,4 @@ private:
 	double m_AspectRatio;	
 };
 
-#endif /* CAMERA_H */
 
