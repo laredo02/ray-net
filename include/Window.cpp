@@ -76,16 +76,16 @@ void Window::handleInput() {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
-                    p_Renderer->camera().pitch(2);
+                    p_Renderer->camera().pitch(-1);
                     break;
                 case SDL_SCANCODE_DOWN:
-                    p_Renderer->camera().pitch(-2);
+                    p_Renderer->camera().pitch(1);
                     break;
                 case SDL_SCANCODE_RIGHT:
-                    // p_Renderer->camera().rotate(  );
+                    p_Renderer->camera().yaw(-1);
                     break;
                 case SDL_SCANCODE_LEFT:
-                    // p_Renderer->camera().rotate(  );
+                    p_Renderer->camera().yaw(1);
                     break;
 
                     

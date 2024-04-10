@@ -42,19 +42,19 @@ void Camera::translate(const Vector3& delta) {
 }
 
 void Camera::pitch(const double theta) {
-    Vector3 localXaxis=cross(m_Direction, m_Up);
-    m_Direction.rotateAAxis(localXaxis, m_Center, theta);
-    m_Up.rotateAAxis(localXaxis, m_Center, theta);
+    Vector3 axis = cross(m_Direction, m_Up);
+    m_Direction.rotateAAxis(axis, theta);
+    m_Up.rotateAAxis(axis, theta);
     computeRayParameters();
 }
 
 void Camera::yaw(const double theta) {
-
+    m_Direction.rotateAAxis(m_Up, theta);    
     computeRayParameters();
 }
 
 void Camera::roll(const double theta) {
-
+    m_Up.rotateAAxis(m_Direction, theta);
     computeRayParameters();
 }
 

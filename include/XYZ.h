@@ -58,7 +58,7 @@ public:
 	XYZ<T>& rotateY(const XYZ<T>& center, const double beta);
 	XYZ<T>& rotateZ(const XYZ<T>& center, const double gamma);
 	XYZ<T>& rotateXYZ(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
-	XYZ<T>& rotateAAxis(XYZ<T>& axisDir, const XYZ<T>& axisOrig, const double theta);
+	XYZ<T>& rotateAAxis(const XYZ<T>& axisDir, const double theta);
 	
 	template<typename U> friend std::ostream& operator<<(std::ostream& out, const XYZ<U>& xyz);
 
@@ -278,12 +278,13 @@ template<typename T> XYZ<T>& XYZ<T>::rotateXYZ(const XYZ<T>& center, const doubl
 	return this->rotateZ(center, gamma).rotateY(center, beta).rotateX(center, alpha);
 }
 
-template<typename T> XYZ<T>& XYZ<T>::rotateAAxis(XYZ<T>& axisDir, const XYZ<T>& axisOrig, const double theta) {
+template<typename T> XYZ<T>& XYZ<T>::rotateAAxis(const XYZ<T>& axis, const double theta) {
 	double thetaRad = DEG_TO_RAD(theta);
-	Vector3 centerToPoint { *this - axisOrig };
-	axisDir.toUnit();
-	Vector3 rotatedPoint = centerToPoint*cos(thetaRad) + (cross(axisDir, centerToPoint)*sin(thetaRad)) + (axisDir*dot(axisDir, centerToPoint)*(1-cos(thetaRad)));
-	*this += axisOrig + rotatedPoint;
+	Vector3 axisCopy = axis.unit();
+	Vector3 rotatedPoint = (*this)*cos(thetaRad) +
+						   (cross(axisCopy, *this)*sin(thetaRad)) + 
+						   (axisCopy*dot(axisCopy, *this)*(1-cos(thetaRad)));
+	*this = rotatedPoint;
 	return *this;
 }
 
