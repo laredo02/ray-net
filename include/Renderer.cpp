@@ -27,14 +27,21 @@ void Renderer::render() const {
             direction.toUnit();
 #endif
             Ray ray { p_Camera->center(), direction };
-
-
-            
             auto t = p_Sphere->hit(ray);
             if (t >= 0.0) { // Draw hit
                 Vector3 normal = (ray.at(t) - p_Sphere->getCenter()).unit();
-                Vector3 color = (normal/2.0)+1.0;
-                p_Image->setPixel(i, j, color);
+                                
+                Vector3 normal_color = (normal+1.0)/2.0;
+                
+                
+   
+                
+                
+                //Vector3 globalLight { -1.0, -1.0, -1.0 };
+                //double paral = dot(globalLight, normal);
+                //Vector3 color = p_Sphere->getMaterial().albedo;
+                
+                p_Image->setPixel(i, j, normal_color);
             
             } else { // Draw miss
                 double h { static_cast<double>(height) };

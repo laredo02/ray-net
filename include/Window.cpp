@@ -12,7 +12,7 @@ Window::Window(const size_t width, const size_t height, string name, const Rende
         SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
-    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_BGRA8888, SDL_TEXTUREACCESS_STREAMING, width, height);
+    p_SDLTexture = SDL_CreateTexture(p_SDLRenderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
     if (p_SDLTexture == nullptr) {
         SDL_DestroyRenderer(p_SDLRenderer);
         SDL_DestroyWindow(p_SDLWindow);
@@ -31,25 +31,27 @@ Window::~Window() {
 void Window::update() {
     
     while (m_Running) {
-
+        
         if (m_Running) {
-            Benchmark bench("Render\t", true);
-            
+#if BENCHMARK == 1
+            Benchmark bench("Render loop took ", true);
+#endif
             p_Renderer->render();
-            
         }
             
         const Image& image = p_Renderer->getImage();
-        
         {
-            Benchmark bench("Save Image\t", true);
+#if BENCHMARK == 1
+            Benchmark bench("Saving the image to disk took ", true);
+#endif
             p_Renderer->saveRenderToFile("image.ppm");
-        
         }
-//        image.toTexture(p_SDLTexture);
-//        SDL_RenderClear(p_SDLRenderer);
-//        SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
-//        SDL_RenderPresent(p_SDLRenderer);
+        
+        image.toTexture(p_SDLTexture);
+        
+        SDL_RenderClear(p_SDLRenderer);
+        SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
+        SDL_RenderPresent(p_SDLRenderer);
 
         this->handleInput();
     }
@@ -76,40 +78,50 @@ void Window::handleInput() {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
-                    p_Renderer->camera().pitch(-1);
-                    break;
-                case SDL_SCANCODE_DOWN:
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().pitch(1);
                     break;
+                case SDL_SCANCODE_DOWN:
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+                    p_Renderer->camera().pitch(-1);
+                    break;
                 case SDL_SCANCODE_RIGHT:
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().yaw(-1);
                     break;
                 case SDL_SCANCODE_LEFT:
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().yaw(1);
                     break;
 
                     
                 case SDL_SCANCODE_PAGEUP:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, 0.1, 0.0) );
                     break;
                 case SDL_SCANCODE_PAGEDOWN:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, -0.1, 0.0) );
                     break;
                     
                     
                 case SDL_SCANCODE_W:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );        
                     break;
                 case SDL_SCANCODE_S:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, 0.0, 0.1) );
                     break;
                 case SDL_SCANCODE_D:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.1, 0.0, 0.0) );
                     break;
                 case SDL_SCANCODE_A:
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(-0.1, 0.0, 0.0) );
                     break;
-
+                    
                     
                 case SDL_SCANCODE_G:
                     cout << "Saving image... ";
@@ -130,3 +142,5 @@ void Window::handleInput() {
         }
     }
 }
+
+
