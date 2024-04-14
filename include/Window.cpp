@@ -78,66 +78,88 @@ void Window::handleInput() {
             switch (event.key.keysym.scancode) {
 
                 case SDL_SCANCODE_UP:
-                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().pitch(1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
                     break;
                 case SDL_SCANCODE_DOWN:
-                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().pitch(-1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
                     break;
                 case SDL_SCANCODE_RIGHT:
-                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().yaw(-1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
                     break;
                 case SDL_SCANCODE_LEFT:
-                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
                     p_Renderer->camera().yaw(1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
                     break;
 
                     
                 case SDL_SCANCODE_PAGEUP:
-                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, 0.1, 0.0) );
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
+#endif
                     break;
                 case SDL_SCANCODE_PAGEDOWN:
-                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, -0.1, 0.0) );
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
+#endif
                     break;
                     
                     
                 case SDL_SCANCODE_W:
+                    p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );   
+#if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_CENTER", p_Renderer->camera().center())
-                    p_Renderer->camera().translate( Vector3(0.0, 0.0, -0.1) );        
+#endif
                     break;
                 case SDL_SCANCODE_S:
-                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
                     p_Renderer->camera().translate( Vector3(0.0, 0.0, 0.1) );
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_CENTER", p_Renderer->camera().center())
+#endif
                     break;
                 case SDL_SCANCODE_D:
+#if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_CENTER", p_Renderer->camera().center())
+#endif
                     p_Renderer->camera().translate( Vector3(0.1, 0.0, 0.0) );
                     break;
                 case SDL_SCANCODE_A:
+#if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_CENTER", p_Renderer->camera().center())
+#endif
                     p_Renderer->camera().translate( Vector3(-0.1, 0.0, 0.0) );
                     break;
                     
                     
                     
                 case SDL_SCANCODE_G:
+#if PRINT_KEYBOARD_ACTIONS == 1
                     cout << "Saving image... ";
+#endif
                     p_Renderer->saveRenderToFile("image.ppm");
+#if PRINT_KEYBOARD_ACTIONS == 1
                     cout << "OK\n";
+#endif
                     break;
 
 
                 case SDL_SCANCODE_ESCAPE:
                     m_Running = false;
-                    //cout << "SDL_SCANCODE_ESCAPE\n";
                     break;
                 case SDL_SCANCODE_Q:
                     m_Running = false;
-                    //cout << "SDL_SCANCODE_Q\n";
                     break;
             }
         }
