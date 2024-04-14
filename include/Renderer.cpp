@@ -37,11 +37,11 @@ void Renderer::render() const {
    
                 
                 
-                //Vector3 globalLight { -1.0, -1.0, -1.0 };
-                //double paral = dot(globalLight, normal);
-                //Vector3 color = p_Sphere->getMaterial().albedo;
+                Vector3 globalLight { -0.3, -1.0, -0.0 };
+                double paral = (-dot(globalLight.unit(), normal.unit()) + 1.0)/2.0;
+                Vector3 color = p_Sphere->getMaterial().albedo * paral;
                 
-                p_Image->setPixel(i, j, normal_color);
+                p_Image->setPixel(i, j, color);
             
             } else { // Draw miss
                 double h { static_cast<double>(height) };

@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
         uint32_t height = static_cast<size_t>(width/aspectRatio);
         
         Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 80.0, 2.0, height, width };
-        Material material{ Vector3{ 1.0, 0.0, 1.0} };
+        Material material{ Vector3{ 1.0, 0.0, 0.0} };
         Sphere sphere{ Vector3{ 0.0, 0.0, -20.0}, 5.0, material };
         Image image{ height, width };
         

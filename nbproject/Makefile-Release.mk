@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/include/Ray.o \
 	${OBJECTDIR}/include/Renderer.o \
 	${OBJECTDIR}/include/Scene.o \
+	${OBJECTDIR}/include/Scene_1.o \
 	${OBJECTDIR}/include/Sphere.o \
 	${OBJECTDIR}/include/Window.o \
 	${OBJECTDIR}/main.o
@@ -103,6 +104,11 @@ ${OBJECTDIR}/include/Scene.o: include/Scene.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Scene.o include/Scene.cpp
+
+${OBJECTDIR}/include/Scene_1.o: include/Scene_1.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Scene_1.o include/Scene_1.cpp
 
 ${OBJECTDIR}/include/Sphere.o: include/Sphere.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -200,6 +206,19 @@ ${OBJECTDIR}/include/Scene_nomain.o: ${OBJECTDIR}/include/Scene.o include/Scene.
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Scene_nomain.o include/Scene.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/Scene.o ${OBJECTDIR}/include/Scene_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/Scene_1_nomain.o: ${OBJECTDIR}/include/Scene_1.o include/Scene_1.cpp 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/Scene_1.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Scene_1_nomain.o include/Scene_1.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/Scene_1.o ${OBJECTDIR}/include/Scene_1_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Sphere_nomain.o: ${OBJECTDIR}/include/Sphere.o include/Sphere.cpp 

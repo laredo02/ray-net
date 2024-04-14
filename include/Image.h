@@ -30,8 +30,8 @@ public:
 	size_t width() const;
 
 
-	void toTexture(SDL_Texture* texture) const;
-	void saveToFile(const std::string& path) const;
+	void toTexture(SDL_Texture* const texture) const;
+	void saveToFile(const std::string& path) const;	
 
 private:
 
@@ -120,20 +120,20 @@ template<typename T> inline size_t RGBImage<T>::height() const {
 	return m_Height;
 }
 
-template<typename T> void RGBImage<T>::toTexture(SDL_Texture* texture) const {
+template<typename T> void RGBImage<T>::toTexture(SDL_Texture* const texture) const {
 	Uint32 raw_data[m_Width * m_Height];
 	int width=static_cast<int> (m_Width);
 
 	for (int i=0; i < m_Height; i++) {
 		for (int j=0; j < m_Width; j++) {
 			
-			Uint32 red	 = static_cast<Uint32>(m_RedChannel.at(i).at(j)) << 16;
-			Uint32 green = static_cast<Uint32>(m_GreenChannel.at(i).at(j)) << 8;
+			Uint32 red	 = static_cast<Uint32>(m_RedChannel.at(i).at(j));
+			Uint32 green = static_cast<Uint32>(m_GreenChannel.at(i).at(j));
 			Uint32 blue  = static_cast<Uint32>(m_BlueChannel.at(i).at(j));
 #if ASSERTIONS == 1
-			assert(0 >= red && red <= 255 && 0 >= green && green <= 255 && 0 >= blue && blue <= 255);
+			assert(0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255);
 #endif
-			Uint32 color=(0xff << 24) | red | green | blue;
+			Uint32 color=(0xff << 24) | (red << 16) | (green << 8) | blue;
 			raw_data[i * m_Width + j]=color;
 		}
 	}
@@ -146,12 +146,12 @@ template<typename T> void RGBImage<T>::saveToFile(const std::string& path) const
 	os << "P3\n" << m_Width << ' ' << m_Height << "\n255\n";
 	for (int i=0; i < m_Height; i++) {
 		for (int j=0; j < m_Width; j++) {
-
-			Uint32 red	 = static_cast<int>(m_RedChannel.at(i).at(j));
-			Uint32 green = static_cast<int>(m_GreenChannel.at(i).at(j));
-			Uint32 blue  = static_cast<int>(m_BlueChannel.at(i).at(j));
+			
+			uint32_t red   = static_cast<int>(m_RedChannel.at(i).at(j));
+			uint32_t green = static_cast<int>(m_GreenChannel.at(i).at(j));
+			uint32_t blue  = static_cast<int>(m_BlueChannel.at(i).at(j));
 #if ASSERTIONS == 1
-			assert(0 >= red && red <= 255 && 0 >= green && green <= 255 && 0 >= blue && blue <= 255);
+			assert(0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255);
 #endif
 			os << red << ' ' << green << ' ' << blue << '\n';
 		}

@@ -123,6 +123,7 @@ void Window::handleInput() {
                     break;
                     
                     
+                    
                 case SDL_SCANCODE_G:
                     cout << "Saving image... ";
                     p_Renderer->saveRenderToFile("image.ppm");
