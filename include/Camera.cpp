@@ -23,8 +23,6 @@ void Camera::computeRayParameters() {
     m_P00=m_Center+m_Direction*m_FLen+(m_Up*(m_VNorm/2.0))+m_DeltaV*0.5+((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+m_DeltaU*0.5;
 }
 
-
-
 const Vector3& Camera::deltaU() const {
     return m_DeltaU;
 }
@@ -37,8 +35,6 @@ const Vector3& Camera::P00() const {
     return m_P00;
 }
 
-
-
 void Camera::translate(const Vector3& delta) {
     Vector3 translation=delta.x()*cross(m_Direction, m_Up)+delta.y()*m_Up-delta.z()*m_Direction;
     m_Center+=translation;
@@ -46,14 +42,14 @@ void Camera::translate(const Vector3& delta) {
 }
 
 void Camera::pitch(const double theta) {
-    Vector3 axis = cross(m_Direction, m_Up);
+    Vector3 axis=cross(m_Direction, m_Up);
     m_Direction.rotateAAxis(axis, theta);
     m_Up.rotateAAxis(axis, theta);
     computeRayParameters();
 }
 
 void Camera::yaw(const double theta) {
-    m_Direction.rotateAAxis(m_Up, theta);    
+    m_Direction.rotateAAxis(m_Up, theta);
     computeRayParameters();
 }
 
@@ -61,10 +57,6 @@ void Camera::roll(const double theta) {
     m_Up.rotateAAxis(m_Direction, theta);
     computeRayParameters();
 }
-
-
-
-
 
 const Vector3& Camera::center() const {
     return m_Center;

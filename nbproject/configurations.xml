@@ -15,7 +15,6 @@
       <itemPath>include/RayNet.h</itemPath>
       <itemPath>include/Renderer.h</itemPath>
       <itemPath>include/Scene.h</itemPath>
-      <itemPath>include/Scene_1.h</itemPath>
       <itemPath>include/Sphere.h</itemPath>
       <itemPath>include/Window.h</itemPath>
       <itemPath>include/XYZ.h</itemPath>
@@ -32,7 +31,6 @@
       <itemPath>include/Ray.cpp</itemPath>
       <itemPath>include/Renderer.cpp</itemPath>
       <itemPath>include/Scene.cpp</itemPath>
-      <itemPath>include/Scene_1.cpp</itemPath>
       <itemPath>include/Sphere.cpp</itemPath>
       <itemPath>include/Window.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -124,10 +122,6 @@
       </item>
       <item path="include/Scene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/Scene_1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="include/Scene_1.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="include/Sphere.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Sphere.h" ex="false" tool="3" flavor2="0">
@@ -209,10 +203,6 @@
       <item path="include/Scene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Scene.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="include/Scene_1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="include/Scene_1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Sphere.cpp" ex="false" tool="1" flavor2="0">
       </item>

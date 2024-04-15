@@ -1,18 +1,23 @@
 
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 
 #include "RayNet.h"
-#include "Sphere.h"
+
+#include "Hittable.h"
+#include "Camera.h"
 
 class Scene {
-public:
-	Scene();
 
-private:
-	vector<Sphere*> sphereList;
+public:
 	
+	Scene();
+	Scene(const vector<Hittable>& hittable_lists, shared_ptr<Camera> camera);
+	
+private:
+	
+	vector<Hittable> hittable_list;
+
 };
 
-#endif /* SCENE_H */
+
 

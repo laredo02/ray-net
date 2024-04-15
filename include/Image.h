@@ -1,5 +1,6 @@
 
 #pragma once
+
 #include "RayNet.h"
 #include "XYZ.h"
 
@@ -30,8 +31,8 @@ public:
 	size_t width() const;
 
 
-	void toTexture(SDL_Texture* const texture) const;
-	void saveToFile(const std::string& path) const;	
+	void toTexture(SDL_Texture * const texture) const;
+	void saveToFile(const std::string& path) const;
 
 private:
 
@@ -120,16 +121,16 @@ template<typename T> inline size_t RGBImage<T>::height() const {
 	return m_Height;
 }
 
-template<typename T> void RGBImage<T>::toTexture(SDL_Texture* const texture) const {
+template<typename T> void RGBImage<T>::toTexture(SDL_Texture * const texture) const {
 	Uint32 raw_data[m_Width * m_Height];
 	int width=static_cast<int> (m_Width);
 
 	for (int i=0; i < m_Height; i++) {
 		for (int j=0; j < m_Width; j++) {
-			
-			Uint32 red	 = static_cast<Uint32>(m_RedChannel.at(i).at(j));
-			Uint32 green = static_cast<Uint32>(m_GreenChannel.at(i).at(j));
-			Uint32 blue  = static_cast<Uint32>(m_BlueChannel.at(i).at(j));
+
+			Uint32 red=static_cast<Uint32> (m_RedChannel.at(i).at(j));
+			Uint32 green=static_cast<Uint32> (m_GreenChannel.at(i).at(j));
+			Uint32 blue=static_cast<Uint32> (m_BlueChannel.at(i).at(j));
 #if ASSERTIONS == 1
 			assert(0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255);
 #endif
@@ -146,10 +147,10 @@ template<typename T> void RGBImage<T>::saveToFile(const std::string& path) const
 	os << "P3\n" << m_Width << ' ' << m_Height << "\n255\n";
 	for (int i=0; i < m_Height; i++) {
 		for (int j=0; j < m_Width; j++) {
-			
-			uint32_t red   = static_cast<int>(m_RedChannel.at(i).at(j));
-			uint32_t green = static_cast<int>(m_GreenChannel.at(i).at(j));
-			uint32_t blue  = static_cast<int>(m_BlueChannel.at(i).at(j));
+
+			uint32_t red=static_cast<int> (m_RedChannel.at(i).at(j));
+			uint32_t green=static_cast<int> (m_GreenChannel.at(i).at(j));
+			uint32_t blue=static_cast<int> (m_BlueChannel.at(i).at(j));
 #if ASSERTIONS == 1
 			assert(0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255);
 #endif
