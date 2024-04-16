@@ -17,7 +17,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     {
-        double aspectRatio=1.0; //16.0/9.0;
+        double aspectRatio=1.0;
         uint32_t width=1000;
         uint32_t height=static_cast<size_t> (width/aspectRatio);
 

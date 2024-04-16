@@ -73,31 +73,43 @@ void Window::handleInput() {
         if (event.type==SDL_KEYDOWN) {
             switch (event.key.keysym.scancode) {
 
-                case SDL_SCANCODE_UP:
+                case SDL_SCANCODE_I:
                     p_Renderer->camera().pitch(1);
 #if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
 #endif
                     break;
-                case SDL_SCANCODE_DOWN:
+                case SDL_SCANCODE_K:
                     p_Renderer->camera().pitch(-1);
 #if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
 #endif
                     break;
-                case SDL_SCANCODE_RIGHT:
+                case SDL_SCANCODE_L:
                     p_Renderer->camera().yaw(-1);
 #if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
 #endif
                     break;
-                case SDL_SCANCODE_LEFT:
+                case SDL_SCANCODE_J:
                     p_Renderer->camera().yaw(1);
 #if PRINT_KEYBOARD_ACTIONS == 1
                     LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
 #endif
                     break;
-
+                case SDL_SCANCODE_U:
+                    p_Renderer->camera().roll(1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
+                    break;
+                case SDL_SCANCODE_O:
+                    p_Renderer->camera().roll(-1);
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    LOG("CAMERA_DIRECTION", p_Renderer->camera().direction());
+#endif
+                    break;
+                    
 
                 case SDL_SCANCODE_PAGEUP:
                     p_Renderer->camera().translate(Vector3(0.0, 0.1, 0.0));

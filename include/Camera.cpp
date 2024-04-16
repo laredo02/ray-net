@@ -9,15 +9,24 @@ Camera::Camera(const Vector3& center, const Vector3& direction, const Vector3& u
 : m_Center(center), m_Direction(direction), m_Up(up),
 m_VFov(vfov), m_FLen(flen), m_AspectRatio(static_cast<double> (width)/height), m_Width{width}, m_Height{height}
 {
-    assert(dot(m_Direction, m_Up)*dot(m_Direction, m_Up)<=0.00001);
     m_Direction.toUnit();
     m_Up.toUnit();
+#if ASSERTIONS == 1
+    assert(dot(m_Direction, m_Up)*dot(m_Direction, m_Up)<=0.00001);
+    assert(m_Up.norm() == 1.0);
+    assert(m_Direction.norm() == 1.0);
+#endif
     m_VNorm=2.0*m_FLen*tan(DEG_TO_RAD(m_VFov)/2.0);
     m_UNorm=m_VNorm*m_AspectRatio;
     computeRayParameters();
 }
 
 void Camera::computeRayParameters() {
+#if ASSERTIONS == 1
+    assert(dot(m_Direction, m_Up)*dot(m_Direction, m_Up)<=0.00001);
+    assert(1.0-0.001 <= m_Up.norm() && m_Up.norm() <= 1.0+0.001);
+    assert(1.0-0.001 <= m_Direction.norm() && m_Direction.norm() <= 1.0+0.001);
+#endif
     m_DeltaU=cross(m_Direction, m_Up)*(m_UNorm/m_Width);
     m_DeltaV= -m_Up*(m_VNorm/m_Height);
     m_P00=m_Center+m_Direction*m_FLen+(m_Up*(m_VNorm/2.0))+m_DeltaV*0.5+((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+m_DeltaU*0.5;

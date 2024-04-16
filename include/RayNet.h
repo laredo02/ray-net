@@ -26,6 +26,7 @@
 
 #define DEG_TO_RAD(deg) ((deg)*(M_PI/180.0))
 #define LOG(str, val) std::cout << "--\t" str << " = " << val << "\t--" << std::endl;
+#define NEWLINE std::cout << '\n';
 
 using std::cout;
 using std::endl;
