@@ -54,11 +54,15 @@ void Renderer::render() const {
         for (int i=ri; i<rf; i++) {
             for (int j=0; j<width; j++) {
                 
+//#if ANTIALIASING == 1
+//                Vector3 direction = p_Camera->getRay(i, j);
+//#endif
                 Vector3 direction { (P00 + ((double) i * deltaV) + ((double) j * deltaU)) };
 #if REAL_DISTANCE == 1
                 direction.toUnit();
 #endif
                 Ray ray { p_Camera->center(), direction };
+//#endif
                 
                 auto t = p_Sphere->hit(ray);
                 if (t >= 0.0) { // Draw hit

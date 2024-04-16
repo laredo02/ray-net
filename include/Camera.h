@@ -20,6 +20,8 @@ public:
 	const Vector3& deltaU() const;
 	const Vector3& deltaV() const;
 	const Vector3& P00() const;
+	
+	Ray getRay(int row, int col) const;
 
 	void translate(const Vector3& delta);
 	void pitch(const double theta);
@@ -35,7 +37,7 @@ public:
 	uint32_t width() const;
 	uint32_t height() const;
 	double aspectRatio() const;
-
+	
 private:
 	Vector3 m_Center;
 	Vector3 m_Direction;
@@ -52,6 +54,7 @@ private:
 	uint32_t m_Width;
 	uint32_t m_Height;
 	double m_AspectRatio;
+	
 };
 
 

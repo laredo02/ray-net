@@ -41,10 +41,7 @@ void Window::update() {
         }
 
         const Image& image=p_Renderer->getImage();
-
-
         image.toTexture(p_SDLTexture);
-
         SDL_RenderClear(p_SDLRenderer);
         SDL_RenderCopy(p_SDLRenderer, p_SDLTexture, nullptr, nullptr);
         SDL_RenderPresent(p_SDLRenderer);
@@ -66,7 +63,9 @@ void Window::handleInput() {
                 case SDL_WINDOWEVENT_RESIZED:
                     m_Width=event.window.data1;
                     m_Height=event.window.data2;
+#if PRINT_KEYBOARD_ACTIONS == 1
                     cout<<"SDL_WINDOWEVENT_RESIZED ("<<m_Width<<'x'<<m_Height<<")\n";
+#endif
                     break;
             }
         }
@@ -124,6 +123,7 @@ void Window::handleInput() {
 #endif
                             break;
 
+                    
 
                 case SDL_SCANCODE_W:
                     p_Renderer->camera().translate(Vector3(0.0, 0.0, -0.1));
@@ -154,18 +154,15 @@ void Window::handleInput() {
 
                 case SDL_SCANCODE_G:
 #if PRINT_KEYBOARD_ACTIONS == 1
-                    cout<<"Saving image... ";
+                    LOG("Saving image to ", "image.ppm")
 #endif
-
-#if BENCHMARK == 1
-                {
-                    Benchmark bench("Saving the image to disk took ", true);
+#if BENCHMARK == 1 
+                    { Benchmark bench("Saving the image to disk took ", true);
 #endif
                     p_Renderer->saveRenderToFile("image.ppm");
 #if BENCHMARK == 1
-                }
+                    }
 #endif
-
 #if PRINT_KEYBOARD_ACTIONS == 1
                     cout<<"OK\n";
 #endif
@@ -173,9 +170,15 @@ void Window::handleInput() {
 
 
                 case SDL_SCANCODE_ESCAPE:
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    PRINT("EXIT")
+#endif
                     m_Running=false;
                     break;
                 case SDL_SCANCODE_Q:
+#if PRINT_KEYBOARD_ACTIONS == 1
+                    PRINT("EXIT")
+#endif
                     m_Running=false;
                     break;
             }

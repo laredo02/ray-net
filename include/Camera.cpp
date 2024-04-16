@@ -3,6 +3,7 @@
 
 #include "RayNet.h"
 #include "Camera.h"
+#include "Random.h"
 
 Camera::Camera(const Vector3& center, const Vector3& direction, const Vector3& up,
                double vfov, double flen, uint32_t height, uint32_t width)
@@ -32,6 +33,17 @@ void Camera::computeRayParameters() {
     m_P00=m_Center+m_Direction*m_FLen+(m_Up*(m_VNorm/2.0))+m_DeltaV*0.5+((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+m_DeltaU*0.5;
 }
 
+Ray Camera::getRay(int row, int col) const {
+    auto randomVDelta { m_DeltaV/2.0 };
+    auto randomUDelta { m_DeltaU/2.0 };
+    auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
+    Vector3 direction { (m_P00 + ((double) row * m_DeltaV) + ((double) col * m_DeltaU) + randomDelta)};
+#if REAL_DISTANCE == 1
+    direction.toUnit();
+#endif
+    return Ray { m_Center, direction };
+}
+
 const Vector3& Camera::deltaU() const {
     return m_DeltaU;
 }
@@ -51,7 +63,7 @@ void Camera::translate(const Vector3& delta) {
 }
 
 void Camera::pitch(const double theta) {
-    Vector3 axis=cross(m_Direction, m_Up);
+    Vector3 axis=cross(m_Direction, m_Up).unit();
     m_Direction.rotateAAxis(axis, theta);
     m_Up.rotateAAxis(axis, theta);
     computeRayParameters();

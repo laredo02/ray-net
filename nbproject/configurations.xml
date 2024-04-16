@@ -39,6 +39,12 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="CameraTest"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/CameraTest.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2"
                      displayName="RotationsTest"
                      projectFiles="true"
@@ -75,6 +81,21 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <incDir>
@@ -133,6 +154,8 @@
       <item path="include/XYZ.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/CameraTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/RotationsTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -157,6 +180,21 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <incDir>
@@ -215,6 +253,8 @@
       <item path="include/XYZ.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/CameraTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/RotationsTest.cpp" ex="false" tool="1" flavor2="0">
       </item>
