@@ -17,13 +17,13 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     {
-        double aspectRatio=1.0;
-        uint32_t width=100;
-        uint32_t height=static_cast<size_t> (width/aspectRatio);
+        double aspectRatio=16.0/9.0;
+        uint32_t width=1000;
+        uint32_t height=static_cast<size_t>(width/aspectRatio);
 
-        Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 80.0, 2.0, height, width};
+        Camera camera{ Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}, Vector3{ 0.0, 1.0, 0.0}, 30.0, 1.0, height, width};
         Material material{ Vector3{ 1.0, 0.0, 0.0}};
-        Sphere sphere{ Vector3{ 0.0, 0.0, -20.0}, 12.0, material};
+        Sphere sphere{ Vector3{ 0.0, 0.0, -20.0}, 4.0, material};
         Image image{ height, width};
 
         Renderer renderer{ &camera, &sphere, &image};

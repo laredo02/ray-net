@@ -10,12 +10,15 @@ class Scene {
 
 public:
 	
-	Scene();
-	Scene(const vector<Hittable>& hittable_lists, shared_ptr<Camera> camera);
+	Scene(shared_ptr<Camera> camera);
+	
+	void addHittable(shared_ptr<Hittable> object);
+	
+	Hittable* operator[](size_t i); 
+	
 	
 private:
-	
-	vector<Hittable> hittable_list;
+	vector<shared_ptr<Hittable>> m_HittableList;
 
 };
 

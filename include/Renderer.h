@@ -11,6 +11,7 @@
 #include "Image.h"
 
 
+Vector3 pixelColor(const Ray& r, const Sphere& sphere /*const Scene& world*/);
 
 class Renderer {
 
@@ -23,7 +24,7 @@ public:
 	void saveRenderToFile(const string& name) const;
 
 	Camera& camera() const;
-
+	
 private:
 	Camera* p_Camera;
 	const Sphere* p_Sphere;
