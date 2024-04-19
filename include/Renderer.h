@@ -1,36 +1,41 @@
 
-#ifndef RENDERER_H
-#define RENDERER_H
+#pragma once
 
 #include <SDL2/SDL.h>
 
 #include "RayNet.h"
-
 #include "Camera.h"
 #include "Sphere.h"
 #include "Image.h"
+#include "Scene.h"
+
+/*
+ * @breif Compute the color of the pixel that ray passes through.
+ * @details 
+ * @param[in] ray
+ * @param[in] scene
+ * @param[in] tmin
+ * @param[in] tmax
+ */
+Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax);
 
 
-Vector3 pixelColor(const Ray& r, const Sphere& sphere /*const Scene& world*/);
-
+/*
+ * @class Renderer represents a rendering object, it is capable of rendering images given a Camera, a Scene and an Image object
+ */
 class Renderer {
 
 public:
-	Renderer(Camera* camera, const Sphere* sphere, Image* image);
+	
+	Renderer(shared_ptr<Camera> camera, shared_ptr<Scene> scene, shared_ptr<Image> image);
 	void handleInput() const;
-
 	void render() const;
 	const Image& getImage() const;
 	void saveRenderToFile(const string& name) const;
-
 	Camera& camera() const;
 	
 private:
-	Camera* p_Camera;
-	const Sphere* p_Sphere;
-	Image* p_Image;
+	shared_ptr<Camera> p_Camera;
+	shared_ptr<Scene> p_Scene;
+	shared_ptr<Image> p_Image;
 };
-
-#endif /* RENDERER_H */
-
-

@@ -6,7 +6,10 @@
 #include "XYZ.h"
 
 struct Material {
-	Vector3 albedo;
+	
+	Material(const Vector3& albedo);
+	
+	Vector3 m_Albedo;
 };
 
 #endif /* MATERIAL_H */

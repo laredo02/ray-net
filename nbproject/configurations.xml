@@ -7,6 +7,7 @@
       <itemPath>include/Benchmark.h</itemPath>
       <itemPath>include/Camera.h</itemPath>
       <itemPath>include/Configs.h</itemPath>
+      <itemPath>include/HitTrace.h</itemPath>
       <itemPath>include/Hittable.h</itemPath>
       <itemPath>include/Image.h</itemPath>
       <itemPath>include/Material.h</itemPath>
@@ -120,6 +121,8 @@
       </item>
       <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Hittable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
@@ -220,6 +223,8 @@
       <item path="include/Camera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Hittable.h" ex="false" tool="3" flavor2="0">
       </item>

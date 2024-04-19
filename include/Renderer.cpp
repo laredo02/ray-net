@@ -5,23 +5,44 @@
 #include "RayNet.h"
 
 #include "Renderer.h"
+#include "HitTrace.h"
 
-Vector3 pixelColor(const Ray& ray, const Sphere& sphere /*const Scene& world*/) {
-    Vector3 color { 0.0, 0.0, 0.0 };
-    auto t=sphere.hit(ray);
-    if (t>=0.0) { // Draw hit
-        Vector3 normal=(ray.at(t)-sphere.getCenter()).unit();
-        Vector3 globalLight{ -1.0, -1.0, -1.0};
-        double paral=(-dot(globalLight.unit(), normal.unit()));
-        color=sphere.getMaterial().albedo * ((paral>0.0)? paral: 0.0);
-    } else { // Draw miss
-        color = Vector3{ 1.0, 1.0, 1.0 };
+Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax) {
+
+    Vector3 color{ 0.0, 0.0, 0.0};
+
+    if (!scene.isEmpty()) {
+
+        HitTrace closestHit;
+        bool hit = scene[0].hit(ray, tmin, tmax, closestHit);
+        for (auto i=1; i<scene.size(); i++) {
+            HitTrace trace;
+            if (scene[i].hit(ray, tmin, tmax, trace)) {
+                hit = true;
+                closestHit=(trace.m_HitDistance<closestHit.m_HitDistance) ? trace : closestHit;
+            }
+        }
+        if (hit) {
+            auto material=closestHit.p_Material;
+            if (material) {
+                color=material->m_Albedo;
+                Vector3 globalLight{ -1.0, -1.0, -1.0};
+                double paral=(-dot(globalLight.unit(), closestHit.m_Normal.unit()));
+                color=material->m_Albedo*((paral>0.0) ? paral : 0.0);
+            }
+        } else {
+            color=Vector3(1.0, 1.0, 1.0);
+        }
+
     }
+
+
     return color;
 }
 
-Renderer::Renderer(Camera* camera, const Sphere* sphere, Image* img)
-: p_Camera(camera), p_Sphere(sphere), p_Image(img) { }
+Renderer::Renderer(shared_ptr<Camera> camera, shared_ptr<Scene> scene, shared_ptr<Image> image)
+: p_Camera(camera), p_Scene(scene), p_Image(image) {
+ }
 
 const Image& Renderer::getImage() const {
     return *p_Image;
@@ -29,14 +50,17 @@ const Image& Renderer::getImage() const {
 
 void Renderer::render() const {
 
+    if (p_Camera==nullptr||p_Image==nullptr) {
+        LOG("ERROR: p_Camera", p_Camera);
+        LOG("ERROR: p_Image", p_Image);
+        exit(EXIT_FAILURE);
+    }
+
     auto deltaU{ p_Camera->deltaU()};
     auto deltaV{ p_Camera->deltaV()};
     auto P00{ p_Camera->P00()};
-
     auto width{ p_Camera->width()};
     auto height{ p_Camera->height()};
-
-
 
 #if MULTITHREAD_RENDER == 1
     auto supported_threads=std::thread::hardware_concurrency();
@@ -67,11 +91,12 @@ void Renderer::render() const {
 #endif
         for (int i=ri; i<rf; i++) {
             for (int j=0; j<width; j++) {
-                Ray ray = p_Camera->getRay(i, j);
-                p_Image->setPixel(i, j, pixelColor(ray, *p_Sphere));
+                Ray ray=p_Camera->getRay(i, j);
+                p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, 0.1, std::numeric_limits<double>::max()));
             }
         }
     };
+
 #if MULTITHREAD_RENDER == 1
     // Begin all threads
     for (int i=0, begin=0; i<supported_threads-1; i++) {
@@ -101,3 +126,5 @@ void Renderer::saveRenderToFile(const string& name) const {
 Camera& Renderer::camera() const {
     return *p_Camera;
 }
+
+
