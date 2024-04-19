@@ -3,7 +3,7 @@
 
 ## Description
 
-Ray-Net is an AI-powered ray tracing solution designed to generate photorealistic images. This project combines advanced ray tracing techniques with deep learning algorithms to optimize performance and visual quality across various platforms.
+Ray-Net is an AI-powered ray tracing solution designed to generate photorealistic images. This project combines ray tracing techniques with deep learning algorithms to optimize performance and visual quality across various platforms.
 
 ## Features
 
@@ -39,7 +39,7 @@ git clone https://github.com/laredo02/ray-net.git
 3. Once the dependencies are installed, compile the code using the command:
 
 ```bash
-// TODO
+g++ -I include include/*.cpp main.cpp -lSDL2 -o rt
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ To start the rendering program, execute:
 
 ## Descripción
 
-Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, diseñada para generar imágenes fotorrealistas. Este proyecto combina técnicas avanzadas de ray tracing con algoritmos de Deep Learning para optimizar el rendimiento y la calidad visual en diversas plataformas.
+Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, diseñada para generar imágenes fotorrealistas. Este proyecto combina técnicas de ray tracing con algoritmos de Deep Learning para optimizar el rendimiento y la calidad visual en diversas plataformas.
 
 ## Características
 
@@ -92,7 +92,7 @@ git clone https://github.com/laredo02/ray-net.git
 3. Una vez instaladas las dependencias toca compilar el código mediante el comando:
 
 ```bash
-// TODO
+g++ -I include include/*.cpp main.cpp -lSDL2 -o rt
 ```
 
 ## Uso
