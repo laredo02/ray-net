@@ -3,7 +3,7 @@
 
 ## Description
 
-Ray-Net is an AI-powered ray tracing solution designed to generate photorealistic images. This project combines advanced ray tracing techniques with deep learning algorithms to optimize performance and visual quality across various platforms.
+Ray-Net is an AI-powered ray tracing solution designed to generate photorealistic images. This project combines ray tracing techniques with deep learning algorithms to optimize performance and visual quality across various platforms.
 
 ## Features
 
@@ -55,7 +55,7 @@ To start the rendering program, execute:
 
 ## Descripción
 
-Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, diseñada para generar imágenes fotorrealistas. Este proyecto combina técnicas avanzadas de ray tracing con algoritmos de Deep Learning para optimizar el rendimiento y la calidad visual en diversas plataformas.
+Ray-Net es una solución de ray tracing potenciada por inteligencia artificial, diseñada para generar imágenes fotorrealistas. Este proyecto combina técnicas de ray tracing con algoritmos de Deep Learning para optimizar el rendimiento y la calidad visual en diversas plataformas.
 
 ## Características
 
