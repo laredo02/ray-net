@@ -37,7 +37,6 @@ private:
 		{ 'J', false },		// YAW LEFT
 		{ 'O', false },		// ROLL RIGHT
 		{ 'U', false },		// ROLL LEFT
-				
 	};
 	
 	size_t m_Width;
