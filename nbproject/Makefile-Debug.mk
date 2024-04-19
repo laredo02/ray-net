@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/include/Camera.o \
 	${OBJECTDIR}/include/Material.o \
+	${OBJECTDIR}/include/Random.o \
 	${OBJECTDIR}/include/Ray.o \
 	${OBJECTDIR}/include/Renderer.o \
 	${OBJECTDIR}/include/Scene.o \
@@ -90,6 +91,11 @@ ${OBJECTDIR}/include/Material.o: include/Material.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Material.o include/Material.cpp
+
+${OBJECTDIR}/include/Random.o: include/Random.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Random.o include/Random.cpp
 
 ${OBJECTDIR}/include/Ray.o: include/Ray.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -173,6 +179,19 @@ ${OBJECTDIR}/include/Material_nomain.o: ${OBJECTDIR}/include/Material.o include/
 	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2`   -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Material_nomain.o include/Material.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/Material.o ${OBJECTDIR}/include/Material_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/Random_nomain.o: ${OBJECTDIR}/include/Random.o include/Random.cpp 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/Random.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2`   -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Random_nomain.o include/Random.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/Random.o ${OBJECTDIR}/include/Random_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Ray_nomain.o: ${OBJECTDIR}/include/Ray.o include/Ray.cpp 

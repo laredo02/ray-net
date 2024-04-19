@@ -7,10 +7,10 @@
 #include "Hittable.h"
 
 class HitTrace {
-
 	Vector3 point;
 	Vector3 normal;
 	Vector3 color;
+	bool frontFace;
 };
 
 

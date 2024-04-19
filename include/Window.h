@@ -2,13 +2,16 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+
+#include <map>
+#include <SDL2/SDL.h>
+
 #include "RayNet.h"
 #include "Image.h"
 #include "Renderer.h"
 #include "Camera.h"
 #include "Sphere.h"
 
-#include <SDL2/SDL.h>
 
 class Window {
 public:
@@ -21,6 +24,22 @@ private:
 	void handleInput();
 	
 private:
+	
+	std::map<char, bool> m_KeyActions {
+		{ 'W', false },		// FORWARD
+		{ 'S', false },		// BACKWARD
+		{ 'D', false },		// RIGHT
+		{ 'A', false },		// LEFT
+				
+		{ 'I', false },		// PITCH UP
+		{ 'K', false },		// PITCH DOWN
+		{ 'L', false },		// YAW RIGHT
+		{ 'J', false },		// YAW LEFT
+		{ 'O', false },		// ROLL RIGHT
+		{ 'U', false },		// ROLL LEFT
+				
+	};
+	
 	size_t m_Width;
 	size_t m_Height;
 	double m_AspectRatio;

@@ -2,7 +2,7 @@
 #pragma once
 
 #include "RayNet.h"
-//#include "Ray.h"
+#include "Random.h"
 
 
 
@@ -16,6 +16,8 @@ public:
 	const T& x() const;
 	const T& y() const;
 	const T& z() const;
+	
+	static XYZ<T> random(double min, double max);
 
 	XYZ<T> operator-() const;
 	T operator[](size_t i) const;
@@ -80,6 +82,10 @@ template<typename T> XYZ<T>::XYZ() : m_xyz{(T) 0, (T) 0, (T) 0}
 }
 template<typename T> XYZ<T>::XYZ(T x, T y, T z) : m_xyz{x, y, z}
 {
+}
+
+template<typename T> static XYZ<T> random(double min, double max) {
+	return XYZ<T>{ randomDouble(min, max), randomDouble(min, max), randomDouble(min, max) };
 }
 
 template<typename T> const T& XYZ<T>::x() const {
