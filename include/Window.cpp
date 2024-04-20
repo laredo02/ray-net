@@ -71,24 +71,54 @@ void Window::update() {
 #endif
             this->handleInput();
             double rotationDelta=0.7;
-            if (m_KeyActions['i']) p_Renderer->camera().pitch(rotationDelta);
-            if (m_KeyActions['k']) p_Renderer->camera().pitch(-rotationDelta);
+            if (m_KeyActions['i']) {
+                p_Renderer->camera().pitch(rotationDelta);
+            }
+            if (m_KeyActions['k']) {
+                p_Renderer->camera().pitch(-rotationDelta);
+            }
+            
+            if (m_KeyActions['l']) {
+                p_Renderer->camera().yaw(-rotationDelta);
+            }
+            
+            if (m_KeyActions['j']) {
+                p_Renderer->camera().yaw(rotationDelta);
+            }
+            if (m_KeyActions['o']) {
+                p_Renderer->camera().roll(rotationDelta);
+            }
+            if (m_KeyActions['u']) {
+                p_Renderer->camera().roll(-rotationDelta);
+            }
 
-            if (m_KeyActions['l']) p_Renderer->camera().yaw(-rotationDelta);
-            if (m_KeyActions['j']) p_Renderer->camera().yaw(rotationDelta);
+            double translationDelta=0.1;
+            if (m_KeyActions['w']) {
+                p_Renderer->camera().translate(Vector3(0.0, 0.0, -translationDelta));                
+            }
+            if (m_KeyActions['s']) {
+                p_Renderer->camera().translate(Vector3(0.0, 0.0, translationDelta));
+                
+            }
 
-            if (m_KeyActions['o']) p_Renderer->camera().roll(rotationDelta);
-            if (m_KeyActions['u']) p_Renderer->camera().roll(-rotationDelta);
+            if (m_KeyActions['d']) {
+                p_Renderer->camera().translate(Vector3(translationDelta, 0.0, 0.0));
+            }
+            if (m_KeyActions['a']) {
+                p_Renderer->camera().translate(Vector3(-translationDelta, 0.0, 0.0));
+            }
 
-            double translationDelta=0.008;
-            if (m_KeyActions['w']) p_Renderer->camera().translate(Vector3(0.0, 0.0, -translationDelta));
-            if (m_KeyActions['s']) p_Renderer->camera().translate(Vector3(0.0, 0.0, translationDelta));
-
-            if (m_KeyActions['d']) p_Renderer->camera().translate(Vector3(translationDelta, 0.0, 0.0));
-            if (m_KeyActions['a']) p_Renderer->camera().translate(Vector3(-translationDelta, 0.0, 0.0));
-
-            if (m_KeyActions[' ']) p_Renderer->camera().translate(Vector3(0.0, translationDelta, 0.0));
-            if (m_KeyActions['S']) p_Renderer->camera().translate(Vector3(0.0, -translationDelta, 0.0));
+            if (m_KeyActions[' ']) {
+                p_Renderer->camera().translate(Vector3(0.0, translationDelta, 0.0));
+            }
+            if (m_KeyActions['S']) {
+                p_Renderer->camera().translate(Vector3(0.0, -translationDelta, 0.0));
+            }
+            
+//            LOG("CAMERA_LOCATION", p_Renderer->camera().center())
+//            LOG("CAMERA_DIRECTION", p_Renderer->camera().direction())
+//            NEWLINE
+                    
 #if BENCHMARK == 1
             eventTime = eventBench.lap();
 #endif
@@ -152,24 +182,24 @@ void Window::handleInput() {
                     m_KeyActions['u']=true;
                     break;
 
-//                case SDL_SCANCODE_W:
-//                    m_KeyActions['w']=true;
-//                    break;
-//                case SDL_SCANCODE_S:
-//                    m_KeyActions['s']=true;
-//                    break;
-//                case SDL_SCANCODE_D:
-//                    m_KeyActions['d']=true;
-//                    break;
-//                case SDL_SCANCODE_A:
-//                    m_KeyActions['a']=true;
-//                    break;
-//                case SDL_SCANCODE_SPACE:
-//                    m_KeyActions[' ']=true;
-//                    break;
-//                case SDL_SCANCODE_LSHIFT:
-//                    m_KeyActions['S']=true;
-//                    break;
+                case SDL_SCANCODE_W:
+                    m_KeyActions['w']=true;
+                    break;
+                case SDL_SCANCODE_S:
+                    m_KeyActions['s']=true;
+                    break;
+                case SDL_SCANCODE_D:
+                    m_KeyActions['d']=true;
+                    break;
+                case SDL_SCANCODE_A:
+                    m_KeyActions['a']=true;
+                    break;
+                case SDL_SCANCODE_SPACE:
+                    m_KeyActions[' ']=true;
+                    break;
+                case SDL_SCANCODE_LSHIFT:
+                    m_KeyActions['S']=true;
+                    break;
 
                 case SDL_SCANCODE_G:
 #if PRINT_KEYBOARD_ACTIONS == 1

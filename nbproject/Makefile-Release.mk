@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/include/Camera.o \
+	${OBJECTDIR}/include/HitTrace.o \
 	${OBJECTDIR}/include/Material.o \
 	${OBJECTDIR}/include/Random.o \
 	${OBJECTDIR}/include/Ray.o \
@@ -86,6 +87,11 @@ ${OBJECTDIR}/include/Camera.o: include/Camera.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Camera.o include/Camera.cpp
+
+${OBJECTDIR}/include/HitTrace.o: include/HitTrace.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/HitTrace.o include/HitTrace.cpp
 
 ${OBJECTDIR}/include/Material.o: include/Material.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -166,6 +172,19 @@ ${OBJECTDIR}/include/Camera_nomain.o: ${OBJECTDIR}/include/Camera.o include/Came
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Camera_nomain.o include/Camera.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/Camera.o ${OBJECTDIR}/include/Camera_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/HitTrace_nomain.o: ${OBJECTDIR}/include/HitTrace.o include/HitTrace.cpp 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/HitTrace.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/HitTrace_nomain.o include/HitTrace.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/HitTrace.o ${OBJECTDIR}/include/HitTrace_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Material_nomain.o: ${OBJECTDIR}/include/Material.o include/Material.cpp 

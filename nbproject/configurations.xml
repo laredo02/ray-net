@@ -28,6 +28,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>include/Camera.cpp</itemPath>
+      <itemPath>include/HitTrace.cpp</itemPath>
       <itemPath>include/Material.cpp</itemPath>
       <itemPath>include/Random.cpp</itemPath>
       <itemPath>include/Ray.cpp</itemPath>
@@ -120,6 +121,8 @@
       <item path="include/Camera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/HitTrace.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -223,6 +226,8 @@
       <item path="include/Camera.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Configs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/HitTrace.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
       </item>

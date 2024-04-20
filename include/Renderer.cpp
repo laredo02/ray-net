@@ -28,10 +28,13 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
                 color=material->m_Albedo;
                 Vector3 globalLight{ -1.0, -1.0, -1.0};
                 double paral=(-dot(globalLight.unit(), closestHit.m_Normal.unit()));
-                color=material->m_Albedo*((paral>0.0) ? paral : 0.0);
+                
+//                color=(material->m_Albedo*((paral>0.0) ? paral : 0.0) + 0.3*pixelColor(Ray{closestHit.m_Point, closestHit.m_Normal}, scene, tmin, tmax))/2.0;
+                color=((material->m_Albedo + 0.4*(pixelColor(Ray{closestHit.m_Point, closestHit.m_Normal}, scene, tmin, tmax)) )/2.0);
+                //color= material->m_Albedo;
             }
         } else {
-            color=Vector3(1.0, 1.0, 1.0);
+            color = Vector3{ 1.0, 1.0, 1.0 };
         }
 
     }
@@ -39,6 +42,28 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
 
     return color;
 }
+
+
+//Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax) {
+//
+//    Vector3 color{ 0.0, 0.0, 0.0};
+//
+//    if (!scene.isEmpty()) {
+//
+//        HitTrace trace;
+//        if(scene[0].hit(ray, 3.0, 100.0, trace)) {
+//            color = trace.p_Material->m_Albedo;
+//        } else {
+//            color = Vector3(0.0, 0.0, 0.0);
+//        }
+//
+//    }
+//
+//
+//    return color;
+//}
+//
+
 
 Renderer::Renderer(shared_ptr<Camera> camera, shared_ptr<Scene> scene, shared_ptr<Image> image)
 : p_Camera(camera), p_Scene(scene), p_Image(image) {
@@ -56,9 +81,9 @@ void Renderer::render() const {
         exit(EXIT_FAILURE);
     }
 
-    auto deltaU{ p_Camera->deltaU()};
-    auto deltaV{ p_Camera->deltaV()};
-    auto P00{ p_Camera->P00()};
+//    auto deltaU{ p_Camera->deltaU()};
+//    auto deltaV{ p_Camera->deltaV()};
+//    auto P00{ p_Camera->P00()};
     auto width{ p_Camera->width()};
     auto height{ p_Camera->height()};
 
@@ -92,6 +117,11 @@ void Renderer::render() const {
         for (int i=ri; i<rf; i++) {
             for (int j=0; j<width; j++) {
                 Ray ray=p_Camera->getRay(i, j);
+                if (i == 251 && j==251) {
+                    LOG("RAY", ray)
+                    LOG("AT", ray.at(3.0))\
+                    NEWLINE
+                }
                 p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, 0.1, std::numeric_limits<double>::max()));
             }
         }

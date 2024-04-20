@@ -14,8 +14,8 @@ m_VFov(vfov), m_FLen(flen), m_AspectRatio(static_cast<double> (width)/height), m
     m_Up.toUnit();
 #if ASSERTIONS == 1
     assert(dot(m_Direction, m_Up)*dot(m_Direction, m_Up)<=0.00001);
-    assert(m_Up.norm() == 1.0);
-    assert(m_Direction.norm() == 1.0);
+    assert(m_Up.norm()==1.0);
+    assert(m_Direction.norm()==1.0);
 #endif
     m_VNorm=2.0*m_FLen*tan(DEG_TO_RAD(m_VFov)/2.0);
     m_UNorm=m_VNorm*m_AspectRatio;
@@ -24,37 +24,52 @@ m_VFov(vfov), m_FLen(flen), m_AspectRatio(static_cast<double> (width)/height), m
 
 void Camera::computeRayParameters() {
 #if ASSERTIONS == 1
-    assert(dot(m_Direction, m_Up)*dot(m_Direction, m_Up)<=0.00001);
-    assert(1.0-0.001 <= m_Up.norm() && m_Up.norm() <= 1.0+0.001);
-    assert(1.0-0.001 <= m_Direction.norm() && m_Direction.norm() <= 1.0+0.001);
+    double ort = dot(cross(m_Direction, m_Up), cross(m_Direction, m_Up));
+    assert(0.99 <= ort && ort <= 1.001);
+    assert(1.0-0.001<=m_Up.norm()&&m_Up.norm()<=1.0+0.001);
+    assert(1.0-0.001<=m_Direction.norm()&&m_Direction.norm()<=1.0+0.001);
 #endif
     m_DeltaU=cross(m_Direction, m_Up)*(m_UNorm/m_Width);
     m_DeltaV= -m_Up*(m_VNorm/m_Height);
-    m_P00=m_Center+m_Direction*m_FLen+(m_Up*(m_VNorm/2.0))+m_DeltaV*0.5+((cross(m_Up, m_Direction)*(m_UNorm/2.0)))+m_DeltaU*0.5;
+    m_P00 = m_Direction*m_FLen + ((m_Up*(m_VNorm/2.0)) + m_DeltaV*0.5) + (((cross(m_Up, m_Direction)*(m_UNorm/2.0))) + m_DeltaU*0.5);
+    
+    
+//    LOG("m_Direction", m_Direction)
+//    LOG("m_Location", m_Center)
+//    NEWLINE
+//    
+//    LOG("m_DeltaU", m_DeltaU)
+//    LOG("m_DeltaV", m_DeltaV)
+//    LOG("m_P00", m_P00)
+    
+    NEWLINE
+    
+    
 }
 
 Ray Camera::getRay(int row, int col) const {
-//    auto randomVDelta { m_DeltaV/2.0 };
-//    auto randomUDelta { m_DeltaU/2.0 };
-//    auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
-    Vector3 direction { (m_P00 + ((double) row * m_DeltaV) + ((double) col * m_DeltaU) /*+ randomDelta*/)};
+    //    auto randomVDelta { m_DeltaV/2.0 };
+    //    auto randomUDelta { m_DeltaU/2.0 };
+    //    auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
+    Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU) /*+ randomDelta*/)};
 #if REAL_DISTANCE == 1
     direction.toUnit();
 #endif
-    return Ray { m_Center, direction };
+    Ray r { m_Center, direction};
+    return r;
 }
 
-const Vector3& Camera::deltaU() const {
-    return m_DeltaU;
-}
-
-const Vector3& Camera::deltaV() const {
-    return m_DeltaV;
-}
-
-const Vector3& Camera::P00() const {
-    return m_P00;
-}
+//const Vector3& Camera::deltaU() const {
+//    return m_DeltaU;
+//}
+//
+//const Vector3& Camera::deltaV() const {
+//    return m_DeltaV;
+//}
+//
+//const Vector3& Camera::P00() const {
+//    return m_P00;
+//}
 
 void Camera::translate(const Vector3& delta) {
     Vector3 translation=delta.x()*cross(m_Direction, m_Up)+delta.y()*m_Up-delta.z()*m_Direction;

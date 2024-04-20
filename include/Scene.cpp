@@ -14,7 +14,7 @@ Hittable& Scene::operator[](size_t i) const {
     return m_HittableList[i];
 #endif
 }
-
+w
 size_t Scene::size() const {
     return m_HittableList.size();
 }
