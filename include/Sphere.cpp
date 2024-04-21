@@ -5,9 +5,9 @@
 #include "Ray.h"
 
 Sphere::Sphere(const Vector3& center, const double radius, shared_ptr<const Material> material)
-        : m_Center(center), m_Radius(radius), p_Material(material) {}
+        : m_Center(center), m_Radius(radius), Hittable(material) {}
 
-Sphere::~Sphere() {};
+Sphere::~Sphere() = default;
 
 bool Sphere::hit(const Ray& ray, const double tmin, const double tmax, HitTrace& trace) const {
     

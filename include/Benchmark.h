@@ -24,6 +24,7 @@ public:
 		auto diff = std::chrono::steady_clock::now() - begin;
 		return std::chrono::duration_cast<std::chrono::milliseconds>(diff).count();
 	}
+	
 
 private:
 	std::string name;

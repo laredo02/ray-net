@@ -37,12 +37,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/include/Camera.o \
 	${OBJECTDIR}/include/HitTrace.o \
+	${OBJECTDIR}/include/Hittable.o \
 	${OBJECTDIR}/include/Material.o \
 	${OBJECTDIR}/include/Random.o \
 	${OBJECTDIR}/include/Ray.o \
 	${OBJECTDIR}/include/Renderer.o \
 	${OBJECTDIR}/include/Scene.o \
 	${OBJECTDIR}/include/Sphere.o \
+	${OBJECTDIR}/include/Triangle.o \
 	${OBJECTDIR}/include/Window.o \
 	${OBJECTDIR}/main.o
 
@@ -93,6 +95,11 @@ ${OBJECTDIR}/include/HitTrace.o: include/HitTrace.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/HitTrace.o include/HitTrace.cpp
 
+${OBJECTDIR}/include/Hittable.o: include/Hittable.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Hittable.o include/Hittable.cpp
+
 ${OBJECTDIR}/include/Material.o: include/Material.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
@@ -122,6 +129,11 @@ ${OBJECTDIR}/include/Sphere.o: include/Sphere.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Sphere.o include/Sphere.cpp
+
+${OBJECTDIR}/include/Triangle.o: include/Triangle.cpp
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Triangle.o include/Triangle.cpp
 
 ${OBJECTDIR}/include/Window.o: include/Window.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -185,6 +197,19 @@ ${OBJECTDIR}/include/HitTrace_nomain.o: ${OBJECTDIR}/include/HitTrace.o include/
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/HitTrace_nomain.o include/HitTrace.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/HitTrace.o ${OBJECTDIR}/include/HitTrace_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/Hittable_nomain.o: ${OBJECTDIR}/include/Hittable.o include/Hittable.cpp 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/Hittable.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Hittable_nomain.o include/Hittable.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/Hittable.o ${OBJECTDIR}/include/Hittable_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Material_nomain.o: ${OBJECTDIR}/include/Material.o include/Material.cpp 
@@ -263,6 +288,19 @@ ${OBJECTDIR}/include/Sphere_nomain.o: ${OBJECTDIR}/include/Sphere.o include/Sphe
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Sphere_nomain.o include/Sphere.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/Sphere.o ${OBJECTDIR}/include/Sphere_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/Triangle_nomain.o: ${OBJECTDIR}/include/Triangle.o include/Triangle.cpp 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/Triangle.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Triangle_nomain.o include/Triangle.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/Triangle.o ${OBJECTDIR}/include/Triangle_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Window_nomain.o: ${OBJECTDIR}/include/Window.o include/Window.cpp 

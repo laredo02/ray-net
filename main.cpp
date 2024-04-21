@@ -27,19 +27,20 @@ int main(int argc, char* argv[]) {
         uint32_t height=static_cast<size_t>(width/aspectRatio);
         
         
-        auto camera0 = make_shared<Camera>( Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}.unit(), Vector3{ 0.0, 1.0, 0.0}, 90.0, 2.0, height, width );
+        auto camera0 = make_shared<Camera>( Vector3{ 0.0, 10.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}.unit(), Vector3{ 0.0, 1.0, 0.0}, 45.0, 2.0, height, width );
 
         auto scene = make_shared<Scene>();
         
-        scene->addHittable(make_shared<Sphere>( Vector3{0.0, -1000.0, -10.0}, 999.0,
-                make_shared<Material>(Vector3{ 1.0, 0.0, 1.0 } )));
-        scene->addHittable(make_shared<Sphere>(Vector3{10.0, 10.0, -40.0}, 10.0,
+        scene->addHittable(make_shared<Sphere>( Vector3{0.0, -500.0, 0.0}, 499.0,
+                make_shared<Material>(Vector3{ 0.1, 0.7, 0.1 } )));
+        scene->addHittable(make_shared<Sphere>(Vector3{10.0, 9.0, -40.0}, 10.0,
                 make_shared<Material>( Vector3{ 1.0, 0.0, 0.0 } )));
-        scene->addHittable(make_shared<Sphere>( Vector3{-10.0, 10.0, -40.0}, 10.0,
+        scene->addHittable(make_shared<Sphere>( Vector3{-10.0, 9.0, -40.0}, 10.0,
                 make_shared<Material>(Vector3{ 0.0, 0.0, 1.0 } )));
-        scene->addHittable(make_shared<Sphere>( Vector3{0.0, 0.0, -25.0}, 3.0,
-                make_shared<Material>( Vector3{ 0.0, 1.0, 1.0 } )));
-                
+        scene->addHittable(make_shared<Sphere>( Vector3{-10.0, 3.0, -20.0}, 4.0,
+                make_shared<Material>( Vector3{ 1.0, 1.0, 0.0 } )));
+        
+        
         auto image = make_shared<Image>( height, width );
         auto renderer = make_shared<Renderer>(camera0, scene, image);
         Window win{ "Ray-Net", width, height, renderer};

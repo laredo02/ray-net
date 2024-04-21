@@ -17,6 +17,8 @@
 
 
 /* RUNTIME PARAMETERS */
-#define CAMERA_TRANSLATION_SPEED			1		// m/s
-#define CAMERA_ROTATION_SPEED				45		// grad/s
 
+#define FOV							90.0	// Deg
+#define CAMERA_TRANSLATION_SPEED	1		// m/s
+#define CAMERA_ROTATION_SPEED		45		// grad/s
+#define RENDER_NORMALS				0		// Render Surcface Normals

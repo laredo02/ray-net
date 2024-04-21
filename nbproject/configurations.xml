@@ -17,6 +17,7 @@
       <itemPath>include/Renderer.h</itemPath>
       <itemPath>include/Scene.h</itemPath>
       <itemPath>include/Sphere.h</itemPath>
+      <itemPath>include/Triangle.h</itemPath>
       <itemPath>include/Window.h</itemPath>
       <itemPath>include/XYZ.h</itemPath>
     </logicalFolder>
@@ -29,12 +30,14 @@
                    projectFiles="true">
       <itemPath>include/Camera.cpp</itemPath>
       <itemPath>include/HitTrace.cpp</itemPath>
+      <itemPath>include/Hittable.cpp</itemPath>
       <itemPath>include/Material.cpp</itemPath>
       <itemPath>include/Random.cpp</itemPath>
       <itemPath>include/Ray.cpp</itemPath>
       <itemPath>include/Renderer.cpp</itemPath>
       <itemPath>include/Scene.cpp</itemPath>
       <itemPath>include/Sphere.cpp</itemPath>
+      <itemPath>include/Triangle.cpp</itemPath>
       <itemPath>include/Window.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -72,6 +75,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <standard>11</standard>
           <incDir>
             <pElem>include</pElem>
           </incDir>
@@ -126,6 +130,8 @@
       </item>
       <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Hittable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="include/Hittable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
@@ -155,6 +161,10 @@
       <item path="include/Sphere.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Sphere.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Triangle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Window.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -231,6 +241,8 @@
       </item>
       <item path="include/HitTrace.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Hittable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="include/Hittable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
@@ -260,6 +272,10 @@
       <item path="include/Sphere.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Sphere.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Triangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/Triangle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Window.cpp" ex="false" tool="1" flavor2="0">
       </item>

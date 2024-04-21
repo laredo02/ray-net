@@ -27,7 +27,7 @@ private:
 	Vector3 m_Center;
 	double m_Radius;
 	
-	shared_ptr<const Material> p_Material;
+	//shared_ptr<const Material> p_Material;
 
 };
 

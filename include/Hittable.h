@@ -17,10 +17,15 @@
 class Hittable {
 
 public:
+	Hittable(shared_ptr<const Material> material);
 	virtual ~Hittable()=default;
 	
 	virtual bool hit(const Ray& ray, const double tmin, const double tmax, HitTrace& trace) const=0;
 	virtual const Material& material() const=0;
+	
+protected:
+	shared_ptr<const Material> p_Material;
+	
 };
 
 

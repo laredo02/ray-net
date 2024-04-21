@@ -25,13 +25,15 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
         if (hit) {
             auto material=closestHit.p_Material;
             if (material) {
-                color=material->m_Albedo;
-                Vector3 globalLight{ -1.0, -1.0, -1.0};
-                double paral=(-dot(globalLight.unit(), closestHit.m_Normal.unit()));
+#if RENDER_NORMALS == 0
+                Vector3 ray_dir { ray.direction() + 2*dot(ray.direction(), closestHit.m_Normal)*closestHit.m_Normal };
+                ray_dir = closestHit.m_Normal;
+                color=((material->m_Albedo + 0.4*(pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, tmin, tmax)) )/2.0);
+#endif
+#if RENDER_NORMALS == 1
+                color=(closestHit.m_Normal+1.0)/2.0;
+#endif                
                 
-//                color=(material->m_Albedo*((paral>0.0) ? paral : 0.0) + 0.3*pixelColor(Ray{closestHit.m_Point, closestHit.m_Normal}, scene, tmin, tmax))/2.0;
-                color=((material->m_Albedo + 0.4*(pixelColor(Ray{closestHit.m_Point, closestHit.m_Normal}, scene, tmin, tmax)) )/2.0);
-                //color= material->m_Albedo;
             }
         } else {
             color = Vector3{ 1.0, 1.0, 1.0 };
