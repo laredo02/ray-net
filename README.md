@@ -39,8 +39,7 @@ git clone https://github.com/laredo02/ray-net.git
 3. Once the dependencies are installed, compile the code using the command:
 
 ```bash
-g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
-e/*.cpp main.cpp -lSDL2 -o ray-net
+g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net
 ```
 
 ## Usage
@@ -50,6 +49,13 @@ To start the rendering program, execute:
 ```bash
 ./ray-net
 ```
+
+## Do it all command:
+
+```bash
+git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net && ./ray-net
+```
+
 <hr>
 
 # Ray-Net: Ray Tracing con IA
@@ -104,3 +110,10 @@ Para iniciar el programa de renderizado, ejecute:
 ```bash
 ./ray-net
 ```
+
+## Comando para hacer todo
+
+```bash
+git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net && ./ray-net
+```
+
