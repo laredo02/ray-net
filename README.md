@@ -39,7 +39,7 @@ git clone https://github.com/laredo02/ray-net.git
 3. Once the dependencies are installed, compile the code using the command:
 
 ```bash
-g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net
+g++ -I include main.cpp include/*.cpp -lSDL2 -O3 -Ofast -ffast-math -funroll-loops -finline-functions -fomit-frame-pointer -flto -march=native -o ray-net
 ```
 
 ## Usage
@@ -53,7 +53,7 @@ To start the rendering program, execute:
 ## Do it all command
 
 ```bash
-git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net && ./ray-net
+git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -I include main.cpp include/*.cpp -lSDL2 -O3 -Ofast -ffast-math -funroll-loops -finline-functions -fomit-frame-pointer -flto -march=native -o ray-net && cd .. && ./ray-net/ray-net
 ```
 
 <hr>
@@ -99,8 +99,7 @@ git clone https://github.com/laredo02/ray-net.git
 3. Una vez instaladas las dependencias toca compilar el código mediante el comando:
 
 ```bash
-g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
-e/*.cpp main.cpp -lSDL2 -o ray-net
+g++ -I include main.cpp include/*.cpp -lSDL2 -O3 -Ofast -ffast-math -funroll-loops -finline-functions -fomit-frame-pointer -flto -march=native -o ray-net
 ```
 
 ## Uso
@@ -114,6 +113,6 @@ Para iniciar el programa de renderizado, ejecute:
 ## Comando para hacer todo
 
 ```bash
-git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net && ./ray-net
+git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -I include main.cpp include/*.cpp -lSDL2 -O3 -Ofast -ffast-math -funroll-loops -finline-functions -fomit-frame-pointer -flto -march=native -o ray-net && cd .. && ./ray-net/ray-net
 ```
 
