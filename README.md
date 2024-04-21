@@ -50,7 +50,7 @@ To start the rendering program, execute:
 ./ray-net
 ```
 
-## Do it all command:
+## Do it all command
 
 ```bash
 git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include include/*.cpp main.cpp -lSDL2 -o ray-net && ./ray-net
