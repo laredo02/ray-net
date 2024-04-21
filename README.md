@@ -40,7 +40,7 @@ git clone https://github.com/laredo02/ray-net.git
 
 ```bash
 g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
-e/*.cpp main.cpp -lSDL2 -o rt
+e/*.cpp main.cpp -lSDL2 -o ray-net
 ```
 
 ## Usage
@@ -94,7 +94,7 @@ git clone https://github.com/laredo02/ray-net.git
 
 ```bash
 g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
-e/*.cpp main.cpp -lSDL2 -o rt
+e/*.cpp main.cpp -lSDL2 -o ray-net
 ```
 
 ## Uso
