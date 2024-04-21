@@ -21,6 +21,7 @@ using std::make_shared;
 int main(int argc, char* argv[]) {
 
     {
+        
         double aspectRatio=16.0/9.0;
         uint32_t width=720;
         uint32_t height=static_cast<size_t>(width/aspectRatio);
@@ -38,11 +39,12 @@ int main(int argc, char* argv[]) {
                 make_shared<Material>(Vector3{ 0.0, 0.0, 1.0 } )));
         scene->addHittable(make_shared<Sphere>( Vector3{0.0, 0.0, -25.0}, 3.0,
                 make_shared<Material>( Vector3{ 0.0, 1.0, 1.0 } )));
+                
         auto image = make_shared<Image>( height, width );
         auto renderer = make_shared<Renderer>(camera0, scene, image);
-        
         Window win{ "Ray-Net", width, height, renderer};
         win.update();
+        
     }
 
     return EXIT_SUCCESS;

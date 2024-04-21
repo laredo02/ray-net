@@ -9,7 +9,7 @@ Hittable& Scene::operator[](size_t i) const {
 #if BOUNDS_CHECKING == 1
     return *(m_HittableList.at(i));
 #else
-    return m_HittableList[i];
+    return *(m_HittableList[i]);
 #endif
 }
 

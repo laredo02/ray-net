@@ -42,10 +42,12 @@ Window::~Window() {
  * @brief Loops until a window exit event occurs
  */
 void Window::update() {
+    
+    uint32_t period = 0;
 
     while (m_Running) {
 #if BENCHMARK == 1
-        Benchmark iterBench("iteration took ", true);
+        Benchmark iterBench{"iteration took ", true};
         int64_t iterTime;
         int64_t renderTime;
         int64_t imageTime;
@@ -56,7 +58,7 @@ void Window::update() {
 ////////////////////////////////////////////////////////////////////////////////
         if (m_Running) {
 #if BENCHMARK == 1
-            Benchmark renderBench("render took ", true);
+            Benchmark renderBench{"render took ", true};
 #endif
             p_Renderer->render();
 #if BENCHMARK == 1
@@ -66,7 +68,7 @@ void Window::update() {
 ////////////////////////////////////////////////////////////////////////////////
         {
 #if BENCHMARK == 1
-            Benchmark imageBench("image processing took ", true);
+            Benchmark imageBench{"image processing took ", true};
 #endif
             const Image& image=p_Renderer->getImage();
             image.toTexture(p_SDLTexture);
@@ -84,9 +86,7 @@ void Window::update() {
 #endif
             this->handleInput();
             double rotationDelta=1.0;
-            if (m_KeyActions['i']) {
-                p_Renderer->camera().pitch(rotationDelta);
-            }
+            if (m_KeyActions['i']) p_Renderer->camera().pitch(rotationDelta);
             if (m_KeyActions['k']) p_Renderer->camera().pitch(-rotationDelta);
             if (m_KeyActions['l']) p_Renderer->camera().yaw(-rotationDelta);
             if (m_KeyActions['j']) p_Renderer->camera().yaw(rotationDelta);

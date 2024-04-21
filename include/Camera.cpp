@@ -31,10 +31,7 @@ void Camera::computeRayParameters() {
 #endif
     m_DeltaU=cross(m_Direction, m_Up)*(m_UNorm/m_Width);
     m_DeltaV= -m_Up*(m_VNorm/m_Height);
-    m_P00 = m_Direction*m_FLen + ((m_Up*(m_VNorm/2.0)) + m_DeltaV*0.5) + (((cross(m_Up, m_Direction)*(m_UNorm/2.0))) + m_DeltaU*0.5);    
-    NEWLINE
-    
-    
+    m_P00 = m_Direction*m_FLen + ((m_Up*(m_VNorm/2.0)) + m_DeltaV*0.5) + (((cross(m_Up, m_Direction)*(m_UNorm/2.0))) + m_DeltaU*0.5);   
 }
 
 Ray Camera::getRay(int row, int col) const {
