@@ -39,7 +39,8 @@ git clone https://github.com/laredo02/ray-net.git
 3. Once the dependencies are installed, compile the code using the command:
 
 ```bash
-g++ -I include include/*.cpp main.cpp -lSDL2 -o rt
+g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
+e/*.cpp main.cpp -lSDL2 -o rt
 ```
 
 ## Usage
@@ -92,7 +93,8 @@ git clone https://github.com/laredo02/ray-net.git
 3. Una vez instaladas las dependencias toca compilar el código mediante el comando:
 
 ```bash
-g++ -I include include/*.cpp main.cpp -lSDL2 -o rt
+g++ -O3 -Ofast -march=native -flto -funroll-loops -finline-functions -fomit-frame-pointer -ffast-math -I include includ
+e/*.cpp main.cpp -lSDL2 -o rt
 ```
 
 ## Uso
