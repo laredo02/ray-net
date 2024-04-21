@@ -1,8 +1,12 @@
 
 #pragma once
 
+#include <memory>
+
 #include "RayNet.h"
 #include "Material.h"
+
+using std::shared_ptr;
 
 struct HitTrace {
 	

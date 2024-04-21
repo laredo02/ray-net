@@ -12,7 +12,7 @@ const Vector3& Ray::direction() const {
     return m_Direction;
 }
 
-Vector3 Ray::at(double t) const {
+Vector3 Ray::at(const double t) const {
     return Vector3{ m_Direction*t+m_Origin};
 }
 

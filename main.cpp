@@ -1,21 +1,19 @@
 
-#include <cstdlib>
-#include <thread>
+#include <memory>
 
-#include "RayNet.h"
-#include "XYZ.h"
 #include "Camera.h"
+#include "Scene.h"
 #include "Sphere.h"
+#include "Material.h"
 #include "Image.h"
 #include "Renderer.h"
-#include "Material.h"
 #include "Window.h"
-#include "Random.h"
 
-using namespace std;
+using std::shared_ptr;
+using std::make_shared;
 
 /*
- * @brief
+ * @brief 
  * @details 
  * @param[in] 
  * @param[in] 
@@ -29,11 +27,7 @@ int main(int argc, char* argv[]) {
         
         
         auto camera0 = make_shared<Camera>( Vector3{ 0.0, 0.0, 0.0}, Vector3{ 0.0, 0.0, -1.0}.unit(), Vector3{ 0.0, 1.0, 0.0}, 90.0, 2.0, height, width );
-//        auto camera0 = make_shared<Camera>( Vector3{ 0.0, 1.0, 0.0}, Vector3{ -1, 0.0, 0.0}.unit(), Vector3{ 0.0, 1.0, 0.0}, 90.0, 2.0, height, width );
-//        auto camera1 = make_shared<Camera>( Vector3{ 30.0, 0.0, -20.0}, Vector3{ -1.0, 0.0, 0.0}, Vector3{ 0.0, 1.0, 0.0}, 40.0, 1.0, height, width );
-//        auto camera2 = make_shared<Camera>( Vector3{ -30.0, 0.0, -20.0}, Vector3{ 1.0, 0.0, 0.0}, Vector3{ 0.0, 1.0, 0.0}, 40.0, 1.0, height, width );
-//        auto camera3 = make_shared<Camera>( Vector3{ 0.0, 0.0, -100.0}, Vector3{ 0.0, 0.0, 1.0}, Vector3{ 0.0, 1.0, 0.0}, 40.0, 1.0, height, width );
-        
+
         auto scene = make_shared<Scene>();
         
         scene->addHittable(make_shared<Sphere>( Vector3{0.0, -1000.0, -10.0}, 999.0,
@@ -44,13 +38,10 @@ int main(int argc, char* argv[]) {
                 make_shared<Material>(Vector3{ 0.0, 0.0, 1.0 } )));
         scene->addHittable(make_shared<Sphere>( Vector3{0.0, 0.0, -25.0}, 3.0,
                 make_shared<Material>( Vector3{ 0.0, 1.0, 1.0 } )));
-        
-                        
         auto image = make_shared<Image>( height, width );
+        auto renderer = make_shared<Renderer>(camera0, scene, image);
         
-        Renderer renderer{ camera0, scene, image };
-        
-        Window win{ width, height, "Ray-Net", renderer};
+        Window win{ "Ray-Net", width, height, renderer};
         win.update();
     }
 

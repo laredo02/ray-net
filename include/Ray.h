@@ -3,8 +3,10 @@
 
 #include "XYZ.h"
 
-
-
+/*
+ * @class Ray of the form: R(t) = O + t*D
+ * @brief This object makes Ray Tracing possible, it is crucial for computing intersection with 3D objects
+ */
 class Ray {
 
 public:
@@ -13,7 +15,7 @@ public:
 	const Vector3& origin() const;
 	const Vector3& direction() const;
 
-	Vector3 at(double t) const;
+	Vector3 at(const double t) const;
 
 private:
 	Vector3 m_Origin;
@@ -22,5 +24,3 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const Ray& ray);
-
-

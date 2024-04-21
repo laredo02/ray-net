@@ -4,8 +4,6 @@
 #include <iostream>
 #include <fstream>
 
-#include <memory>
-
 #include <vector>
 #include <array>
 #include <string>
@@ -31,23 +29,3 @@
 #define LOG(str, val) std::cout << "--\t" str << " = " << val << "\t--" << std::endl;
 #define PRINT(str) std::cout << str << std::endl;
 #define NEWLINE std::cout << '\n';
-
-
-using std::make_shared;
-using std::make_unique;
-
-using std::cout;
-using std::endl;
-
-using std::sin;
-using std::cos;
-using std::tan;
-using std::sqrt;
-using std::abs;
-
-using std::vector;
-using std::string;
-
-using std::unique_ptr;
-using std::shared_ptr;
-

@@ -6,7 +6,7 @@
 #include "Hittable.h"
 #include "Camera.h"
 
-
+using std::vector;
 
 /*
  * @class Scene, container for scene elements

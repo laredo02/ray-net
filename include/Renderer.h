@@ -9,9 +9,10 @@
 #include "Image.h"
 #include "Scene.h"
 
+using std::string;
+
 /*
- * @breif Compute the color of the pixel that ray passes through.
- * @details 
+ * @breif Compute the color of the pixel a given ray passes through.
  * @param[in] ray
  * @param[in] scene
  * @param[in] tmin
@@ -28,9 +29,10 @@ class Renderer {
 public:
 	
 	Renderer(shared_ptr<Camera> camera, shared_ptr<Scene> scene, shared_ptr<Image> image);
-	void handleInput() const;
+	
 	void render() const;
 	const Image& getImage() const;
+	
 	void saveRenderToFile(const string& name) const;
 	Camera& camera() const;
 	
