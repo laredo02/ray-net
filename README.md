@@ -50,7 +50,7 @@ To start the rendering program, execute:
 ```bash
 ./ray-net
 ```
-
+<hr>
 
 # Ray-Net: Ray Tracing con IA
 
