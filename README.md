@@ -1,6 +1,10 @@
 
 # Ray-Net: Ray Tracing with AI
 
+<p align="center">
+  <img src="https://github.com/laredo02/ray-net/blob/main/rsc/image.png">
+</p>
+
 ## Description
 
 Ray-Net is an AI-powered ray tracing solution designed to generate photorealistic images. This project combines ray tracing techniques with deep learning algorithms to optimize performance and visual quality across various platforms.
@@ -59,6 +63,10 @@ git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -I includ
 <hr>
 
 # Ray-Net: Ray Tracing con IA
+
+<p align="center">
+  <img src="https://github.com/laredo02/ray-net/blob/main/rsc/image.png">
+</p>
 
 ## Descripción
 
