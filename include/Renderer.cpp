@@ -28,7 +28,7 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
 #if RENDER_NORMALS == 0
                 Vector3 ray_dir { ray.direction() + 2*dot(ray.direction(), closestHit.m_Normal)*closestHit.m_Normal };
                 ray_dir = closestHit.m_Normal;
-                color=((material->m_Albedo + 0.4*(pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, tmin, tmax)) )/2.0);
+                color=((material->m_Albedo + (pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, tmin, tmax)) )/2.0);
 #endif
 #if RENDER_NORMALS == 1
                 color=(closestHit.m_Normal+1.0)/2.0;
