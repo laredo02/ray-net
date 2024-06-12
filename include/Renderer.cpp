@@ -8,7 +8,6 @@
 #include "HitTrace.h"
 #include "Interpolate.h"
 
-
 inline Vector3 linear_to_gamma(Vector3 color) {
     return Vector3{ sqrt(color[0]), sqrt(color[1]), sqrt(color[2]) };
 }
