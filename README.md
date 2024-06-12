@@ -2,7 +2,7 @@
 # Ray-Net: Ray Tracing with AI
 
 <p align="center">
-  <img src="https://github.com/laredo02/ray-net/blob/main/rsc/image.png">
+  <img src="https://github.com/laredo02/ray-net/blob/main/image.png">
 </p>
 
 ## Description
@@ -65,7 +65,7 @@ git clone https://github.com/laredo02/ray-net.git && cd ray-net && g++ -I includ
 # Ray-Net: Ray Tracing con IA
 
 <p align="center">
-  <img src="https://github.com/laredo02/ray-net/blob/main/rsc/image.png">
+  <img src="https://github.com/laredo02/ray-net/blob/main/image.png">
 </p>
 
 ## Descripción
