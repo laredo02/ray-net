@@ -9,7 +9,11 @@
 #include "Interpolate.h"
 
 
-Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax) {
+inline Vector3 linear_to_gamma(Vector3 color) {
+    return Vector3{ sqrt(color[0]), sqrt(color[1]), sqrt(color[2]) };
+}
+
+Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const double tmin, const double tmax) {
 
     Vector3 color{ 0.0, 0.0, 0.0};
 
@@ -24,41 +28,42 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
                 closestHit=(trace.m_HitDistance<closestHit.m_HitDistance) ? trace : closestHit;
             }
         }
+        
+        
         if (hit) {
-            
             auto material=closestHit.p_Material;
             if (material) {
-                
-                
 #if RENDER_NORMALS == 0 && RENDER_DEPTH_MAP == 0
                 Vector3 ray_dir { ray.direction() + 2*dot(ray.direction(), closestHit.m_Normal)*closestHit.m_Normal };
                 ray_dir = closestHit.m_Normal;
-                color=((material->m_Albedo + (pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, tmin, tmax)) )/2.0);
+                
+                if (depth <=0)
+                    color = Vector3{0.0, 0.0, 0.0};
+                else
+                    color=((material->m_Albedo + (pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, depth-1, tmin, tmax)) )/2.0);
 #endif
-
 #if RENDER_NORMALS == 1
                 color=(closestHit.m_Normal+1.0)/2.0;
-#endif
-                
+#endif          
 #if RENDER_DEPTH_MAP == 1
                 double factor = 1.0;
                 double distance = closestHit.m_HitDistance;
                 if (closestHit.m_HitDistance < DEPTH_MAP_MAX_DISTANCE) {
                     factor = distance/DEPTH_MAP_MAX_DISTANCE;
                 }
-                color = interpolateColors(Vector3{1.0, 0.0, 0.0}, Vector3{0.0, 0.0, 1.0}, factor);
-#endif
-                
-                
-                
-            }
+                color = interpolateColors(Vector3{1.0, 0.3, 0.1}, Vector3{0.0, 0.9, 1.0}, factor);
+#endif    
+            } 
         } else {
             color = Vector3{ 1.0, 1.0, 1.0 };
         }
+        
+        
+        
 
     }
 
-
+    //color = linear_to_gamma(color);
     return color;
 }
 
@@ -110,8 +115,14 @@ void Renderer::render() const {
 #endif
         for (int i=ri; i<rf; i++) {
             for (int j=0; j<width; j++) {
-                Ray ray=p_Camera->getRay(i, j);
-                p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, 0.1, std::numeric_limits<double>::max()));
+                
+                
+                
+                for (int k=0; k<2; k++) {
+                    Ray ray=p_Camera->getRay(i, j);
+                    p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, RAY_BOUNCE_DEPTH, 0.1, std::numeric_limits<double>::max()));
+                }
+                
             }
         }
     };

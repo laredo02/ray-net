@@ -43,6 +43,8 @@ Window::~Window() {
  */
 void Window::update() {
     
+    
+    
     uint32_t period = 0;
 
     while (m_Running) {

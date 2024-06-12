@@ -35,10 +35,16 @@ void Camera::computeRayParameters() {
 }
 
 Ray Camera::getRay(int row, int col) const {
-    //    auto randomVDelta { m_DeltaV/2.0 };
-    //    auto randomUDelta { m_DeltaU/2.0 };
-    //    auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
-    Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU) /*+ randomDelta*/)};
+    //auto randomVDelta { m_DeltaV/2.0 };
+    //auto randomUDelta { m_DeltaU/2.0 };
+    //auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
+    
+    
+    
+    //Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU))};
+    
+    Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU))};
+    
 #if REAL_DISTANCE == 1
     direction.toUnit();
 #endif
