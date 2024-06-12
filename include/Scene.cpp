@@ -5,6 +5,10 @@ void Scene::addHittable(shared_ptr<Hittable> object) {
     m_HittableList.push_back(object);
 }
 
+void Scene::empty () {
+    m_HittableList.clear();
+}
+
 Hittable& Scene::operator[](size_t i) const {
 #if BOUNDS_CHECKING == 1
     return *(m_HittableList.at(i));

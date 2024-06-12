@@ -10,6 +10,7 @@
       <itemPath>include/HitTrace.h</itemPath>
       <itemPath>include/Hittable.h</itemPath>
       <itemPath>include/Image.h</itemPath>
+      <itemPath>include/Interpolate.h</itemPath>
       <itemPath>include/Material.h</itemPath>
       <itemPath>include/Random.h</itemPath>
       <itemPath>include/Ray.h</itemPath>
@@ -136,6 +137,8 @@
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Interpolate.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Material.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Material.h" ex="false" tool="3" flavor2="0">
@@ -246,6 +249,8 @@
       <item path="include/Hittable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Image.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Interpolate.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Material.cpp" ex="false" tool="1" flavor2="0">
       </item>

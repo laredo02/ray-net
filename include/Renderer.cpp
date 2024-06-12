@@ -6,6 +6,8 @@
 
 #include "Renderer.h"
 #include "HitTrace.h"
+#include "Interpolate.h"
+
 
 Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax) {
 
@@ -23,16 +25,31 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, double tmin, double tmax)
             }
         }
         if (hit) {
+            
             auto material=closestHit.p_Material;
             if (material) {
-#if RENDER_NORMALS == 0
+                
+                
+#if RENDER_NORMALS == 0 && RENDER_DEPTH_MAP == 0
                 Vector3 ray_dir { ray.direction() + 2*dot(ray.direction(), closestHit.m_Normal)*closestHit.m_Normal };
                 ray_dir = closestHit.m_Normal;
                 color=((material->m_Albedo + (pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, tmin, tmax)) )/2.0);
 #endif
+
 #if RENDER_NORMALS == 1
                 color=(closestHit.m_Normal+1.0)/2.0;
-#endif                
+#endif
+                
+#if RENDER_DEPTH_MAP == 1
+                double factor = 1.0;
+                double distance = closestHit.m_HitDistance;
+                if (closestHit.m_HitDistance < DEPTH_MAP_MAX_DISTANCE) {
+                    factor = distance/DEPTH_MAP_MAX_DISTANCE;
+                }
+                color = interpolateColors(Vector3{1.0, 0.0, 0.0}, Vector3{0.0, 0.0, 1.0}, factor);
+#endif
+                
+                
                 
             }
         } else {

@@ -17,6 +17,7 @@ class Scene {
 public:
 	void addHittable(shared_ptr<Hittable> object);
 	Hittable& operator[](size_t i) const;
+	void empty();
 	size_t size() const;
 	bool isEmpty() const;
 
