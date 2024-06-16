@@ -62,7 +62,11 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
 
     }
 
-    //color = linear_to_gamma(color);
+    
+#if GAMMA_CORRECTION == 1
+    color = linear_to_gamma(color);
+#endif
+    
     return color;
 }
 
@@ -122,6 +126,7 @@ void Renderer::render() const {
                     p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, RAY_BOUNCE_DEPTH, 0.1, std::numeric_limits<double>::max()));
                 }
                 
+                
             }
         }
     };
@@ -139,7 +144,7 @@ void Renderer::render() const {
     for (int i=0; i<supported_threads; i++) {
         thread_list[i].join();
     }
-#if MULTITHREAD_LOGGING ==1
+#if MULTITHREAD_LOGGING == 1
     LOG("JOINED ALL", "THREADS");
 #endif
 

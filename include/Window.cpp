@@ -41,13 +41,13 @@ Window::~Window() {
 /*
  * @brief Loops until a window exit event occurs
  */
-void Window::update() {
-    
-    
-    
+void Window::update() {    
     uint32_t period = 0;
 
+    
     while (m_Running) {
+        
+        
 #if BENCHMARK == 1
         Benchmark iterBench{"iteration took ", true};
         int64_t iterTime;
@@ -62,7 +62,11 @@ void Window::update() {
 #if BENCHMARK == 1
             Benchmark renderBench{"render took ", true};
 #endif
+            Benchmark renderTime{"", false};
             p_Renderer->render();
+            period = renderTime.lap();
+            
+            LOG("time", period)
 #if BENCHMARK == 1
             renderTime = renderBench.lap();
 #endif
@@ -87,14 +91,15 @@ void Window::update() {
             Benchmark eventBench("handle events took ", true);
 #endif
             this->handleInput();
-            double rotationDelta=1.0;
+            double rotationDelta= static_cast<double>(period)*CAMERA_ROTATION_SPEED;
             if (m_KeyActions['i']) p_Renderer->camera().pitch(rotationDelta);
             if (m_KeyActions['k']) p_Renderer->camera().pitch(-rotationDelta);
             if (m_KeyActions['l']) p_Renderer->camera().yaw(-rotationDelta);
             if (m_KeyActions['j']) p_Renderer->camera().yaw(rotationDelta);
             if (m_KeyActions['o']) p_Renderer->camera().roll(rotationDelta);
             if (m_KeyActions['u']) p_Renderer->camera().roll(-rotationDelta);
-            double translationDelta=0.5;
+            
+            double translationDelta = static_cast<double>(period) * CAMERA_TRANSLATION_SPEED;
             if (m_KeyActions['w']) p_Renderer->camera().translate(Vector3(0.0, 0.0, -translationDelta));
             if (m_KeyActions['s']) p_Renderer->camera().translate(Vector3(0.0, 0.0, translationDelta));
             if (m_KeyActions['d']) p_Renderer->camera().translate(Vector3(translationDelta, 0.0, 0.0));
@@ -122,6 +127,8 @@ void Window::update() {
         NEWLINE
 #endif
     }
+    
+    
 
 }
 

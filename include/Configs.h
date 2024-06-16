@@ -4,7 +4,7 @@
 
 /* PERFORMANCE SETTINGS */
 #define BENCHMARK					0		// Benchmark compute actions render loop
-#define REAL_DISTANCE				1		// [0 | 1] [Don't | Do] use normaliced ray directions. Using them is more expensive 
+#define REAL_DISTANCE				0		// [0 | 1] [Don't | Do] use normaliced ray directions. Using them is more expensive
 
 
 /* MULTITHREADING SETTINGS */
@@ -19,18 +19,19 @@
 
 
 /* RUNTIME PARAMETERS */
-
 #define RENDER_REAL_TIME			1		// Render in realtime using sdl window
 #define RENDER_DEPTH_MAP			0		// LIDAR View
-#define GENERATE_DEPTH_DATASET		1		// Generate depth dataset
-#define DEPTH_MAP_MAX_DISTANCE		70		// Maximum depth of map
-
-#define ANTIALIASING				0		// Enable/Disable Antialiasing
-#define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					720
-#define FOV							90.0	// Deg
-#define CAMERA_TRANSLATION_SPEED	1		// m/s
-#define CAMERA_ROTATION_SPEED		45		// grad/s
 #define RENDER_NORMALS				0		// Render Surcface Normals
-#define RAY_BOUNCE_DEPTH			5		// Number of bounces for each ray
+#define GENERATE_DEPTH_DATASET		0		// Generate depth dataset
+#define DEPTH_MAP_MAX_DISTANCE		70		// Maximum depth of map
+#define GAMMA_CORRECTION			0		// Enable/Disable gamma correction
+
+#define ANTIALIASING				1		// Enable/Disable Antialiasing
+#define ASPECT_RATIO				16.0/9.0
+#define IMAGE_WIDTH					300
+#define FOV							70.0	// Deg
+
+#define CAMERA_TRANSLATION_SPEED	0.1		// u/ms
+#define CAMERA_ROTATION_SPEED		0.1		// grad/ms
+#define RAY_BOUNCE_DEPTH			1		// Number of bounces for each ray
 

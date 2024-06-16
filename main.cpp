@@ -21,7 +21,7 @@ void run_real_time() {
     auto camera0=make_shared<Camera>(Vector3{0.0, 10.0, 0.0}, Vector3{0.0, 0.0, -1.0}
                                      .unit(), Vector3 {
                                      0.0, 1.0, 0.0
-    }, 45.0, 2.0, height, width);
+    }, FOV, 2.0, height, width);
     auto scene=make_shared<Scene>();
 
     scene->addHittable(make_shared<Sphere>(Vector3{0.0, -500.0, 0.0}, 499.0,
