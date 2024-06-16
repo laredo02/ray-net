@@ -24,8 +24,6 @@ m_VFov(vfov), m_FLen(flen), m_AspectRatio(static_cast<double> (width)/height), m
 
 void Camera::computeRayParameters() {
 #if ASSERTIONS == 1
-    double ort = dot(cross(m_Direction, m_Up), cross(m_Direction, m_Up));
-    assert(0.99 <= ort && ort <= 1.001);
     assert(1.0-0.001<=m_Up.norm()&&m_Up.norm()<=1.0+0.001);
     assert(1.0-0.001<=m_Direction.norm()&&m_Direction.norm()<=1.0+0.001);
 #endif

@@ -28,10 +28,10 @@
 
 #define ANTIALIASING				1		// Enable/Disable Antialiasing
 #define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					300
+#define IMAGE_WIDTH					720
 #define FOV							70.0	// Deg
 
 #define CAMERA_TRANSLATION_SPEED	0.1		// u/ms
 #define CAMERA_ROTATION_SPEED		0.1		// grad/ms
-#define RAY_BOUNCE_DEPTH			1		// Number of bounces for each ray
+#define RAY_BOUNCE_DEPTH			2		// Number of bounces for each ray
 
