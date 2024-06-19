@@ -32,21 +32,47 @@ void Camera::computeRayParameters() {
     m_P00 = m_Direction*m_FLen + ((m_Up*(m_VNorm/2.0)) + m_DeltaV*0.5) + (((cross(m_Up, m_Direction)*(m_UNorm/2.0))) + m_DeltaU*0.5);   
 }
 
-Ray Camera::getRay(int row, int col) const {
-    
-    //auto randomVDelta { m_DeltaV/2.0 };
-    //auto randomUDelta { m_DeltaU/2.0 };
-    //auto randomDelta = randomVDelta*randomDouble(0.0, 1.0) + randomUDelta*randomDouble(0.0, 1.0);
-    
-    // Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU)) + randomDelta};
-    
+Ray Camera::getRay(const int row, const int col) const {
     Vector3 direction{ (m_P00+((double) row*m_DeltaV) + ((double) col*m_DeltaU))};
-    
 #if REAL_DISTANCE == 1
     direction.toUnit();
 #endif
     Ray r { m_Center, direction};
     return r;
+}
+
+Ray Camera::getRandomRay(const int row, const int col) const {
+    auto randomVDelta { m_DeltaV/2.0*randomDouble(0.0, 1.0) };
+    auto randomUDelta { m_DeltaU/2.0*randomDouble(0.0, 1.0) };
+    Vector3 direction{ (m_P00+((double) row*m_DeltaV+randomVDelta) + ((double) col*m_DeltaU+randomUDelta))};   
+#if REAL_DISTANCE == 1
+    direction.toUnit();
+#endif
+    Ray r { m_Center, direction};
+    return r;
+}
+
+void Camera::getRayList(const int row, const int col, std::vector<Ray>& ray_list, const int grid_size) const {
+
+    auto stepV = m_DeltaV/static_cast<double>(grid_size);
+    auto stepU = m_DeltaU/static_cast<double>(grid_size);
+    
+    for (int i=-grid_size/2; i<=grid_size/2; i++) {
+        auto v_offset = stepV*static_cast<double>(i);
+        for (int j=-grid_size/2; j<=grid_size/2; j++) {
+            auto u_offset = stepU*static_cast<double>(j);
+            
+            Vector3 direction{ (m_P00+((double) row*m_DeltaV + v_offset) + ((double) col*m_DeltaU + v_offset))};
+#if REAL_DISTANCE == 1
+    direction.toUnit();
+#endif
+            Ray r { m_Center, direction};
+            
+            ray_list.push_back(r);
+        }
+    }
+            
+            
 }
 
 void Camera::translate(const Vector3& delta) {

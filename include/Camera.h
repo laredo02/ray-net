@@ -21,7 +21,9 @@ public:
 	const Vector3& deltaV() const;
 	const Vector3& P00() const;
 	
-	Ray getRay(int row, int col) const;
+	Ray getRay(const int row, const int col) const;
+	Ray getRandomRay(const int row, const int col) const;
+	void getRayList(const int row, const int col, std::vector<Ray>& ray_list, const int grid_size) const;
 
 	void translate(const Vector3& delta);
 	void pitch(const double theta);

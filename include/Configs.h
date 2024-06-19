@@ -27,11 +27,12 @@
 #define GAMMA_CORRECTION			0		// Enable/Disable gamma correction
 
 #define ANTIALIASING				1		// Enable/Disable Antialiasing
+#define RAYS_PER_PIXEL				5		// Supersampling Antialias. Number of rays per pixel
+
 #define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					720
+#define IMAGE_WIDTH					200
 #define FOV							70.0	// Deg
 
 #define CAMERA_TRANSLATION_SPEED	0.1		// u/ms
 #define CAMERA_ROTATION_SPEED		0.1		// grad/ms
-#define RAY_BOUNCE_DEPTH			2		// Number of bounces for each ray
-
+#define RAY_BOUNCE_DEPTH			20		// Number of bounces for each ray

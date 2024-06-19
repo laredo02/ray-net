@@ -39,7 +39,7 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
                 if (depth <=0)
                     color = Vector3{0.0, 0.0, 0.0};
                 else
-                    color=((material->m_Albedo + (pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, depth-1, tmin, tmax)) )/2.0);
+                    color=(((pixelColor(Ray{closestHit.m_Point, ray_dir}, scene, depth-1, tmin, tmax)) )/2.0);
 #endif
 #if RENDER_NORMALS == 1
                 color=(closestHit.m_Normal+1.0)/2.0;
@@ -119,13 +119,14 @@ void Renderer::render() const {
         for (int i=ri; i<rf; i++) {
             for (int j=0; j<width; j++) {
                 
-                
-                
-                for (int k=0; k<2; k++) {
+                Vector3 sample_sum{0.0, 0.0, 0.0};
+                for (int k=0; k<RAYS_PER_PIXEL; k++) {
+                    
                     Ray ray=p_Camera->getRay(i, j);
-                    p_Image->setPixel(i, j, pixelColor(ray, *p_Scene, RAY_BOUNCE_DEPTH, 0.1, std::numeric_limits<double>::max()));
+                    auto sample_color = pixelColor(ray, *p_Scene, RAY_BOUNCE_DEPTH, 0.1, std::numeric_limits<double>::max());
+                    sample_sum += sample_color;
                 }
-                
+                p_Image->setPixel(i, j, sample_sum/static_cast<double>(RAYS_PER_PIXEL));
                 
             }
         }
