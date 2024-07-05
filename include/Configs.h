@@ -1,7 +1,6 @@
 
 #pragma once
 
-
 /* PERFORMANCE SETTINGS */
 #define BENCHMARK					0		// Benchmark compute actions render loop
 #define REAL_DISTANCE				0		// [0 | 1] [Don't | Do] use normaliced ray directions. Using them is more expensive
@@ -24,15 +23,20 @@
 #define RENDER_NORMALS				0		// Render Surcface Normals
 #define GENERATE_DEPTH_DATASET		0		// Generate depth dataset
 #define DEPTH_MAP_MAX_DISTANCE		70		// Maximum depth of map
-#define GAMMA_CORRECTION			0		// Enable/Disable gamma correction
+#define GAMMA_CORRECTION			1		// Enable/Disable gamma correction
 
-#define ANTIALIASING				1		// Enable/Disable Antialiasing
-#define RAYS_PER_PIXEL				5		// Supersampling Antialias. Number of rays per pixel
+#define ANTIALIASING				0		// Enable/Disable Antialiasing
+#define RAYS_PER_PIXEL				1		// Supersampling Antialias. Number of rays per pixel
 
 #define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					200
-#define FOV							70.0	// Deg
+#define IMAGE_WIDTH					500
+#define FOV							45.0	// Deg
 
-#define CAMERA_TRANSLATION_SPEED	0.1		// u/ms
-#define CAMERA_ROTATION_SPEED		0.1		// grad/ms
-#define RAY_BOUNCE_DEPTH			20		// Number of bounces for each ray
+#define CAMERA_TRANSLATION_SPEED	0.03		// u/ms
+#define CAMERA_ROTATION_SPEED		0.02		// grad/ms
+#define RAY_BOUNCE_DEPTH			5		// Number of bounces for each ray
+
+#define FILENAME					"image1.ppm"
+
+
+

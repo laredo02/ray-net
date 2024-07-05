@@ -24,3 +24,30 @@ size_t Scene::size() const {
 bool Scene::isEmpty() const {
     return m_HittableList.empty();
 }
+
+//void addSpheresFromFile(const std::string& filename, std::shared_ptr<Scene> scene) {
+//    std::ifstream infile(filename);
+//    if (!infile) {
+//        std::cerr<<"Error opening file: "<<filename<<std::endl;
+//        return;
+//    }
+//
+//    std::string line;
+//    while (std::getline(infile, line)) {
+//        std::istringstream iss(line);
+//        double radius, posX, posY, posZ, colorR, colorG, colorB;
+//        if (!(iss>>radius>>posX>>posY>>posZ>>colorR>>colorG>>colorB)) {
+//            std::cerr<<"Error reading line: "<<line<<std::endl;
+//            continue;
+//        }
+//
+//        Vector3 position{posX, posY, posZ};
+//        Vector3 color{colorR, colorG, colorB};
+//        auto material=std::make_shared<Material>(color);
+//        auto sphere=std::make_shared<Sphere>(position, radius, material);
+//
+//        scene->addHittable(sphere);
+//    }
+//
+//    infile.close();
+//}

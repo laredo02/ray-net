@@ -26,5 +26,4 @@ private:
 
 };
 
-
-
+void addSpheresFromFile(const std::string& filename, std::shared_ptr<Scene> scene);

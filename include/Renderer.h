@@ -31,6 +31,7 @@ public:
 	Renderer(shared_ptr<Camera> camera, shared_ptr<Scene> scene, shared_ptr<Image> image);
 	
 	void render() const;
+	void photoRender() const;
 	const Image& getImage() const;
 	
 	void saveRenderToFile(const string& name) const;

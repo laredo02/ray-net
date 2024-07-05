@@ -70,8 +70,7 @@ void Camera::getRayList(const int row, const int col, std::vector<Ray>& ray_list
             
             ray_list.push_back(r);
         }
-    }
-            
+    }       
             
 }
 

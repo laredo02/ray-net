@@ -20,7 +20,7 @@
             <url>include/Renderer.cpp</url>
             <bookmark id="2">
                 <name/>
-                <line>152</line>
+                <line>176</line>
                 <key/>
             </bookmark>
         </file>
@@ -38,7 +38,9 @@
             <file>file:/home/miguel/coding/projects/ray-net/include/Sphere.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/RayNet.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Triangle.cpp</file>
+            <file>file:/home/miguel/coding/projects/ray-net/include/Scene.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Window.h</file>
+            <file>file:/home/miguel/coding/projects/ray-net/include/XYZ.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Material.cpp</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Interpolate.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Renderer.cpp</file>
