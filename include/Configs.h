@@ -20,7 +20,7 @@
 /* RUNTIME PARAMETERS */
 #define RENDER_REAL_TIME			1		// Render in realtime using sdl window
 #define RENDER_DEPTH_MAP			0		// LIDAR View
-#define RENDER_NORMALS				0		// Render Surcface Normals
+#define RENDER_NORMALS				1		// Render Surcface Normals
 #define GENERATE_DEPTH_DATASET		0		// Generate depth dataset
 #define DEPTH_MAP_MAX_DISTANCE		70		// Maximum depth of map
 #define GAMMA_CORRECTION			1		// Enable/Disable gamma correction
@@ -32,9 +32,9 @@
 #define IMAGE_WIDTH					500
 #define FOV							45.0	// Deg
 
-#define CAMERA_TRANSLATION_SPEED	0.03		// u/ms
-#define CAMERA_ROTATION_SPEED		0.02		// grad/ms
-#define RAY_BOUNCE_DEPTH			5		// Number of bounces for each ray
+#define CAMERA_TRANSLATION_SPEED	0.04		// u/ms
+#define CAMERA_ROTATION_SPEED		0.06		// grad/ms
+#define RAY_BOUNCE_DEPTH			5	// Number of bounces for each ray
 
 #define FILENAME					"image1.ppm"
 

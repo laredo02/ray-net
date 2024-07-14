@@ -12,7 +12,7 @@
             <url>main.cpp</url>
             <bookmark id="1">
                 <name/>
-                <line>49</line>
+                <line>64</line>
                 <key/>
             </bookmark>
         </file>
@@ -39,6 +39,7 @@
             <file>file:/home/miguel/coding/projects/ray-net/include/RayNet.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Triangle.cpp</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Scene.h</file>
+            <file>file:/home/miguel/coding/projects/ray-net/include/Ray.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Window.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/XYZ.h</file>
             <file>file:/home/miguel/coding/projects/ray-net/include/Material.cpp</file>

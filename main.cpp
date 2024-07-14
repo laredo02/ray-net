@@ -37,7 +37,7 @@ void run_real_time() {
 //                                           make_shared<Material>(Vector3{1.0, 1.0, 0.0})));
                                            
     
-    for (int i=0; i<100; i++) {    
+    for (int i=0; i<50; i++) {    
         Vector3 location { randomDouble(-50.0, 50.0), randomDouble(-50.0, 50.0), randomDouble(-50.0, -150.0) };
         Vector3 color;
         
