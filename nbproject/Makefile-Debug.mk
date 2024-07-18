@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/include/Hittable.o \
 	${OBJECTDIR}/include/Material.o \
 	${OBJECTDIR}/include/Random.o \
+	${OBJECTDIR}/include/RandomVector.o \
 	${OBJECTDIR}/include/Ray.o \
 	${OBJECTDIR}/include/Renderer.o \
 	${OBJECTDIR}/include/Scene.o \
@@ -109,6 +110,11 @@ ${OBJECTDIR}/include/Random.o: include/Random.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Random.o include/Random.cpp
+
+${OBJECTDIR}/include/RandomVector.o: include/RandomVector.cc
+	${MKDIR} -p ${OBJECTDIR}/include
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cc
 
 ${OBJECTDIR}/include/Ray.o: include/Ray.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -236,6 +242,19 @@ ${OBJECTDIR}/include/Random_nomain.o: ${OBJECTDIR}/include/Random.o include/Rand
 	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Random_nomain.o include/Random.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/Random.o ${OBJECTDIR}/include/Random_nomain.o;\
+	fi
+
+${OBJECTDIR}/include/RandomVector_nomain.o: ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cc 
+	${MKDIR} -p ${OBJECTDIR}/include
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/RandomVector.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector_nomain.o include/RandomVector.cc;\
+	else  \
+	    ${CP} ${OBJECTDIR}/include/RandomVector.o ${OBJECTDIR}/include/RandomVector_nomain.o;\
 	fi
 
 ${OBJECTDIR}/include/Ray_nomain.o: ${OBJECTDIR}/include/Ray.o include/Ray.cpp 

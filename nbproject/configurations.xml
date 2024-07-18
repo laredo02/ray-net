@@ -13,6 +13,7 @@
       <itemPath>include/Interpolate.h</itemPath>
       <itemPath>include/Material.h</itemPath>
       <itemPath>include/Random.h</itemPath>
+      <itemPath>include/RandomVector.h</itemPath>
       <itemPath>include/Ray.h</itemPath>
       <itemPath>include/RayNet.h</itemPath>
       <itemPath>include/Renderer.h</itemPath>
@@ -34,6 +35,7 @@
       <itemPath>include/Hittable.cpp</itemPath>
       <itemPath>include/Material.cpp</itemPath>
       <itemPath>include/Random.cpp</itemPath>
+      <itemPath>include/RandomVector.cc</itemPath>
       <itemPath>include/Ray.cpp</itemPath>
       <itemPath>include/Renderer.cpp</itemPath>
       <itemPath>include/Scene.cpp</itemPath>
@@ -147,6 +149,10 @@
       </item>
       <item path="include/Random.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/RandomVector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/RandomVector.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Ray.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Ray.h" ex="false" tool="3" flavor2="0">
@@ -259,6 +265,10 @@
       <item path="include/Random.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/Random.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/RandomVector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="include/RandomVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Ray.cpp" ex="false" tool="1" flavor2="0">
       </item>

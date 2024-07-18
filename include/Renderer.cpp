@@ -17,11 +17,8 @@ inline Vector3 linear_to_gamma(Vector3 color) {
 }
 
 Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const double tmin, const double tmax) {
-
     Vector3 color{ 0.0, 0.0, 0.0};
-
     if (!scene.isEmpty()) {
-
         HitTrace closestHit;
         bool hit = scene[0].hit(ray, tmin, tmax, closestHit);
         for (auto i=1; i<scene.size(); i++) {
@@ -31,8 +28,6 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
                 closestHit=(trace.m_HitDistance<closestHit.m_HitDistance) ? trace : closestHit;
             }
         }
-        
-        
         if (hit) {
             auto material=closestHit.p_Material;
             if (material) {
@@ -64,14 +59,10 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
         } else {
             color = Vector3{ 1.0, 1.0, 1.0 };
         }
-        
     }
-
-    
 #if GAMMA_CORRECTION == 1
     color = linear_to_gamma(color);
 #endif
-    
     return color;
 }
 
