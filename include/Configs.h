@@ -29,11 +29,11 @@
 #define RAYS_PER_PIXEL				1		// Supersampling Antialias. Number of rays per pixel
 
 #define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					500
-#define FOV							45.0	// Deg
+#define IMAGE_WIDTH					720
+#define FOV							65.0	// Deg
 
 #define CAMERA_TRANSLATION_SPEED	0.04		// u/ms
-#define CAMERA_ROTATION_SPEED		0.06		// grad/ms
+#define CAMERA_ROTATION_SPEED		0.04		// grad/ms
 #define RAY_BOUNCE_DEPTH			5	// Number of bounces for each ray
 
 #define FILENAME					"image1.ppm"

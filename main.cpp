@@ -8,6 +8,7 @@
 #include "Image.h"
 #include "Renderer.h"
 #include "Window.h"
+#include "RandomVector.h"
 
 using std::shared_ptr;
 using std::make_shared;
@@ -24,32 +25,32 @@ void run_real_time() {
     }, FOV, 2.0, height, width);
     auto scene=make_shared<Scene>();
 
-//    scene->addHittable(make_shared<Sphere>(Vector3{0.0, -500.0, 0.0}, 499.0,
-//                                           make_shared<Material>(Vector3{0.0, 0.5, 0.0})));
-//
-//    scene->addHittable(make_shared<Sphere>(Vector3{10.0, 9.0, -40.0}, 10.0,
-//                                           make_shared<Material>(Vector3{1.0, 0.0, 1.0})));
-//
-//    scene->addHittable(make_shared<Sphere>(Vector3{-11.0, 9.0, -40.0}, 10.0,
-//                                           make_shared<Material>(Vector3{0.0, 0.0, 1.0})));
-//
-//    scene->addHittable(make_shared<Sphere>(Vector3{-10.0, 3.0, -20.0}, 4.0,
-//                                           make_shared<Material>(Vector3{1.0, 1.0, 0.0})));
+    scene->addHittable(make_shared<Sphere>(Vector3{0.0, -500.0, 0.0}, 499.0,
+                                           make_shared<Material>(Vector3{0.0, 0.5, 0.0})));
+
+    scene->addHittable(make_shared<Sphere>(Vector3{10.0, 9.0, -40.0}, 10.0,
+                                           make_shared<Material>(Vector3{1.0, 0.0, 1.0})));
+
+    scene->addHittable(make_shared<Sphere>(Vector3{-11.0, 9.0, -40.0}, 10.0,
+                                           make_shared<Material>(Vector3{0.0, 0.0, 1.0})));
+
+    scene->addHittable(make_shared<Sphere>(Vector3{-10.0, 3.0, -20.0}, 4.0,
+                                           make_shared<Material>(Vector3{1.0, 1.0, 0.0})));
                                            
     
-    for (int i=0; i<50; i++) {    
-        Vector3 location { randomDouble(-50.0, 50.0), randomDouble(-50.0, 50.0), randomDouble(-50.0, -150.0) };
-        Vector3 color;
-        
-        int random = randomInt(0, 5);
-        if (random == 0) {
-            color = Vector3{ 1.0, 0.0, 0.0 };
-        } else {
-            color = Vector3{ randomDouble(0.0, 1.0), randomDouble(0.0, 1.0), randomDouble(0.0, 1.0) };
-        }
-        
-                scene->addHittable( make_shared<Sphere>(location, randomDouble(1.0, 15.0), make_shared<Material>(color)) );
-    }                                           
+//    for (int i=0; i<100; i++) {    
+//        Vector3 location { randomDouble(-50.0, 50.0), randomDouble(-50.0, 50.0), randomDouble(-50.0, -500.0) };
+//        Vector3 color;
+//        
+//        int random = randomInt(0, 5);
+//        if (random == 0) {
+//            color = Vector3{ 1.0, 0.0, 0.0 };
+//        } else {
+//            color = Vector3{ randomDouble(0.0, 1.0), randomDouble(0.0, 1.0), randomDouble(0.0, 1.0) };
+//        }
+//        
+//                scene->addHittable( make_shared<Sphere>(location, randomDouble(1.0, 15.0), make_shared<Material>(color)) );
+//    }                                           
 
 
     auto image=make_shared<Image>(height, width);
@@ -176,15 +177,27 @@ void createSingleRender() {
  */
 int main(int argc, char* argv[]) {
     
-    //createSingleRender();
+    
+//    RandomVector::initialize(1000);
+//    double sum;
+//    for (int i=0; i<1000000; i++) {
+//        sum += RandomVector::getValue();
+//    }
+//    std::cout << sum/1000000 << std::endl;  
+    
+    
+    
+//    createSingleRender();
+
 
 #if RENDER_REAL_TIME == 1
     run_real_time();
 #endif
     
-#if GENERATE_DEPTH_DATASET == 1
-    generate_depth_dataset();
-#endif
+
+    
+    
+
     
     
     return EXIT_SUCCESS;

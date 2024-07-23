@@ -52,6 +52,10 @@ Ray Camera::getRandomRay(const int row, const int col) const {
     return r;
 }
 
+
+
+
+
 void Camera::getRayList(const int row, const int col, std::vector<Ray>& ray_list, const int grid_size) const {
 
     auto stepV = m_DeltaV/static_cast<double>(grid_size);
@@ -73,6 +77,11 @@ void Camera::getRayList(const int row, const int col, std::vector<Ray>& ray_list
     }       
             
 }
+
+
+
+
+
 
 void Camera::translate(const Vector3& delta) {
     Vector3 translation=delta.x()*cross(m_Direction, m_Up)+delta.y()*m_Up-delta.z()*m_Direction;
