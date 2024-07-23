@@ -18,7 +18,7 @@
 
 
 /* RUNTIME PARAMETERS */
-#define RENDER_REAL_TIME			1		// Render in realtime using sdl window
+#define RENDER_REAL_TIME			0		// Render in realtime using sdl window
 #define RENDER_DEPTH_MAP			0		// LIDAR View
 #define RENDER_NORMALS				0		// Render Surcface Normals
 #define GENERATE_DEPTH_DATASET		0		// Generate depth dataset
@@ -26,15 +26,15 @@
 #define GAMMA_CORRECTION			1		// Enable/Disable gamma correction
 
 #define ANTIALIASING				0		// Enable/Disable Antialiasing
-#define RAYS_PER_PIXEL				10		// Supersampling Antialias. Number of rays per pixel
+#define RAYS_PER_PIXEL				100		// Supersampling Antialias. Number of rays per pixel
 
 #define ASPECT_RATIO				16.0/9.0
-#define IMAGE_WIDTH					720
+#define IMAGE_WIDTH					1000
 #define FOV							65.0	// Deg
 
 #define CAMERA_TRANSLATION_SPEED	0.04		// u/ms
 #define CAMERA_ROTATION_SPEED		0.04		// grad/ms
-#define RAY_BOUNCE_DEPTH			5	// Number of bounces for each ray
+#define RAY_BOUNCE_DEPTH			10	// Number of bounces for each ray
 
 #define FILENAME					"image1.ppm"
 
