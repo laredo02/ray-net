@@ -51,6 +51,8 @@ private:
 	SDL_Window* p_SDLWindow;
 	SDL_Renderer* p_SDLRenderer;
 	SDL_Texture* p_SDLTexture;
+	
+	int rendernum;
 
 	bool m_Running;
 

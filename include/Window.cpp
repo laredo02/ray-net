@@ -1,5 +1,6 @@
 
 #include "Window.h"
+#include <string>
 
 /*
  * @brief Window Creation
@@ -23,6 +24,7 @@ Window::Window(string name, const size_t width, const size_t height, shared_ptr<
         SDL_DestroyWindow(p_SDLWindow);
         SDL_Quit();
     }
+    rendernum = 0;
     m_Running=true;
 }
 
@@ -195,7 +197,8 @@ void Window::handleInput() {
                 {
                     Benchmark bench("Saving the image to disk took ", true);
 #endif
-                    p_Renderer->saveRenderToFile("image.ppm");
+                    rendernum += 1;
+                    p_Renderer->saveRenderToFile("fsrgan/source_images/image" + std::to_string(rendernum) + ".ppm");
 #if BENCHMARK == 1
                 }
 #endif
