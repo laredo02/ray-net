@@ -3,6 +3,7 @@
 
 #include "RayNet.h"
 #include "Random.h"
+#include "RandomVector.h"
 
 
 
@@ -64,6 +65,9 @@ public:
 	XYZ<T>& rotateZ(const XYZ<T>& center, const double gamma);
 	XYZ<T>& rotateXYZ(const XYZ<T>& center, const double alpha, const double beta, const double gamma);
 	XYZ<T>& rotateAAxis(const XYZ<T>& axisDir, const double theta);
+	
+	static XYZ<T> randomVector();
+	static XYZ<T> randomUnitVector();
 
 	template<typename U> friend std::ostream& operator<<(std::ostream& out, const XYZ<U>& xyz);
 
@@ -75,6 +79,17 @@ private:
 
 
 using Vector3=XYZ<double>;
+
+
+
+
+template<typename T> XYZ<T> XYZ<T>::randomVector() {
+		return	XYZ<T>{ RandomVector::getValue(), RandomVector::getValue(), RandomVector::getValue() };
+}
+
+template<typename T	> XYZ<T> XYZ<T>::randomUnitVector() {
+		return XYZ<T>(randomVector().unit());
+}
 
 
 template<typename T> XYZ<T>::XYZ() : m_xyz{(T) 0, (T) 0, (T) 0}

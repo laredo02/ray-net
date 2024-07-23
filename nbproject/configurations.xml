@@ -35,7 +35,7 @@
       <itemPath>include/Hittable.cpp</itemPath>
       <itemPath>include/Material.cpp</itemPath>
       <itemPath>include/Random.cpp</itemPath>
-      <itemPath>include/RandomVector.cc</itemPath>
+      <itemPath>include/RandomVector.cpp</itemPath>
       <itemPath>include/Ray.cpp</itemPath>
       <itemPath>include/Renderer.cpp</itemPath>
       <itemPath>include/Scene.cpp</itemPath>
@@ -149,7 +149,7 @@
       </item>
       <item path="include/Random.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/RandomVector.cc" ex="false" tool="1" flavor2="0">
+      <item path="include/RandomVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/RandomVector.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -266,7 +266,7 @@
       </item>
       <item path="include/Random.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/RandomVector.cc" ex="false" tool="1" flavor2="0">
+      <item path="include/RandomVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="include/RandomVector.h" ex="false" tool="3" flavor2="0">
       </item>

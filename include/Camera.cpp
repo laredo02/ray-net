@@ -66,7 +66,7 @@ void Camera::getRayList(const int row, const int col, std::vector<Ray>& ray_list
         for (int j=-grid_size/2; j<=grid_size/2; j++) {
             auto u_offset = stepU*static_cast<double>(j);
             
-            Vector3 direction{ (m_P00+((double) row*m_DeltaV + v_offset) + ((double) col*m_DeltaU + v_offset))};
+            Vector3 direction{ (m_P00+((double) row*m_DeltaV + v_offset) + ((double) col*m_DeltaU + v_offset)) };
 #if REAL_DISTANCE == 1
     direction.toUnit();
 #endif

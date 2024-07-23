@@ -16,6 +16,9 @@ inline Vector3 linear_to_gamma(Vector3 color) {
 
 }
 
+
+
+
 Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const double tmin, const double tmax) {
     Vector3 color{ 0.0, 0.0, 0.0};
     if (!scene.isEmpty()) {
@@ -37,7 +40,7 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
 
                 ray_dir.toUnit();
                 
-                ray_dir = closestHit.m_Normal;
+                ray_dir = closestHit.m_Normal + Vector3::randomUnitVector();
                 
                 if (depth <=0)
                     color = Vector3{0.0, 0.0, 0.0};
@@ -60,6 +63,11 @@ Vector3 pixelColor(const Ray& ray, const Scene& scene, const double depth, const
             color = Vector3{ 1.0, 1.0, 1.0 };
         }
     }
+
+    
+    
+    
+    
 #if GAMMA_CORRECTION == 1
     color = linear_to_gamma(color);
 #endif

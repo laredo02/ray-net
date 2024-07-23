@@ -176,29 +176,18 @@ void createSingleRender() {
  * @param[in] 
  */
 int main(int argc, char* argv[]) {
-    
-    
-//    RandomVector::initialize(1000);
+    RandomVector::initialize(1000);
 //    double sum;
 //    for (int i=0; i<1000000; i++) {
 //        sum += RandomVector::getValue();
 //    }
 //    std::cout << sum/1000000 << std::endl;  
-    
-    
-    
-//    createSingleRender();
 
+    //    createSingleRender();
 
 #if RENDER_REAL_TIME == 1
     run_real_time();
 #endif
-    
-
-    
-    
-
-    
     
     return EXIT_SUCCESS;
 }

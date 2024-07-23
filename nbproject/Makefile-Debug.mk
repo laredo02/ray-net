@@ -111,10 +111,10 @@ ${OBJECTDIR}/include/Random.o: include/Random.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/Random.o include/Random.cpp
 
-${OBJECTDIR}/include/RandomVector.o: include/RandomVector.cc
+${OBJECTDIR}/include/RandomVector.o: include/RandomVector.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cc
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cpp
 
 ${OBJECTDIR}/include/Ray.o: include/Ray.cpp
 	${MKDIR} -p ${OBJECTDIR}/include
@@ -244,7 +244,7 @@ ${OBJECTDIR}/include/Random_nomain.o: ${OBJECTDIR}/include/Random.o include/Rand
 	    ${CP} ${OBJECTDIR}/include/Random.o ${OBJECTDIR}/include/Random_nomain.o;\
 	fi
 
-${OBJECTDIR}/include/RandomVector_nomain.o: ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cc 
+${OBJECTDIR}/include/RandomVector_nomain.o: ${OBJECTDIR}/include/RandomVector.o include/RandomVector.cpp 
 	${MKDIR} -p ${OBJECTDIR}/include
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/include/RandomVector.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
@@ -252,7 +252,7 @@ ${OBJECTDIR}/include/RandomVector_nomain.o: ${OBJECTDIR}/include/RandomVector.o 
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector_nomain.o include/RandomVector.cc;\
+	    $(COMPILE.cc) -g -Iinclude `pkg-config --cflags sdl2` -std=c++14  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/include/RandomVector_nomain.o include/RandomVector.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/include/RandomVector.o ${OBJECTDIR}/include/RandomVector_nomain.o;\
 	fi

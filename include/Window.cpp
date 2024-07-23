@@ -67,7 +67,7 @@ void Window::update() {
             period = renderTime.lap();
             
             // LOG("time", 1000.0/(double) period)
-            LOG("time", period)
+            // LOG("time", period)
 #if BENCHMARK == 1
             renderTime = renderBench.lap();
 #endif

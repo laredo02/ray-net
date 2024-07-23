@@ -26,7 +26,7 @@
 #define GAMMA_CORRECTION			1		// Enable/Disable gamma correction
 
 #define ANTIALIASING				0		// Enable/Disable Antialiasing
-#define RAYS_PER_PIXEL				1		// Supersampling Antialias. Number of rays per pixel
+#define RAYS_PER_PIXEL				10		// Supersampling Antialias. Number of rays per pixel
 
 #define ASPECT_RATIO				16.0/9.0
 #define IMAGE_WIDTH					720
