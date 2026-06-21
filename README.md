@@ -49,6 +49,8 @@ The renderer opens an SDL window and updates continuously while you move the cam
 | `G`            | Save the current frame (PPM) to `fsrgan/source_images/` |
 | `Q` / `Esc`    | Quit                                     |
 
+<!--
 <p align="center">
   <img src="https://github.com/laredo02/ray-net/blob/main/image.png">
 </p>
+-->
